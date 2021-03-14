@@ -370,7 +370,7 @@
   line-height: 25px;
 }
 
-.specialContainerInner .btn {
+.specialContainerInner .btnx {
   text-align: center;
   margin: 50px 0;
 }
@@ -419,17 +419,17 @@
   color: #d04d2a;
 }
 
-.subscribeText .btn {
+.subscribeText .btnx {
   margin-left: 10px;
 }
 
-.subscribeText .btn button {
+.subscribeText .btnx button {
   background-color: #d04d2a;
   color: #fff;
   border: 1px solid transparent;
 }
 
-.subscribeText .btn button:hover {
+.subscribeText .btnx button:hover {
   color: #d04d2a;
   background-color: #fff;
   border: 1px solid #d04d2a;
@@ -618,4 +618,7 @@
     width: 100%;
     margin: auto;
   }
+}
+h4 {
+  font-size: inherit;
 }

@@ -1,3 +1,30 @@
 /* You can add global styles to this file, and also import other style files */
 @import './assets/css/style.css';
 @import './assets/css/signUp.css';
+.pricingCard {
+    p {
+        margin: 0px;
+        padding: 2px !important;
+      }
+}
+.subscribeContainer {
+    form {
+        padding: 0px;
+    }
+    p {
+        font-weight: 400 !important;
+    }
+    button {
+        padding: 7px 15px !important;
+    }
+}
+.signContainer {
+    .socialInner {
+        height: 45px;
+        img{
+            height: 27px;
+            width: 27px;
+            object-fit: contain;
+        }
+    }
+}

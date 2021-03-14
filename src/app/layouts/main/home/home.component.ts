@@ -16,16 +16,18 @@ export class HomeComponent implements OnInit {
 
   sliderInit = () => {
     const glider = (window as any).Glider;
-    const d = new glider(document.querySelector('.glider'), {
-      slidesToShow: 3,
-      dots: '#dots',
-      draggable: true,
-      arrows: {
-        prev: '.glider-prev',
-        next: '.glider-next'
-      }
-    });
-    return d;
+    if (glider) {
+      const d = new glider(document.querySelector('.glider'), {
+        slidesToShow: 3,
+        dots: '#dots',
+        draggable: true,
+        arrows: {
+          prev: '.glider-prev',
+          next: '.glider-next'
+        }
+      });
+      return d;
+    }
   }
 
 }
