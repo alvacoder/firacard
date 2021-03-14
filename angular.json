@@ -127,5 +127,8 @@
       }
     }
   },
-  "defaultProject": "firacard"
+  "defaultProject": "firacard",
+  "cli": {
+    "analytics": "913d0056-2caa-417a-983b-0c0983e0a4aa"
+  }
 }
