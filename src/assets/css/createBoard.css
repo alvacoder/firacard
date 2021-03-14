@@ -1,0 +1,53 @@
+/* .createBoard {
+  width: auto;
+  margin: auto;
+  height: auto;
+} */
+
+.createBoardContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 500px;
+  margin: auto;
+  margin-top: 10%;
+  padding: 20px;
+
+  /* align-items: center; */
+}
+
+.createBoardContainer label {
+  display: block;
+  padding: 10px 0;
+  font-size: 12px;
+}
+
+.createBoardContainer input {
+  width: 100%;
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: 1px solid #4f4f4f;
+  outline: none;
+}
+
+.createBoardContainer h3 {
+  font-size: 30px;
+  padding: 20px 0;
+  text-align: center;
+  color: #2c4b75;
+}
+
+.createBoardContainer div {
+  padding-bottom: 15px;
+  color: #4f4f4f;
+}
+
+.createBoardContainer small a {
+  float: right;
+  color: #a1c042;
+  padding-top: 5px;
+}
+
+.createBoardBtn button {
+  width: 100%;
+}

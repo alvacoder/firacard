@@ -1,0 +1,127 @@
+.createGreetingCard,
+.homeContainerInner {
+  max-width: 1100px;
+  margin: auto;
+}
+
+.homeContainerInner {
+  padding: 0;
+  align-items: center;
+}
+
+.imageContainer img {
+  width: 90%;
+}
+
+.homeText {
+  padding: 0 50px 0 0px;
+}
+
+.homeText .dedicatedBtn a button {
+  margin: 40px 0;
+}
+
+.works {
+  padding-top: 50px;
+}
+
+.createdGreetingCardContainer {
+  background-color: #f6faff;
+  padding: 50px;
+}
+
+.createGreetingCard {
+  align-items: center;
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+}
+
+.createGreetingCard h3 {
+  color: #d04d2a;
+  font-size: 30px;
+  font-weight: 500;
+  padding: 0 0 0 30px;
+}
+
+.playBtn a button {
+  color: #d04d2a;
+}
+
+.playBtn .fa-play-circle {
+  color: #d04d2a;
+}
+
+.sampleContainer {
+  text-align: center;
+  padding: 70px;
+}
+
+.sampleContainer h3 {
+  font-size: 30px;
+  color: #0e3262;
+  line-height: 30px;
+  font-weight: 500;
+}
+
+.sampleContainer img {
+  padding: 40px 0;
+  width: 50%;
+}
+
+.testimonialImageLarge {
+  background-image: url("../img/specialLargeImage.png");
+  background-position: center;
+  background-size: cover;
+  position: relative;
+  height: 500px;
+}
+
+.largeImageCard {
+  background-color: #fff;
+  width: 350px;
+  align-items: center;
+  float: right;
+  margin: 70px;
+  padding: 0 20px 20px 20px;
+  border-radius: 4px;
+}
+
+.largeImageCard img {
+  text-align: center;
+  margin: auto;
+}
+
+q::before {
+  font-size: 54px;
+  color: #4f4f4f;
+}
+
+::before {
+  padding-bottom: 0;
+}
+
+q::after {
+  content: none;
+}
+
+.largeImageCard q p {
+  padding: 10px;
+  font-size: 14px;
+  color: #4f4f4f;
+  line-height: 25px;
+}
+
+.largeImageContainer {
+  text-align: center;
+}
+
+.largeImageContainer h5 {
+  font-size: 16px;
+  color: #444444;
+  font-weight: 600;
+}
+
+.largeImageContainer small {
+  font-size: 12px;
+  color: #c4c4c4;
+}

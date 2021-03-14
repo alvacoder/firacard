@@ -1,0 +1,93 @@
+.birthdayCardContainerInner {
+  background-color: #f7faff;
+  padding: 50px 0;
+}
+
+.birthdayCardsInner {
+  max-width: 1100px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.birthdayCards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  background-color: #fff;
+  width: 97%;
+  height: fit-content;
+  margin: 10px auto;
+}
+
+q::after {
+  content: none;
+}
+
+q {
+  font-size: 30px;
+  color: #4f4f4f;
+}
+
+.birthdayCardContainer h3 {
+  font-size: 35px;
+  color: #2c4b75;
+  line-height: 40px;
+  font-weight: 600;
+  text-align: center;
+  padding: 30px;
+}
+
+.birthdayCards img {
+  width: 100%;
+  height: 100%;
+}
+
+.birthdayCards p {
+  font-size: 12px;
+  color: #4f4f4f;
+}
+
+.birthdayText {
+  padding: 20px;
+  position: relative;
+}
+
+.birthdayText small {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  color: #4f4f4f;
+  font-weight: 700;
+}
+
+.birthdayText small span {
+  color: #c4c4c4;
+}
+
+@media screen and (max-width: 968px) {
+  .birthdayCardsInner {
+    display: block;
+    margin: auto;
+  }
+
+  .birthdayCards {
+    height: 100%;
+    width: 450px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .birthdayCards {
+    display: block;
+    width: 70%;
+  }
+
+  .birthdayCards img {
+    width: 100%;
+    height: 200px;
+  }
+
+  .birthdayCards p {
+    padding: 0 20px 20px 20px;
+  }
+}

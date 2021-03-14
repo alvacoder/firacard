@@ -1,0 +1,29 @@
+.footerCover {
+  background-color: #f6faff;
+}
+
+.footerContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px 20px;
+  max-width: 1100px;
+  margin: auto;
+}
+
+.socialFooter span a {
+  text-decoration: none;
+  color: #0a142f;
+}
+
+.socialFooter span {
+  border: 1px solid #0a142f;
+  border-radius: 50%;
+  padding: 5px;
+  margin: 0 5px;
+}
+
+.copyRight p {
+  color: #0a142f;
+  font-size: 14px;
+}

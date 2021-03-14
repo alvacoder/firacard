@@ -1,0 +1,270 @@
+.signContainer {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.loginImage img {
+  width: 95%;
+  height: 88vh;
+}
+
+.signUp {
+  margin: auto;
+  box-shadow: 0px 35px 60px rgba(85, 42, 4, 0.08);
+  width: 100%;
+  align-items: center;
+}
+
+.signTitle {
+  text-align: center;
+  padding-bottom: 20px;
+}
+
+.signTitle h3 {
+  font-size: 20px;
+  line-height: 39px;
+  font-weight: 600;
+  color: #0e3262;
+}
+
+.signTitle p {
+  line-height: 180%;
+  font-size: 14px;
+  color: #9b9b9b;
+}
+
+label {
+  color: #755f5f;
+  line-height: 180%;
+  font-size: 14px;
+}
+
+::placeholder {
+  color: rgba(79, 79, 79, 0.7);
+  line-height: 180%;
+  font-size: 14px;
+}
+
+input {
+  border: 0.3px solid #bbbaba;
+  border-radius: 8px;
+  outline: none;
+  padding: 10px 10px 10px 60px;
+  width: 100%;
+  /* outline-color: #1976d2; */
+}
+
+form {
+  padding: 0 30px 20px 30px;
+}
+
+.input {
+  position: relative;
+}
+
+.userIcon {
+  position: absolute;
+  top: 10px;
+  font-size: 14px;
+  left: 25px;
+  color: rgba(47, 128, 237, 0.5);
+}
+
+.eye {
+  left: auto;
+  right: 20px;
+}
+
+.formInner {
+  padding-top: 20px;
+}
+
+.submitBtn input {
+  background: #a1c042;
+  padding: 10px;
+  color: #fff;
+  border: 10px solid transparent;
+}
+
+.loginRedirectTitle {
+  text-align: center;
+  padding: 10px 5px;
+}
+
+.loginRedirectTitle p {
+  font-size: 14px;
+  line-height: 19px;
+  color: #756f6f;
+  padding-bottom: 5px;
+  font-weight: 500;
+}
+
+.loginRedirectTitle a {
+  color: #a1c042;
+  font-size: 12px;
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+.social {
+  display: flex;
+}
+
+.socialContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.socialInner {
+  border: 1px solid #1976d2;
+  padding: 10px;
+  margin: 5px;
+  border-radius: 8px;
+}
+
+.social span,
+.social img {
+  padding-right: 10px;
+}
+.social p {
+  color: #a1c042;
+}
+
+.socialInner a {
+  text-decoration: none;
+}
+
+.fab {
+  font-size: 20px;
+  color: #2c4b75;
+}
+
+.signUpForm {
+  margin: auto 100px;
+}
+
+.loginForm {
+  padding: 20px 10px 30px 10px;
+}
+
+.or {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 0;
+}
+
+.or p {
+  font-size: 14px;
+  padding: 0 15px;
+  color: #c4c4c4;
+}
+
+.line {
+  height: 1px;
+  width: 165px;
+  background-color: #c4c4c4;
+}
+
+/* sign styling */
+.signOnlyContainer {
+  margin: auto;
+}
+.signOnlyContainer .socialInner {
+  width: 220px;
+  align-items: center;
+  margin: 10px auto;
+}
+
+.socialInner .email img {
+  width: 30px;
+}
+
+.signOnlyContainer .or .line {
+  width: 100px;
+}
+
+.hideForm,
+.hideSignOnly {
+  display: none;
+}
+
+.showForm {
+  display: block;
+}
+
+.forgotPwd a {
+  color: #a1c042;
+  float: right;
+  font-size: 14px;
+}
+
+@media screen and (max-width: 980px) {
+  .signContainer {
+    display: block;
+  }
+  .loginImage img {
+    display: none;
+  }
+
+  .signUp {
+    align-items: center;
+  }
+
+  .signUpForm {
+    margin: auto;
+    max-width: 500px;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    top: 55%;
+    left: 50%;
+  }
+
+  .social p {
+    font-size: 12px;
+  }
+
+  .socialInner {
+    padding: 7px;
+  }
+
+  .line {
+    width: 120px;
+  }
+
+  .signTitle {
+    padding-bottom: 10px;
+  }
+
+  /* sign style */
+  .signOnlyContainer {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .signOnlyContainer .socialInner {
+    width: 170px;
+  }
+
+  .signOnlyContainer .or .line {
+    width: 70px;
+  }
+}
+
+@media screen and (max-width: 680px) {
+  .signUpForm {
+    width: 100%;
+  }
+
+  .signUp {
+    width: 100%;
+  }
+
+  .signTitle {
+    padding-bottom: 7px;
+  }
+}
+.auth-banner-img {
+  height: max-content;
+}
