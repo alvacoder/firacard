@@ -1,0 +1,45 @@
+
+.navbar {
+    padding: 15px 60px;
+    border-bottom: 1px solid black;
+}
+header {
+    padding: 30px 60px;
+    padding-bottom: 0px;
+    .navbar-nav{
+        flex-direction: row;
+        margin-top: 10px;
+        .nav-item {
+            margin-right: 20px;
+            font-style: normal;
+            font-weight: 500;
+            font-size: 20px;
+            line-height: 24px;
+            .nav-link {
+                color: #C4C4C4 !important;
+            }
+            &.active .nav-link {
+                color: #2D0C03 !important;
+                border-bottom: 2px solid black;
+            }
+
+        }
+    }
+}
+.main-content {
+    padding: 0px 50px;
+    padding-top: 35px; 
+    background: #F6FAFF;
+    min-height: 75vh;
+    .card-body {
+        .form-container {
+            margin-top: 80px;
+        }
+        .card-text {
+            .text-muted {
+                width: 100px;
+                display: inline-block;
+            }
+        }
+    }
+}

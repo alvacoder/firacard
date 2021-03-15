@@ -10,6 +10,10 @@ const routes: Routes = [
     path: '',
     loadChildren: () => import('./layouts/auth/auth.module').then(m => m.AuthModule)
   },
+  {
+    path: 'dashboard',
+    loadChildren: () => import('./layouts/dashboard/dashboard.module').then(m => m.DashboardModule)
+  },
   { path: '**', redirectTo: '/', pathMatch: 'full' },
 ];
 
