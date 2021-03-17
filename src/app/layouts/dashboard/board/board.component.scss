@@ -1,0 +1,27 @@
+.nav-menu {
+    margin-bottom: 10px;
+    .nav-item {
+        margin-right: 20px;
+        cursor: pointer;
+        h6 {
+            font-size: 16px;
+            line-height: 180%;
+            color: #A1C042;
+        }
+        .icon-circle {
+            margin-right: 10px;
+            background: #FFFFFF;
+            box-shadow: 0px 20.9725px 71.9057px rgba(85, 42, 4, 0.08);
+        }
+    }
+} 
+.main-container {
+    background-image: url('/assets/img/board-banner.png');
+    min-height: 65vh;
+    background-repeat: no-repeat;
+    background-size: cover;
+    // background-position: center;
+    .container-fluid {
+        padding: 5em 4em 3em;
+    }
+}
