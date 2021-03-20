@@ -4,7 +4,7 @@
             <h2 class="text-center">Happy Birthday Esther</h2>
         </div>
         <nav class=" d-flex justify-content-center nav-menu">
-            <div *ngFor="let menu of navMenus" class="nav-item">
+            <div *ngFor="let menu of navMenus" class="nav-item" (click)="navClick(menu.slug)" >
                 <h6>
                     <span class=" d-inline-block p-3 shadow-sm rounded-circle icon-circle">
                         <img [src]="'/assets/icons/'+ menu.icon" [alt]="menu.icon">

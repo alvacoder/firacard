@@ -1,3 +1,4 @@
+import { CreateCardComponent } from './create-card/create-card.component';
 import { DashLayoutComponent } from './dash-layout/dash-layout.component';
 import { BoardComponent } from './board/board.component';
 import { DashHomeComponent } from './dash-home/dash-home.component';
@@ -9,7 +10,8 @@ const routes: Routes = [
     path: '', component: DashLayoutComponent,
     children: [
       {path: '', component: DashHomeComponent},
-      {path: 'board/:id', component: BoardComponent}
+      {path: 'board/:id', component: BoardComponent},
+      {path: 'create-card/:id', component: CreateCardComponent}
     ]
   },
 

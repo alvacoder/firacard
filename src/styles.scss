@@ -1,6 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
 @import './assets/css/style.css';
 @import './assets/css/signUp.css';
+.text-blue {
+    color: #2C4B75;
+}
+.text-pry{
+    color: #A1C042;
+}
+.btn-pry {
+    background: #A1C042;
+    box-shadow: 0px 2px 8px rgba(76, 175, 80, 0.16);
+    border-radius: 4px;
+    color: white;
+}
 .pricingCard {
     p {
         margin: 0px;

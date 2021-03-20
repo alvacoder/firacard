@@ -1,0 +1,114 @@
+<div class="create-card-container">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card border-0">
+                    <div class="card-body">
+                        <h3 class="card-header bg-white border-0 text-blue p-0">Create Card</h3>
+                        <div>
+                            <nav class="d-flex text-blue mt-4 nav-menu">
+                                <h5 (click)="showNav('image')" class="nav-item {{activateNav==='image' && 'active'}}" >
+                                    <img src="/assets/icons/camera-blue.svg" alt="iocn">
+                                    <span>Add Image</span>
+                                </h5>
+                                <h5 (click)="showNav('gif')" class="nav-item {{activateNav==='gif' && 'active'}}" >
+                                    <img src="/assets/icons/gif-blue.svg" alt="iocn">
+                                    <span>Add GIF</span>
+                                </h5>
+                                <h5 (click)="showNav('video')" class="nav-item {{activateNav==='video' && 'active'}}">
+                                    <img src="/assets/icons/video-blue.svg" alt="iocn">
+                                    <span>Add Video</span>
+                                </h5>
+                            </nav>
+                            <section class="mb-3">
+                                <div class="card" *ngIf="activateNav=='image'">
+                                    <div class="card-body bg-light">
+                                        <div class="input-group mb-3">
+                                            <input [(ngModel)]="searchValue" name="searchValue" type="text" class="form-control" placeholder="Search for..." >
+                                            <div class="input-group-append">
+                                                <button (click)="saerchUnslash()" [disabled]="!searchValue || searchLoading" class=" btn btn-success">
+                                                    <span *ngIf="!searchLoading">Search!</span>
+                                                    <span *ngIf="searchLoading">Searching...</span>
+                                                </button>
+                                            </div>
+                                          </div>
+                                          <div >
+                                            <div class="row giphy-container" *ngIf="gifs.length">
+                                                <div *ngFor="let gif of gifs" class="result col-md-6 mb-3">
+                                                    <div  class="overlay">
+                                                        <button class="btn btn-success">Add to card</button>
+                                                    </div>
+                                                    <img class="img-responsive" [src]="gif.urls.regular" height="300px" width="100%" alt="image">
+                                                    <div class="loading">
+                                                        <h5>Loading...</h5>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                          </div>
+                                    </div>
+                                </div>
+                                <div class="card" *ngIf="activateNav=='gif'">
+                                    <div class="card-body bg-light">
+                                        <div class="input-group mb-3">
+                                            <input [(ngModel)]="searchValue" name="searchValue" type="text" class="form-control" placeholder="Search for..." >
+                                            <div class="input-group-append">
+                                                <button (click)="searchGiphy()" [disabled]="!searchValue || searchLoading" class=" btn btn-success">
+                                                    <span *ngIf="!searchLoading">Search!</span>
+                                                    <span *ngIf="searchLoading">Searching...</span>
+                                                </button>
+                                            </div>
+                                          </div>
+                                          <div >
+                                            <div class="row giphy-container" *ngIf="gifs.length">
+                                                <div *ngFor="let gif of gifs" class="result col-md-6 mb-3">
+                                                    <div  class="overlay">
+                                                        <button class="btn btn-success">Add to card</button>
+                                                    </div>
+                                                    <img class="img-responsive" [src]="gif.images.original.url" height="300px" width="100%" alt="gif">
+                                                    <div class="loading">
+                                                        <h5>Loading...</h5>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                          </div>
+                                    </div>
+                                </div>
+                                <div class="card" *ngIf="activateNav=='video'">
+                                    <div class="card-body bg-light">
+                                        <div class="input-group mb-3">
+                                            <input [(ngModel)]="searchValue" name="searchValue" type="text" class="form-control" placeholder="Search for..." >
+                                            <div class="input-group-append">
+                                                <button (click)="searchGiphy()" [disabled]="!searchValue || searchLoading" class=" btn btn-success">
+                                                    <span *ngIf="!searchLoading">Search!</span>
+                                                    <span *ngIf="searchLoading">Searching...</span>
+                                                </button>
+                                            </div>
+                                          </div>
+                                          <div >
+                                            <div class="row giphy-container" *ngIf="gifs.length">
+                                                <div *ngFor="let gif of gifs" class="result col-md-6 mb-3">
+                                                    <div  class="overlay">
+                                                        <button class="btn btn-success">Add to card</button>
+                                                    </div>
+                                                    <img class="img-responsive" [src]="gif.images.original.url" height="300px" width="100%" alt="gif">
+                                                    <div class="loading">
+                                                        <h5>Loading...</h5>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                          </div>
+                                    </div>
+                                </div>
+                            </section>
+                            <textarea class="form-control" placeholder="Complimentory message" cols="30" rows="10"></textarea>
+                            <div class="mt-4 mb-2">
+                                <button class="btn btn-pry btn-lg">Create card</button>
+                                <button class="btn text-pry btn-lg">Cancel</button>
+                            </div>
+                        </div>
+                    </div> 
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
