@@ -9,10 +9,11 @@ import { BoardComponent } from './board/board.component';
 import { DashLayoutComponent } from './dash-layout/dash-layout.component';
 import { CreateCardComponent } from './create-card/create-card.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BoardSettingsComponent } from './board/board-settings/board-settings.component';
 
 
 @NgModule({
-  declarations: [DashHomeComponent, DashFooterComponent, BoardComponent, DashLayoutComponent, CreateCardComponent],
+  declarations: [DashHomeComponent, DashFooterComponent, BoardComponent, DashLayoutComponent, CreateCardComponent, BoardSettingsComponent],
   imports: [
     CommonModule,
     DashboardRoutingModule,
