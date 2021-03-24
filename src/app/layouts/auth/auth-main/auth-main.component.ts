@@ -1,4 +1,8 @@
+import { AuthService } from './../auth.service';
 import { Component, OnInit } from '@angular/core';
+import { AuthService as NgSocialLoginAuthSrv } from 'angularx-social-login';
+import { FacebookLoginProvider, GoogleLoginProvider } from 'angularx-social-login';
+
 
 @Component({
   selector: 'app-auth-main',
@@ -7,9 +11,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AuthMainComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private authSrv: AuthService,
+    private ngSocialLoginAuthSrv: NgSocialLoginAuthSrv) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
+
+  googleLogin(): void {
+    this.ngSocialLoginAuthSrv.signIn(GoogleLoginProvider.PROVIDER_ID).then((res: any) => {
+      console.log(res);
+    }).catch(err => {
+      console.log(err);
+    });
+  }
+  facebookLogin(): void {
+    this.ngSocialLoginAuthSrv.signIn(FacebookLoginProvider.PROVIDER_ID).then((res: any) => {
+      console.log(res);
+    }).catch(err => {
+      console.log(err);
+    });
   }
 
 }

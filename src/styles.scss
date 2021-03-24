@@ -13,6 +13,21 @@
     border-radius: 4px;
     color: white;
 }
+.btn-pry-outline {
+    border: 1px solid #A1C042;
+    border-radius: 4px;
+    color: #A1C042;
+    &:hover{
+        color: #A1C042;
+    }
+}
+.badge-lt-blue {
+    background: #F1F7FF;
+    border-radius: 4.66383px;
+}
+.cursor-pointer {
+    cursor: pointer;
+}
 .pricingCard {
     p {
         margin: 0px;
@@ -39,4 +54,7 @@
             object-fit: contain;
         }
     }
+}
+.btn, .form-control {
+    box-shadow: none !important;
 }

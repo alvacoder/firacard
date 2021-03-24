@@ -25,6 +25,9 @@ export class BoardComponent implements OnInit {
       case 'add_to_board':
         this.router.navigate(['/dashboard/create-card', 1]);
         break;
+      case 'settings':
+        document.getElementById('settingsModalId')?.click();
+        break;
       default:
         break;
     }
