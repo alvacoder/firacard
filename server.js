@@ -9,11 +9,10 @@ const express = require('express');
 const app = express();
 app.use(requireHTTPS);
 
-app.use(express.static('./dist/firacard'));
+app.use(express.static(__dirname + '/dist/firacard'));
 
 app.get('/*', function(req, res) {
-    res.sendFile('index.html', {root: 'dist/firacard/'}
-    );
+    res.sendFile(__dirname+'/dist/firacard/index.html')
   });
 
-app.listen(process.env.PORT || 8080);
+app.listen(process.env.PORT || 8080 , () => console.log('listening'));
