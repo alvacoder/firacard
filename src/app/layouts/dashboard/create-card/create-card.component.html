@@ -115,7 +115,8 @@
                             <section class="mb-3" *ngIf="selectedMedia">
                                 <div class="card">
                                     <div class="card-body">
-                                        <img *ngIf="activateNav=='image' || activateNav=='gif'" id="imgIDSelector" style="width: 100%; max-height: 400px;" [src]="selectedMedia" alt="image" >
+                                        <img *ngIf="activateNav=='image' || activateNav=='gif'" id="imgIDSelector" 
+                                                style="width: 100%; max-height: 400px;" [src]="selectedMedia" alt="image" >
                                         <div *ngIf="activateNav==='video'">
                                             <video width="320" height="240" controls>
                                                 <source id="videoIDSelector" [src]="selectedMedia" type="video/mp4">
