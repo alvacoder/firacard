@@ -11,6 +11,8 @@ import { MainModule } from '../main/main.module';
 
 import { AuthServiceConfig, SocialLoginModule,  } from 'angularx-social-login';
 import { GoogleLoginProvider, FacebookLoginProvider } from 'angularx-social-login';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { OauthComponent } from './oauth/oauth.component';
 
 const config = new AuthServiceConfig([
   {
@@ -28,12 +30,14 @@ export const provideConfig = () => {
 
 
 @NgModule({
-  declarations: [LoginComponent, RegisterComponent, AuthLayoutComponent, AuthMainComponent],
+  declarations: [LoginComponent, RegisterComponent, AuthLayoutComponent, AuthMainComponent, OauthComponent],
   imports: [
     CommonModule,
     AuthRoutingModule,
     MainModule,
-    SocialLoginModule
+    SocialLoginModule,
+    FormsModule,
+    ReactiveFormsModule 
   ],
   providers: [
     {

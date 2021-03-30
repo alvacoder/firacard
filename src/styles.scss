@@ -1,6 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
 @import './assets/css/style.css';
 @import './assets/css/signUp.css';
+@import '../node_modules/@fortawesome/fontawesome-free/css/all.min.css';
+@import '~ngx-toastr/toastr';
+
 .text-blue {
     color: #2C4B75;
 }

@@ -1,0 +1,37 @@
+<ng-container *ngIf="page==='signin'">
+    <div class="socialInner">
+        <a (click)="googleLogin()" class="social cursor-pointer">
+            <img src="./assets/img/google.png" alt="google">
+            <p>{{loading.google ? 'google signin...' : 'sign in with google'}}</p>
+        </a>
+    </div>
+    <div class="socialInner">
+        <a (click)="facebookLogin()" class="social cursor-pointer">
+            <span><i class="fab fa-facebook"></i></span>
+            <p>{{loading.facebook ? 'facebook signin...' : 'sign in with facebook'}}</p>
+        </a>
+    </div>
+    <div class="socialInner emailContainer">
+        <a routerLink="/login" class="social email">
+            <img src="./assets/img/mail.png" alt="email">
+            <p>sign in with email</p>
+        </a>
+    </div>
+    
+</ng-container>
+<ng-container *ngIf="page!=='signin'">
+    <div class="socialContainer">
+        <div class="socialInner">
+            <a (click)="googleLogin()" class="social cursor-pointer">
+                <img src="./assets/img/google.png" alt="google">
+                <p>{{loading.google ? 'google signin...' : 'sign in with google'}}</p>
+            </a>
+        </div>
+        <div class="socialInner">
+            <a (click)="facebookLogin()" class="social cursor-pointer">
+                <span><i class="fab fa-facebook"></i></span>
+                <p>{{loading.facebook ? 'facebook signin...' : 'sign in with facebook'}}</p>
+            </a>
+        </div>
+    </div>
+</ng-container>

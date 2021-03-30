@@ -1,9 +1,11 @@
+import { environment } from './../../../../environments/environment.prod';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 @Injectable()
 export class BoardService {
+  private apiUrl = environment.apiUrl;
   private readonly giphyApiKey = 'Ob8GgxituzC8giTc0hxNGaAyaLvqCi4i';
   private readonly unsplash = {
     accessKey: 'G23Oyg_KUbCM-DB_ksBHYpp03RkK1LU89GwFZfoaskw',
@@ -19,5 +21,9 @@ export class BoardService {
   unsplashSearch(query: string): Observable<any> {
     const params = {client_id: this.unsplash.accessKey, query, per_page: '50'};
     return this.http.get(`https://api.unsplash.com/search/photos`, {params});
+  }
+
+  getUserBoards(): Observable<any>  {
+    return this.http.get(`${this.apiUrl}/boards`);
   }
 }
