@@ -9,7 +9,7 @@ export const environment = {
     clientId: '1078296083159-cafim0io06hqo4l97qb440r0c4frv5qn.apps.googleusercontent.com',
   },
   facebook: {
-    appId: '963529757518264'
+    appId: '313244885878489'
   }
 };
 
