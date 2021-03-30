@@ -26,4 +26,7 @@ export class BoardService {
   getUserBoards(): Observable<any>  {
     return this.http.get(`${this.apiUrl}/boards`);
   }
+  createBoard(payload: any): Observable<any>  {
+    return this.http.post(`${this.apiUrl}/boards/create`, payload);
+  }
 }
