@@ -18,9 +18,9 @@
       </li>
     </ul>
   </header>
-  <div class="main-content">
+  <div class="main-content" *ngIf="pageLoading">
     <section class="container">
-      <div class="">
+      <div class="" >
         <div class="row" *ngIf="activeTab==='curratedCards'">
             <div class="col-md-6 mb-4 " *ngFor="let board of boards">
               <div class="card p-3">
@@ -34,7 +34,7 @@
                         <img src="/assets/icons/three-dots.svg" width="20px" alt="icon">
                       </div>
                     </div>
-                    <h4 class="card-title">Bibi’s Birthday</h4>
+                    <h4 class="card-title">{{board.boardTitle}}</h4>
                     <p class="card-text"> 
                       <span class="text-muted">Recipient:</span>
                       <span>Idris Adeniji</span>
@@ -46,16 +46,16 @@
                       </p>
                       <p class="card-text"> 
                         <span class="text-muted">Created:</span>
-                        <span>17/02/2021</span>
+                        <span>{{board.createdAt | date:'shortDate'}}</span>
                       </p>
                       <p class="card-text"> 
                         <span class="text-muted">Updated:</span>
-                        <span>17/02/2021</span>
+                        <span>{{board.updatedAt | date:'shortDate'}}</span>
                       </p>
-                      <p class="card-text"> 
+                      <!-- <p class="card-text"> 
                         <span class="text-muted">Type:</span>
                         <span>Mini board</span>
-                      </p>
+                      </p> -->
                       <p class="card-text">  
                         <span class="text-muted"></span>
                         <span>
@@ -64,7 +64,7 @@
                       </p>
                     </div>
                     <div class="btnx green">
-                      <a routerLink="/dashboard/board/1"><button>View Board</button></a>
+                      <a [routerLink]="['/dashboard/board', board.boardId]"><button>View Board</button></a>
                   </div>
                   </div>
                 </div>
@@ -125,6 +125,9 @@
       </div>
     </section>
   </div>
+  <ng-container *ngIf="!pageLoading">
+    <app-loader></app-loader> 
+  </ng-container>
 </div>
 
 <!-- Modal -->

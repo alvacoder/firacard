@@ -1,6 +1,10 @@
+import { DomSanitizer } from '@angular/platform-browser';
+import { ActivatedRoute } from '@angular/router';
+import { CloudinaryService } from './../../../shared/services/cloudinary.service';
 import { BoardService } from './../services/board.service';
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-create-card',
@@ -13,11 +17,21 @@ export class CreateCardComponent implements OnInit {
   activateNav = '';
   viewType: 'default' | 'online' | 'upload' = 'default';
   selectedMedia: string | undefined;
+  message = '';
   data = {gifs: null, images: null};
+  boardId!: string;
+  submitted = false;
+  loading = false;
 
   constructor(
+    route: ActivatedRoute,
+    public domSanitizer: DomSanitizer,
     private boardSrv: BoardService,
-    public location: Location) { }
+    private toastr: ToastrService,
+    private cloudinarySrv: CloudinaryService,
+    public location: Location) {
+      this.boardId = route.snapshot.params.id;
+    }
 
   ngOnInit(): void {}
 
@@ -61,7 +75,7 @@ export class CreateCardComponent implements OnInit {
     document.getElementById(id)?.click();
   }
   uploadImage(event: Event): void {
-    this.selectedMedia = 'image-blob';
+    this.selectedMedia = (event.target as any).files[0];
     this.readURL(event.target);
   }
   uploadVideo(event: any): void {
@@ -70,5 +84,47 @@ export class CreateCardComponent implements OnInit {
     this.readURL(event.target, 'videoIDSelector');
     // document.getElementById('videoIDSelector')?.setAttribute('src', blobURL);
   }
+
+  createCard(): void {
+    this.submitted = true;
+    if (this.isFormValid) {
+      this.loading = true;
+      const file: any = this.selectedMedia;
+      const fd = new FormData();
+      fd.append('postContent', this.message);
+      fd.append('mediaType', this.activateNav);
+      if (this.viewType === 'upload') {
+        fd.append('mediaFile', file);
+      } else {
+        fd.append('mediaUrl', file);
+      }
+      this.boardSrv.createCard(this.boardId, fd).subscribe((res) => {
+        this.toastr.success('Card created successfully');
+        this.location.back();
+      }, err => {
+        this.toastr.error('Create Card error');
+      }).add(() => this.loading = false);
+    }
+  }
+ get isFormValid(): any {
+  return this.message || this.selectedMedia;
+  }
+  addYoutubeUrl(): void {
+    if (this.validateYouTubeUrl(this.searchValue)) {
+       this.selectedMedia = this.searchValue;
+    } else {
+      this.toastr.error('Invalid youtube url');
+    }
+  }
+  validateYouTubeUrl(urlToParse: string): boolean{
+    if (urlToParse) {
+        const regExp = /^https:\/\/(?:www\.)?youtube.com\/embed\/[A-z0-9]/;
+        if (urlToParse.match(regExp)) {
+            return true;
+        }
+    }
+    return false;
+}
+
 
 }

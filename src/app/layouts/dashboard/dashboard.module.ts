@@ -1,3 +1,4 @@
+import { SharedModule } from './../../shared/shared.module';
 import { BoardService } from './services/board.service';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -18,7 +19,8 @@ import { BoardSettingsComponent } from './board/board-settings/board-settings.co
     CommonModule,
     DashboardRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SharedModule
   ],
   providers: [BoardService]
 })
