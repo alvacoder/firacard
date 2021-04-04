@@ -1,131 +1,147 @@
 <div >
   <header class="container">
-    <div class="d-flex justify-content-between">
-      <h2>My Dashboard</h2>
-      <div class="">
-        <button class="btn btn-pry-outline mr-2"  data-toggle="modal" data-target="#reminderModal"> 
-          <i data-toggle="tooltip" data-placement="top" title="Create Reminder"  class="fa fa-calendar"></i> 
-        </button>
-        <button class="btn btn-pry" data-toggle="modal" data-target="#createBoardModal">Create new board</button>
+    <div class="row mt-4">
+      <div class="col-md-12">
+        <div class="d-flex justify-content-between">
+          <h2 class="text-blue">My Dashboard</h2>
+          <div class="">
+            <button class="btn btn-pry-outline mr-2"  data-toggle="modal" data-target="#reminderModal"> 
+              <i data-toggle="tooltip" data-placement="top" title="Create Reminder"  class="fa fa-calendar"></i> 
+            </button>
+            <button class="btn btn-pry" data-toggle="modal" data-target="#createBoardModal">Create new board</button>
+        </div>
+        </div>
+        <ul class="navbar-nav">
+          <li class="nav-item {{activeTab === 'curratedCards' && 'active'}}" >
+            <a class="nav-link" routerLink='/dashboard' [fragment]="'curratedCards'">Currated Cards</a>
+          </li>
+          <li class="nav-item {{activeTab === 'recievedCards' && 'active'}}">
+            <a class="nav-link" routerLink='/dashboard' [fragment]="'recievedCards'">Recieved Cards</a>
+          </li>
+          <li class="nav-item {{activeTab === 'reminders' && 'active'}}"  >
+            <a class="nav-link" routerLink='/dashboard' [fragment]="'reminders'">Reminders</a>
+          </li>
+        </ul>
+      </div>
     </div>
-    </div>
-    <ul class="navbar-nav">
-      <li class="nav-item {{activeTab === 'curratedCards' && 'active'}}" >
-        <a class="nav-link" routerLink='/dashboard' [fragment]="'curratedCards'">Currated Cards</a>
-      </li>
-      <li class="nav-item {{activeTab === 'recievedCards' && 'active'}}">
-        <a class="nav-link" routerLink='/dashboard' [fragment]="'recievedCards'">Recieved Cards</a>
-      </li>
-      <li class="nav-item {{activeTab === 'reminders' && 'active'}}"  >
-        <a class="nav-link" routerLink='/dashboard' [fragment]="'reminders'">Reminders</a>
-      </li>
-    </ul>
   </header>
   <div class="main-content" *ngIf="pageLoading">
     <section class="container">
-      <div class="" >
-        <div class="row" *ngIf="activeTab==='curratedCards'">
-            <div class="col-md-6 mb-4 " *ngFor="let board of boards">
-              <div class="card p-3">
-                <div class="row">
-                  <div class="col-6">
-                    <img class="card-img-top" width="200px" [src]="getBoardImg(board) || '/assets/img/birthdayCard.png'" alt="card-image-cap">
-                  </div>
-                  <div class="col-6 card-body">
-                    <div class="d-flex justify-content-end">
-                      <div>
-                        <img src="/assets/icons/three-dots.svg" width="20px" alt="icon">
-                      </div>
-                    </div>
-                    <h4 class="card-title">{{board.boardTitle}}</h4>
-                    <p class="card-text"> 
-                      <span class="text-muted">Recipient:</span>
-                      <span>Idris Adeniji</span>
-                    </p>
-                    <div class="mb-5 form-container">
-                      <p class="card-text"> 
-                        <span class="text-muted">Creator:</span>
-                        <span>Nonso Esther</span>
-                      </p>
-                      <p class="card-text"> 
-                        <span class="text-muted">Created:</span>
-                        <span>{{board.createdAt | date:'shortDate'}}</span>
-                      </p>
-                      <p class="card-text"> 
-                        <span class="text-muted">Updated:</span>
-                        <span>{{board.updatedAt | date:'shortDate'}}</span>
-                      </p>
-                      <!-- <p class="card-text"> 
-                        <span class="text-muted">Type:</span>
-                        <span>Mini board</span>
-                      </p> -->
-                      <p class="card-text">  
-                        <span class="text-muted"></span>
-                        <span>
-                          <button class="btn btn-sm btn-outline-success">Upgrade</button>
-                        </span>
-                      </p>
-                    </div>
-                    <div class="btnx green">
-                      <a [routerLink]="['/dashboard/board', board.boardId]"><button>View Board</button></a>
-                  </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-        </div>
-        <div class="row" *ngIf="activeTab==='recievedCards'">
-          <div class="col-md-6 mb-4" *ngFor="let card of boards">
+      <div class="row" *ngIf="activeTab==='curratedCards'">
+        <ng-container *ngIf="boards.length; else noBoardResult">
+          <div class="col-md-6 mb-4 " *ngFor="let board of boards">
             <div class="card p-3">
               <div class="row">
                 <div class="col-6">
-                  <img class="card-img-top" width="100px" src="/assets/img/birthdayCard.png" alt="card-image-cap">
+                  <img class="card-img-top" width="200px" [src]="getBoardImg(board) || '/assets/img/birthdayCard.png'" alt="card-image-cap">
                 </div>
                 <div class="col-6 card-body">
-    
-                  <h4 class="card-title">Happy Birthday Esther</h4>
+                  <div class="d-flex justify-content-end">
+                    <div>
+                      <img src="/assets/icons/three-dots.svg" width="20px" alt="icon">
+                    </div>
+                  </div>
+                  <h4 class="card-title">{{board.boardTitle}}</h4>
+                  <p class="card-text"> 
+                    <span class="text-muted">Recipient:</span>
+                    <span>Idris Adeniji</span>
+                  </p>
                   <div class="mb-5 form-container">
                     <p class="card-text"> 
-                      <span class="text-muted">From:</span>
-                      <span>Idris Adeniji and friends</span>
-                    </p>
-                    <p class="card-text"> 
                       <span class="text-muted">Creator:</span>
-                      <span>Nonyo Esther</span>
+                      <span>Nonso Esther</span>
                     </p>
                     <p class="card-text"> 
                       <span class="text-muted">Created:</span>
-                      <span>17/02/2021</span>
+                      <span>{{board.createdAt | date:'shortDate'}}</span>
                     </p>
                     <p class="card-text"> 
                       <span class="text-muted">Updated:</span>
-                      <span>17/02/2021</span>
+                      <span>{{board.updatedAt | date:'shortDate'}}</span>
                     </p>
-    
+                    <!-- <p class="card-text"> 
+                      <span class="text-muted">Type:</span>
+                      <span>Mini board</span>
+                    </p> -->
+                    <p class="card-text">  
+                      <span class="text-muted"></span>
+                      <span>
+                        <button class="btn btn-sm btn-outline-success">Upgrade</button>
+                      </span>
+                    </p>
                   </div>
                   <div class="btnx green">
-                    <a routerLink="/"><button>View Board</button></a>
+                    <a [routerLink]="['/dashboard/board', board.boardId]"><button>View Board</button></a>
                 </div>
                 </div>
               </div>
             </div>
           </div>
-      </div>
-      <div class="row" *ngIf="activeTab==='reminders'">
-        <div class="col-12 mb-3" *ngFor="let reminder of reminders">
-          <div class="card border-0 ">
-            <div class="card-body d-flex justify-content-between">
-              <div>
-                <h5><span class="mr-3 text-muted">Reminder:</span> <span>{{reminder.eventTitle}}</span></h5>
+        </ng-container>
+        <ng-template #noBoardResult>
+          <div class="col-12 my-5 text-center">
+            <p>Looks like you haven't created any board yet. Create a board now!</p>
+          </div>
+        </ng-template>  
+    </div>
+    <div class="row" *ngIf="activeTab==='recievedCards'">
+      <div class="col-md-6 mb-4" *ngFor="let card of boards">
+        <div class="card p-3">
+          <div class="row">
+            <div class="col-6">
+              <img class="card-img-top" width="100px" src="/assets/img/birthdayCard.png" alt="card-image-cap">
+            </div>
+            <div class="col-6 card-body">
+
+              <h4 class="card-title">Happy Birthday Esther</h4>
+              <div class="mb-5 form-container">
+                <p class="card-text"> 
+                  <span class="text-muted">From:</span>
+                  <span>Idris Adeniji and friends</span>
+                </p>
+                <p class="card-text"> 
+                  <span class="text-muted">Creator:</span>
+                  <span>Nonyo Esther</span>
+                </p>
+                <p class="card-text"> 
+                  <span class="text-muted">Created:</span>
+                  <span>17/02/2021</span>
+                </p>
+                <p class="card-text"> 
+                  <span class="text-muted">Updated:</span>
+                  <span>17/02/2021</span>
+                </p>
+
               </div>
-              <div>
-                <h5 class="text-muted">{{reminder.eventDate | date:'shortDate'}}</h5>
-              </div>
+              <div class="btnx green">
+                <a routerLink="/"><button>View Board</button></a>
+            </div>
             </div>
           </div>
         </div>
       </div>
+  </div>
+  <div class="row" *ngIf="activeTab==='reminders'">
+    <ng-container *ngIf="reminders.length; else noReminderResult">
+      <div class="col-12 mb-3" *ngFor="let reminder of reminders">
+        <div class="card border-0 ">
+          <div class="card-body d-flex justify-content-between">
+            <div>
+              <h5><span class="mr-3 text-muted">Reminder:</span> <span>{{reminder.eventTitle}}</span></h5>
+            </div>
+            <div>
+              <h5 class="text-muted">{{reminder.eventDate | date:'shortDate'}}</h5>
+            </div>
+          </div>
+        </div>
       </div>
+    </ng-container>
+    <ng-template #noReminderResult>
+      <div class="col-12 my-4 text-center">
+        <p>Looks like you haven't created any reminder yet. Create a reminder now!</p>
+      </div>
+    </ng-template>
+  </div>
     </section>
   </div>
   <ng-container *ngIf="!pageLoading">
