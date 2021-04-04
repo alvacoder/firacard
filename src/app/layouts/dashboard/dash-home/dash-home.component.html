@@ -3,6 +3,9 @@
     <div class="d-flex justify-content-between">
       <h2>My Dashboard</h2>
       <div class="">
+        <button class="btn btn-pry-outline mr-2"  data-toggle="modal" data-target="#reminderModal"> 
+          <i data-toggle="tooltip" data-placement="top" title="Create Reminder"  class="fa fa-calendar"></i> 
+        </button>
         <button class="btn btn-pry" data-toggle="modal" data-target="#createBoardModal">Create new board</button>
     </div>
     </div>
@@ -26,7 +29,7 @@
               <div class="card p-3">
                 <div class="row">
                   <div class="col-6">
-                    <img class="card-img-top" width="200px" src="/assets/img/birthdayCard.png" alt="card-image-cap">
+                    <img class="card-img-top" width="200px" [src]="getBoardImg(board) || '/assets/img/birthdayCard.png'" alt="card-image-cap">
                   </div>
                   <div class="col-6 card-body">
                     <div class="d-flex justify-content-end">
@@ -109,14 +112,14 @@
           </div>
       </div>
       <div class="row" *ngIf="activeTab==='reminders'">
-        <div class="col-12 mb-3" *ngFor="let card of boards">
+        <div class="col-12 mb-3" *ngFor="let reminder of reminders">
           <div class="card border-0 ">
             <div class="card-body d-flex justify-content-between">
               <div>
-                <h5><span class="mr-3 text-muted">Reminder:</span> <span>Ninyo’s birthday</span></h5>
+                <h5><span class="mr-3 text-muted">Reminder:</span> <span>{{reminder.eventTitle}}</span></h5>
               </div>
               <div>
-                <h5 class="text-muted">27/02/2021</h5>
+                <h5 class="text-muted">{{reminder.eventDate | date:'shortDate'}}</h5>
               </div>
             </div>
           </div>
@@ -130,7 +133,7 @@
   </ng-container>
 </div>
 
-<!-- Modal -->
+<!-- Create Board Modal -->
 <div class="modal fade" id="createBoardModal" tabindex="-1" role="dialog" aria-labelledby="createBoardTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
@@ -164,6 +167,43 @@
       <div class="modal-footer border-0 pt-0">
         <button [disabled]="form.invalid || loading" (click)="createBoard()" type="button" class="btn btn-pry btn-block">
           Create board  <span *ngIf="loading" class="fa fa-spinner fa-spin"></span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--Create Reminder Modal -->
+<div class="modal fade" id="reminderModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="">
+        <div class="text-right mr-2">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span style="font-size: 30px;" aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <h4 class="mt-3 modal-title text-center">Set a Reminder</h4>
+        
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="reminderForm">
+          <div class="form-group">
+            <label >Who is it for?</label>
+            <input formControlName="reminderName" type="text" placeholder="Idris" class="form-control">
+          </div>
+          <div class="form-group">
+            <label >What occasion?</label>
+            <input formControlName="eventTitle" type="text" placeholder="Birthday, Wedding" class="form-control">
+          </div>
+          <div class="form-group">
+            <label>When is it?</label>
+            <input formControlName="eventDate" type="date"  class="form-control">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer border-0 pt-0">
+        <button [disabled]="reminderForm.invalid || loading" (click)="createReminder()" type="button" class="btn btn-pry btn-block">
+          Create Reminder  <span *ngIf="loading" class="fa fa-spinner fa-spin"></span>
         </button>
       </div>
     </div>

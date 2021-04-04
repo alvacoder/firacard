@@ -35,4 +35,10 @@ export class BoardService {
   createCard(boardId: string, body: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/boards/${boardId}/create`, body);
   }
+  createReminder(payload: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/reminders`, payload);
+  }
+  getReminders(): Observable<any> {
+    return this.http.get(`${this.apiUrl}/reminders`);
+  }
 }
