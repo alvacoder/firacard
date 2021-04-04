@@ -1,5 +1,5 @@
-
 header {
+    padding: 30px 0px;
     padding-bottom: 0px;
     .navbar-nav{
         flex-direction: row;
@@ -21,19 +21,7 @@ header {
         }
     }
 }
-.main-content {
-    padding-top: 35px; 
-    background: #F6FAFF;
-    min-height: 75vh;
-    .card-body {
-        .form-container {
-            margin-top: 80px;
-        }
-        .card-text {
-            .text-muted {
-                width: 100px;
-                display: inline-block;
-            }
-        }
-    }
+.custom-control-input:checked~.custom-control-label::before {
+    border-color: #A1C042;
+    background-color: #A1C042;
 }
