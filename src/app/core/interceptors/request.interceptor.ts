@@ -13,12 +13,13 @@ import { environment } from 'src/environments/environment';
 @Injectable()
 export class RequestInterceptor implements HttpInterceptor {
   token!: string;
+  apiUrl = environment.apiUrl;
   private baseUrl = environment.apiUrl;
   constructor(private authSrv: AuthService) {
     this.authSrv.userTokenSubject.subscribe(res => this.token = res);
   }
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    if (this.token) {
+    if (this.token && req.url.includes(this.apiUrl)) {
         req = req.clone({
             setHeaders: {Authorization: `Bearer ${this.token}`},
         });

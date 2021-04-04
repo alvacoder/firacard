@@ -10,7 +10,8 @@ export const environment = {
   },
   facebook: {
     appId: '315520406177170'
-  }
+  },
+  cloudinary: {apiKey: '247151848688876', cloudName: 'dx5bcp5ps', secret: ''}
 };
 
 /*

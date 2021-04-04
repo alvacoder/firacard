@@ -1,5 +1,7 @@
+import { DomSanitizer } from '@angular/platform-browser';
+import { BoardService } from './../services/board.service';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-board',
@@ -7,6 +9,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./board.component.scss']
 })
 export class BoardComponent implements OnInit {
+  boardId!: string;
   navMenus = [
     {name: 'Send/Schedule', icon: 'send.svg', slug: 'send_schedule'},
     {name: 'View as recepient', icon: 'eye.svg', slug: 'view_as_recepient'},
@@ -14,16 +17,27 @@ export class BoardComponent implements OnInit {
     {name: 'Invite Contributors', icon: 'invite-user.svg', slug: 'invite_contributors'},
     {name: 'Add to board', icon: 'plus.svg', slug: 'add_to_board'},
   ];
-  cards = [1, 2, 3, 4, 5, 6, 7, 8];
+  board!: {
+    boardTitle: string;
+    cards: any[]
+  };
 
-  constructor(private router: Router) { }
+  constructor(
+    route: ActivatedRoute,
+    private router: Router,
+    public domSanitizer: DomSanitizer,
+    private boardSrv: BoardService) {
+      this.boardId = route.snapshot.params.id;
+    }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getBoard();
+  }
 
   navClick(slug: string): void {
     switch (slug) {
       case 'add_to_board':
-        this.router.navigate(['/dashboard/create-card', 1]);
+        this.router.navigate(['/dashboard/create-card', this.boardId]);
         break;
       case 'settings':
         document.getElementById('settingsModalId')?.click();
@@ -31,6 +45,11 @@ export class BoardComponent implements OnInit {
       default:
         break;
     }
+  }
+  getBoard(): void {
+    this.boardSrv.getBoard(this.boardId).subscribe((res: any) => {
+      this.board = res.payload[0];
+    });
   }
 
 }

@@ -10,7 +10,7 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./dash-home.component.scss']
 })
 export class DashHomeComponent implements OnInit {
-  boards = [];
+  boards!: any[];
   activeTab = 'curratedCards';
   form = this.fb.group({
     boardTitle: ['', [Validators.required]],
@@ -34,7 +34,6 @@ export class DashHomeComponent implements OnInit {
   getBoards(): void {
     this.boardSrv.getUserBoards().subscribe(res => {
       this.boards = res.payload;
-      console.log(res);
     });
   }
   get getRecpControls(): any[] {
@@ -59,7 +58,11 @@ export class DashHomeComponent implements OnInit {
       this.boardSrv.createBoard(payload).subscribe(res => {
         this.toastr.success('Board created successfully');
         this.getBoards();
+        (document.querySelector('.close') as any).click();
       }).add(() => this.loading = false);
     }
+  }
+  get pageLoading(): any {
+    return this.boards;
   }
 }
