@@ -89,7 +89,7 @@ export class CreateCardComponent implements OnInit {
     this.submitted = true;
     if (this.isFormValid) {
       this.loading = true;
-      const file: any = this.selectedMedia;
+      const file: any = this.selectedMedia || '';
       const fd = new FormData();
       fd.append('postContent', this.message);
       fd.append('mediaType', this.activateNav);

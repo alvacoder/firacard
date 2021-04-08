@@ -23,7 +23,7 @@
         <section class="container">
             <div class="row">
                 <div class="col-md-4 my-4" *ngFor="let card of board.cards; let i = index">
-                    <div class="card rounded-lg" style="height: 400px;">
+                    <div class="card rounded-lg">
                         <div class="card-body">
                             <ng-container *ngIf="card.mediaType === 'image' || card.mediaType === 'gif'">
                                 <img *ngIf="card.mediaUrl" class="card-img-top" height="80%" [src]="card.mediaUrl" alt="img">
@@ -34,6 +34,20 @@
                                </iframe>
                             </ng-container>
                             <p class="card-text mt-5">{{card.postContent}}</p>
+                        </div>
+                        <div class="card-footer d-flex justify-content-lg-between">
+                            <div>
+                                <div class="dropdown">
+                                    <a class="dropdown-toggle text-light" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="fa fa-ellipsis-h text-dark"></i>
+                                      </a>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                      <a class="dropdown-item" href="#">Edit</a>
+                                      <a class="dropdown-item" href="#">Delete</a>
+                                    </div>
+                                  </div>
+                            </div>
+                            <div><p>From name</p></div>
                         </div>
                       </div>
                     </div>

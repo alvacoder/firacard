@@ -37,7 +37,7 @@ export class BoardComponent implements OnInit {
   navClick(slug: string): void {
     switch (slug) {
       case 'add_to_board':
-        this.router.navigate(['/dashboard/create-card', this.boardId]);
+        this.router.navigate(['boards/create-card', this.boardId]);
         break;
       case 'settings':
         document.getElementById('settingsModalId')?.click();

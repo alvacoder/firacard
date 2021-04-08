@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { AuthService as NgSocialLoginAuthSrv } from 'angularx-social-login';
 import { FacebookLoginProvider, GoogleLoginProvider } from 'angularx-social-login';
 import { ToastrService } from 'ngx-toastr';
@@ -18,13 +18,16 @@ export class OauthComponent implements OnInit {
     private authSrv: AuthService,
     private toastr: ToastrService,
     private router: Router,
-    private ngSocialLoginAuthSrv: NgSocialLoginAuthSrv) { }
+    private route: ActivatedRoute,
+    private ngSocialLoginAuthSrv: NgSocialLoginAuthSrv) {
+     }
 
   ngOnInit(): void {}
   googleLogin(): void {
     if (this.loading.facebook || this.loading.google) {return; }
     this.ngSocialLoginAuthSrv.signIn(GoogleLoginProvider.PROVIDER_ID).then((res: any) => {
-      this.oauthLogin(res.email, 'google');
+      const payload = {email: res.email, firstName: res.firstName, lastName: res.lastName};
+      this.oauthLogin(payload, 'google');
     }).catch(err => {
       this.toastr.error('Google login failed');
     });
@@ -32,24 +35,29 @@ export class OauthComponent implements OnInit {
   facebookLogin(): void {
     if (this.loading.facebook || this.loading.google) {return; }
     this.ngSocialLoginAuthSrv.signIn(FacebookLoginProvider.PROVIDER_ID).then((res: any) => {
-      this.oauthLogin(res.email, 'facebook');
+      const payload = {email: res.email, firstName: res.firstName, lastName: res.lastName};
+      this.oauthLogin(payload, 'facebook');
     }).catch(err => {
       this.toastr.error('Facebook login failed');
       console.log(err);
     });
   }
-  oauthLogin(email: string, provider: 'facebook' | 'google'): void {
+  oauthLogin(payload: any, provider: 'facebook' | 'google'): void {
     this.loading[provider] = true;
-    this.authSrv.oauthLogin(email).subscribe(res => {
+    this.authSrv.oauthLogin(payload.res).subscribe(res => {
       this.authSrv.storeUserToken(res.token);
       this.toastr.success('Oauth Login successful').onShown.subscribe(() => {
-        this.router.navigate(['/dashboard']);
+        this.successLoginAction();
       });
     }, err => {
       this.toastr.error('Oauth Login: Error occured try again!');
     }).add(() => {
       this.loading[provider] = false;
     });
+  }
+  successLoginAction(): void {
+    const  { redirectUrl } = this.route.snapshot.queryParams;
+    this.router.navigate([redirectUrl || '/dashboard']);
   }
 
 }

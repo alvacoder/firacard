@@ -37,7 +37,7 @@ export const provideConfig = () => {
     MainModule,
     SocialLoginModule,
     FormsModule,
-    ReactiveFormsModule 
+    ReactiveFormsModule
   ],
   providers: [
     {
