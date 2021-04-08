@@ -5,15 +5,16 @@ import { BoardComponent } from './board/board.component';
 import { DashHomeComponent } from './dash-home/dash-home.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AuthGuard } from '../auth/auth.guard';
 
 const routes: Routes = [
   {
     path: '', component: DashLayoutComponent,
     children: [
-      {path: '', component: DashHomeComponent},
-      {path: 'board/:id', component: BoardComponent},
-      {path: 'create-card/:id', component: CreateCardComponent},
-      {path: 'profile', component: ProfileComponent}
+      {path: 'dashboard', component: DashHomeComponent, canActivate: [AuthGuard]},
+      {path: 'boards/:id', component: BoardComponent},
+      {path: 'boards/create-card/:id', component: CreateCardComponent, canActivate: [AuthGuard]},
+      {path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]}
     ]
   },
 

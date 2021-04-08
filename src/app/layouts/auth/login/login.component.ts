@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from '../auth.service';
 
@@ -24,7 +24,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private authSrv: AuthService,
     private toastr: ToastrService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
     ) { }
 
   ngOnInit(): void {}
@@ -37,7 +38,8 @@ export class LoginComponent implements OnInit {
         const token = res.token;
         this.authSrv.storeUserToken(token);
         this.toastr.success('Login successful').onShown.subscribe(() => {
-          this.router.navigate(['/dashboard']);
+          const  { redirectUrl } = this.route.snapshot.queryParams;
+          this.router.navigate([redirectUrl || '/dashboard']);
         });
       }, err => {
         const { message , statusCode } = err.error;
