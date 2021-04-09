@@ -1,3 +1,4 @@
+import { AuthService } from 'src/app/layouts/auth/auth.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { BoardService } from './../services/board.service';
 import { Component, OnInit } from '@angular/core';
@@ -21,16 +22,21 @@ export class BoardComponent implements OnInit {
     boardTitle: string;
     cards: any[]
   };
+  userDetail!: any;
 
   constructor(
     route: ActivatedRoute,
     private router: Router,
     public domSanitizer: DomSanitizer,
+    private authSrv: AuthService,
     private boardSrv: BoardService) {
       this.boardId = route.snapshot.params.id;
     }
 
   ngOnInit(): void {
+    this.authSrv.userDetailSubject.subscribe(res => {
+      this.userDetail = res;
+    });
     this.getBoard();
   }
 
@@ -50,6 +56,15 @@ export class BoardComponent implements OnInit {
     this.boardSrv.getBoard(this.boardId).subscribe((res: any) => {
       this.board = res.payload[0];
     });
+  }
+
+  getYoutubeEmbedUrl(youtubeUrl: string): string {
+    let url = youtubeUrl;
+    if (youtubeUrl.includes('watch')) {
+      const hashUrl = youtubeUrl.split('v=')[1];
+      url = `https://www.youtube.com/embed/${hashUrl}`;
+    }
+    return url;
   }
 
 }

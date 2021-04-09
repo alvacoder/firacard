@@ -9,12 +9,19 @@
             </div>
             <nav class=" d-flex justify-content-center nav-menu">
                 <div *ngFor="let menu of navMenus" class="nav-item" (click)="navClick(menu.slug)" >
-                    <h6>
+                    <h6 *ngIf="userDetail.id && menu.slug != 'add_to_board'" >
                         <span class="d-inline-block p-3 shadow-sm rounded-circle icon-circle">
                             <img [src]="'/assets/icons/'+ menu.icon" [alt]="menu.icon">
                         </span>
                         <span>{{menu.name}}</span>
                     </h6> 
+                    <h6 *ngIf="menu.slug == 'add_to_board'" >
+                        <span class="d-inline-block p-3 shadow-sm rounded-circle icon-circle">
+                            <img [src]="'/assets/icons/'+ menu.icon" [alt]="menu.icon">
+                        </span>
+                        <span>{{menu.name}}</span>
+                    </h6> 
+
                 </div>
             </nav> 
         </div>
@@ -32,7 +39,7 @@
                                 <ng-container *ngIf="card.mediaUrl; else noVideoMediaUrl">
                                     <ng-container *ngIf="card.mediaUrl.includes('youtube'); else uploadedVideo">
                                         <iframe height="250"
-                                          [src]="domSanitizer.bypassSecurityTrustResourceUrl(card.mediaUrl)">
+                                          [src]="domSanitizer.bypassSecurityTrustResourceUrl(getYoutubeEmbedUrl(card.mediaUrl))">
                                        </iframe>
                                     </ng-container>
                                     <ng-template #uploadedVideo>
