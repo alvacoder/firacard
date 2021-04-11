@@ -24,7 +24,8 @@ export class RegisterComponent implements OnInit {
   constructor(
     private authSrv: AuthService,
     private toastr: ToastrService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
     ) { }
 
   ngOnInit(): void {}
@@ -37,7 +38,8 @@ export class RegisterComponent implements OnInit {
         const token = res.token;
         this.authSrv.storeUserToken(token);
         this.toastr.success('Account created successfully').onShown.subscribe(() => {
-          this.router.navigate(['/dashboard']);
+          const  { redirectUrl } = this.route.snapshot.queryParams;
+          this.router.navigate([redirectUrl || '/dashboard']);
         });
       }).add(() => this.loading = false);
     }

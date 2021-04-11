@@ -1,3 +1,4 @@
+import { SharedModule } from './../../shared/shared.module';
 import { BoardService } from './services/board.service';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -10,15 +11,20 @@ import { DashLayoutComponent } from './dash-layout/dash-layout.component';
 import { CreateCardComponent } from './create-card/create-card.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BoardSettingsComponent } from './board/board-settings/board-settings.component';
+import { ProfileComponent } from './profile/profile.component';
 
 
 @NgModule({
-  declarations: [DashHomeComponent, DashFooterComponent, BoardComponent, DashLayoutComponent, CreateCardComponent, BoardSettingsComponent],
+  declarations: [
+    DashHomeComponent, DashFooterComponent, BoardComponent, DashLayoutComponent,
+    CreateCardComponent, BoardSettingsComponent, ProfileComponent,
+  ],
   imports: [
     CommonModule,
     DashboardRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SharedModule
   ],
   providers: [BoardService]
 })

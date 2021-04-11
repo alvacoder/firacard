@@ -26,4 +26,19 @@ export class BoardService {
   getUserBoards(): Observable<any>  {
     return this.http.get(`${this.apiUrl}/boards`);
   }
+  createBoard(payload: any): Observable<any>  {
+    return this.http.post(`${this.apiUrl}/boards/create`, payload);
+  }
+  getBoard(id: string): Observable<any>  {
+    return this.http.get(`${this.apiUrl}/boards/${id}`);
+  }
+  createCard(boardId: string, body: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/boards/${boardId}/create`, body);
+  }
+  createReminder(payload: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/reminders`, payload);
+  }
+  getReminders(): Observable<any> {
+    return this.http.get(`${this.apiUrl}/reminders`);
+  }
 }

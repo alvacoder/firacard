@@ -1,3 +1,5 @@
+import { Router } from '@angular/router';
+import { AuthService } from './../../auth/auth.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashLayoutComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private authSrv: AuthService,
+    private router: Router,
+    ) { }
 
   ngOnInit(): void {
   }
 
+
+  logout(): void {
+    this.authSrv.logout();
+    this.router.navigate(['/login']);
+  }
 }

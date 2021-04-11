@@ -1,35 +1,60 @@
 <app-board-settings></app-board-settings>
 
-<header class="container text-center">
-    <div>
-        <div class="my-5">
-            <h2 class="text-center">Happy Birthday Esther</h2>
-        </div>
-        <nav class=" d-flex justify-content-center nav-menu">
-            <div *ngFor="let menu of navMenus" class="nav-item" (click)="navClick(menu.slug)" >
-                <h6>
-                    <span class="d-inline-block p-3 shadow-sm rounded-circle icon-circle">
-                        <img [src]="'/assets/icons/'+ menu.icon" [alt]="menu.icon">
-                    </span>
-                    <span>{{menu.name}}</span>
-                </h6> 
+
+<ng-container *ngIf="board; else loadingPage">
+    <header class="container text-center">
+        <div>
+            <div class="my-5">
+                <h2 class="text-center">{{board.boardTitle}}</h2>
             </div>
-        </nav> 
-    </div>
-</header>
-<div class="main-container">
-    <section class="container">
-        <div class="row">
-            <div class="col-md-4 my-4" *ngFor="let card of cards">
-                <div class="card rounded-lg">
-                    <div class="card-body">
-                        <img class="card-img-top" src="/assets/img/card1.png" alt="Card image cap">
-                        <p class="card-text mt-5">Pretium dictum semper elementum hac vestibulum tabii nedara ges estila cumme Pretium dictum 
-                            semper elementum hac vestibulum tabii nedara ges estila cumme. Pretium dictum semper elementum hac vestibulum 
-                            tabii nedara ges estila cumme</p>
+            <nav class=" d-flex justify-content-center nav-menu">
+                <div *ngFor="let menu of navMenus" class="nav-item" (click)="navClick(menu.slug)" >
+                    <h6>
+                        <span class="d-inline-block p-3 shadow-sm rounded-circle icon-circle">
+                            <img [src]="'/assets/icons/'+ menu.icon" [alt]="menu.icon">
+                        </span>
+                        <span>{{menu.name}}</span>
+                    </h6> 
+                </div>
+            </nav> 
+        </div>
+    </header>
+    <div class="main-container">
+        <section class="container">
+            <div class="row">
+                <div class="col-md-4 my-4" *ngFor="let card of board.cards; let i = index">
+                    <div class="card rounded-lg">
+                        <div class="card-body">
+                            <ng-container *ngIf="card.mediaType === 'image' || card.mediaType === 'gif'">
+                                <img *ngIf="card.mediaUrl" class="card-img-top" height="80%" [src]="card.mediaUrl" alt="img">
+                            </ng-container>
+                            <ng-container *ngIf="card.mediaType === 'video' ">
+                                <iframe height="250"
+                                  [src]="domSanitizer.bypassSecurityTrustResourceUrl(card.mediaUrl)">
+                               </iframe>
+                            </ng-container>
+                            <p class="card-text mt-5">{{card.postContent}}</p>
+                        </div>
+                        <div class="card-footer d-flex justify-content-lg-between">
+                            <div>
+                                <div class="dropdown">
+                                    <a class="dropdown-toggle text-light" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="fa fa-ellipsis-h text-dark"></i>
+                                      </a>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                      <a class="dropdown-item" href="#">Edit</a>
+                                      <a class="dropdown-item" href="#">Delete</a>
+                                    </div>
+                                  </div>
+                            </div>
+                            <div><p>From name</p></div>
+                        </div>
+                      </div>
                     </div>
-                  </div>
             </div>
-        </div>
-    </section>
-</div>
+        </section>
+    </div>
+</ng-container>
+<ng-template #loadingPage>
+    <app-loader></app-loader>
+</ng-template>

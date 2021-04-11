@@ -1,0 +1,98 @@
+<div class="container">
+    <header class="row mb-4">
+        <div class="col-md-12">
+            <div class="d-flex justify-content-between">
+              <h2 class="text-blue">My Profile</h2>
+   
+            </div>
+            <ul class="navbar-nav">
+              <li class="nav-item {{activeTab === 'userBio' && 'active'}}" >
+                <a class="nav-link" routerLink='/profile' [fragment]="'userBio'">User bio</a>
+              </li>
+              <li class="nav-item {{activeTab === 'accountSecurity' && 'active'}}">
+                <a class="nav-link" routerLink='/profile' [fragment]="'accountSecurity'">Account Security</a>
+              </li>
+              <li class="nav-item {{activeTab === 'emailPreference' && 'active'}}" >
+                <a class="nav-link" routerLink='/profile' [fragment]="'emailPreference'">Email Preferences</a>
+              </li>
+            </ul>
+        </div>
+      </header>
+      <div class="row" *ngIf="activeTab === 'userBio'">
+          <div class="col-md-8">
+            <div>
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" class="form-control" placeholder="enter fullname">
+                </div>
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <input type="email" class="form-control" placeholder="enter email">
+                </div>
+                <div class="form-group">
+                    <label>Default timezone</label>
+                    <select class="form-control">
+                        <option value="">West African</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-pry">Update Profile</button>
+                </div>
+                
+            </div>
+          </div>
+      </div>
+      <div class="row" *ngIf="activeTab === 'accountSecurity'">
+        <div class="col-md-8">
+          <div>
+              <div class="form-group">
+                  <label>Current Password</label>
+                  <input type="password" class="form-control" placeholder="enter current password">
+              </div>
+              <div class="form-group">
+                  <label>New Password</label>
+                  <input type="password" class="form-control" placeholder="enter new password">
+              </div>
+              <div class="form-group">
+                <label>Confirm New Password</label>
+                <input type="password" class="form-control" placeholder="enter new password">
+            </div>
+              <div class="form-group">
+                  <button class="btn btn-pry">Update Security</button>
+              </div>
+              
+          </div>
+        </div>
+    </div>
+    <div class="row" *ngIf="activeTab === 'emailPreference'">
+        <div class="col-md-8">
+          <div>
+            <div class="form-group">
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="customCheck1">
+                    <label class="custom-control-label" for="customCheck1"><b>Important Emails</b>: Invitations, deliveries, and communications directly related to your FiraCard</label>
+                  </div>
+            </div>
+            <div class="form-group">
+                <div class="custom-control custom-checkbox">
+                  <input type="checkbox" class="custom-control-input" id="customCheck2">
+                  <label class="custom-control-label" for="customCheck2"><b>Post Notifications</b>: Daily update if new posts are added to your FiraCard</label>
+                </div>
+            </div>
+            
+              <div class="form-group">
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="customCheck3">
+                    <label class="custom-control-label" for="customCheck3"><b>Inspirations</b>: Product updates, discounts, and inspirations to create new on FiraCard</label>
+                  </div>
+       
+            </div>
+              <div class="form-group">
+                  <button class="btn btn-pry">Save</button>
+              </div>
+              
+          </div>
+        </div>
+    </div>
+
+</div>

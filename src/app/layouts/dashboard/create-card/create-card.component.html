@@ -1,143 +1,153 @@
-<div class="create-card-container">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-6">
-                <div class="card border-0">
-                    <div class="card-body">
-                        <h3 class="card-header bg-white border-0 text-blue p-0">Create Card</h3>
-                        <div>
-                            <nav class="d-flex text-blue mt-4 nav-menu">
-                                <h5 (click)="showNav('image')" class="nav-item {{activateNav==='image' && 'active'}}" >
-                                    <img src="/assets/icons/camera-blue.svg" alt="iocn">
-                                    <span>Add Image</span>
-                                </h5>
-                                <h5 (click)="showNav('gif')" class="nav-item {{activateNav==='gif' && 'active'}}" >
-                                    <img src="/assets/icons/gif-blue.svg" alt="iocn">
-                                    <span>Add GIF</span>
-                                </h5>
-                                <h5 (click)="showNav('video')" class="nav-item {{activateNav==='video' && 'active'}}">
-                                    <img src="/assets/icons/video-blue.svg" alt="iocn">
-                                    <span>Add Video</span>
-                                </h5>
-                            </nav>
-                            <section class="mb-3" *ngIf="!selectedMedia">
-                                <div class="card" *ngIf="activateNav=='image'">
-                                    <div class="card-body bg-light" *ngIf="viewType==='default'">
-                                        <button (click)="changeView('upload')" class="btn btn-success mr-2">Upload Image</button>
-                                        <button (click)="changeView('online')" class="btn btn-success">Picture Library</button>
-                                    </div>
-                                    <div class="card-body bg-light" *ngIf="viewType==='online'">
-                                        <div class="input-group mb-3">
-                                            <input [(ngModel)]="searchValue" name="searchValue" type="text" class="form-control" placeholder="Search for..." >
-                                            <div class="input-group-append">
-                                                <button (click)="saerchUnslash()" [disabled]="!searchValue || searchLoading" class=" btn btn-success">
-                                                    <span *ngIf="!searchLoading">Search!</span>
-                                                    <span *ngIf="searchLoading">Searching...</span>
-                                                </button>
-                                            </div>
-                                          </div>
-                                          <p class="text-muted text-right">Powered by Unsplash</p>
-                                          <div >
-                                            <div class="row giphy-container" *ngIf="data.images">
-                                                <div *ngFor="let img of data.images" class="result col-md-6 mb-3">
-                                                    <div  class="overlay">
-                                                        <button (click)="selectMedia(img.urls.regular)" class="btn btn-success">Add to card</button>
-                                                    </div>
-                                                    <img class="img-responsive" [src]="img.urls.regular" height="300px" width="100%" alt="image">
-                                                    <div class="loading">
-                                                        <h5>Loading...</h5>
-                                                    </div>
+<div class="container create-card-container">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card border-0 mt-3">
+                <div class="card-body p-0">
+                    <h3 class="card-header bg-white border-0 text-blue p-0">Create Card</h3>
+                    <div>
+                        <nav class="d-flex text-blue mt-4 nav-menu">
+                            <h5 (click)="showNav('image')" class="nav-item {{activateNav==='image' && 'active'}}" >
+                                <img src="/assets/icons/camera-blue.svg" alt="iocn">
+                                <span>Add Image</span>
+                            </h5>
+                            <h5 (click)="showNav('gif')" class="nav-item {{activateNav==='gif' && 'active'}}" >
+                                <img src="/assets/icons/gif-blue.svg" alt="iocn">
+                                <span>Add GIF</span>
+                            </h5>
+                            <h5 (click)="showNav('video')" class="nav-item {{activateNav==='video' && 'active'}}">
+                                <img src="/assets/icons/video-blue.svg" alt="iocn">
+                                <span>Add Video</span>
+                            </h5>
+                        </nav>
+                        <section class="mb-3" *ngIf="!selectedMedia">
+                            <div class="card" *ngIf="activateNav=='image'">
+                                <div class="card-body bg-light" *ngIf="viewType==='default'">
+                                    <button (click)="changeView('upload')" class="btn btn-success mr-2">Upload Image</button>
+                                    <button (click)="changeView('online')" class="btn btn-success">Picture Library</button>
+                                </div>
+                                <div class="card-body bg-light" *ngIf="viewType==='online'">
+                                    <div class="input-group mb-3">
+                                        <input [(ngModel)]="searchValue" name="searchValue" type="text" class="form-control" placeholder="Search for..." >
+                                        <div class="input-group-append">
+                                            <button (click)="saerchUnslash()" [disabled]="!searchValue || searchLoading" class=" btn btn-success">
+                                                <span *ngIf="!searchLoading">Search!</span>
+                                                <span *ngIf="searchLoading">Searching...</span>
+                                            </button>
+                                        </div>
+                                      </div>
+                                      <p class="text-muted text-right">Powered by Unsplash</p>
+                                      <div >
+                                        <div class="row giphy-container" *ngIf="data.images">
+                                            <div *ngFor="let img of data.images" class="result col-md-6 mb-3">
+                                                <div  class="overlay">
+                                                    <button (click)="selectMedia(img.urls.regular)" class="btn btn-success">Add to card</button>
+                                                </div>
+                                                <img class="img-responsive" [src]="img.urls.regular" height="300px" width="100%" alt="image">
+                                                <div class="loading">
+                                                    <h5>Loading...</h5>
                                                 </div>
                                             </div>
-                                          </div>
-                                    </div>
-                                    <div class="card-body bg-light" *ngIf="viewType==='upload'">
-                                        <h6>Add an image from your computer or phone</h6>
-                                        <div class="border text-center p-5">
-                                            <p>Upload image here</p>
-                                            <button (click)="browseFile('image-file')" class="btn btn-success">Upload</button>
-                                            <input (change)="uploadImage($event)" id="image-file" type="file" class="d-none">
                                         </div>
+                                      </div>
+                                </div>
+                                <div class="card-body bg-light" *ngIf="viewType==='upload'">
+                                    <h6>Add an image from your computer or phone</h6>
+                                    <div class="border text-center p-5">
+                                        <p>Upload image here</p>
+                                        <button (click)="browseFile('image-file')" class="btn btn-success">Upload</button>
+                                        <input (change)="uploadImage($event)" id="image-file" accept="image/*"  type="file" class="d-none">
                                     </div>
                                 </div>
-                                <div class="card" *ngIf="activateNav=='gif'">
-                                    <div class="card-body bg-light">
-                                        <div class="input-group mb-3">
-                                            <input [(ngModel)]="searchValue" name="searchValue" type="text" class="form-control" placeholder="Search for..." >
-                                            <div class="input-group-append">
-                                                <button (click)="searchGiphy()" [disabled]="!searchValue || searchLoading" class=" btn btn-success">
-                                                    <span *ngIf="!searchLoading">Search!</span>
-                                                    <span *ngIf="searchLoading">Searching...</span>
-                                                </button>
-                                            </div>
+                            </div>
+                            <div class="card" *ngIf="activateNav=='gif'">
+                                <div class="card-body bg-light">
+                                    <div class="input-group mb-3">
+                                        <input [(ngModel)]="searchValue" name="searchValue" type="text" class="form-control" placeholder="Search for..." >
+                                        <div class="input-group-append">
+                                            <button (click)="searchGiphy()" [disabled]="!searchValue || searchLoading" class=" btn btn-success">
+                                                <span *ngIf="!searchLoading">Search!</span>
+                                                <span *ngIf="searchLoading">Searching...</span>
+                                            </button>
                                         </div>
-                                        <p class="text-muted text-right">Powered by Giphy</p>
-                                          <div >
-                                            <div class="row giphy-container" *ngIf="data?.gifs">
-                                                <div *ngFor="let gif of data.gifs" class="result col-md-6 mb-3">
-                                                    <div  class="overlay">
-                                                        <button (click)="selectMedia(gif.images.original.url)" class="btn btn-success">Add to card</button>
-                                                    </div>
-                                                    <img class="img-responsive" [src]="gif.images.original.url" height="300px" width="100%" alt="gif">
-                                                    <div class="loading">
-                                                        <h5>Loading...</h5>
-                                                    </div>
+                                    </div>
+                                    <p class="text-muted text-right">Powered by Giphy</p>
+                                      <div >
+                                        <div class="row giphy-container" *ngIf="data?.gifs">
+                                            <div *ngFor="let gif of data.gifs" class="result col-md-6 mb-3">
+                                                <div  class="overlay">
+                                                    <button (click)="selectMedia(gif.images.original.url)" class="btn btn-success">Add to card</button>
+                                                </div>
+                                                <img class="img-responsive" [src]="gif.images.original.url" height="300px" width="100%" alt="gif">
+                                                <div class="loading">
+                                                    <h5>Loading...</h5>
                                                 </div>
                                             </div>
-                                          </div>
-                                    </div>
-                                </div>
-                                <div class="card" *ngIf="activateNav=='video'">
-                                    <div class="card-body bg-light" *ngIf="viewType==='default'">
-                                        <button (click)="changeView('upload')" class="btn btn-success mr-2">Upload Video</button>
-                                        <button (click)="changeView('online')" class="btn btn-success">Link to Youtube</button>
-                                    </div>
-                                    <div class="card-body bg-light" *ngIf="viewType==='upload'">
-                                        <h6>Add an video from your computer or phone</h6>
-                                        <div class="border text-center p-5">
-                                            <p>Upload video here</p>
-                                            <button (click)="browseFile('video-file')" class="btn btn-success">Upload</button>
-                                            <input (change)="uploadVideo($event)" id="video-file" type="file" class="d-none">
                                         </div>
-                                    </div>
-                                    <div class="card-body bg-light"*ngIf="viewType==='online'" >
-                                        <div class="input-group mb-3">
-                                            <input name="searchValue" type="url" class="form-control" placeholder="Paste link to youtube" >
-                                            <div class="input-group-append">
-                                                <button  class=" btn btn-success">
-                                                    <span>Add</span>
-                                                </button>
-                                            </div>
-                                          </div>
+                                      </div>
+                                </div>
+                            </div>
+                            <div class="card" *ngIf="activateNav=='video'">
+                                <div class="card-body bg-light" *ngIf="viewType==='default'">
+                                    <button (click)="changeView('upload')" class="btn btn-success mr-2">Upload Video</button>
+                                    <button (click)="changeView('online')" class="btn btn-success">Link to Youtube</button>
+                                </div>
+                                <div class="card-body bg-light" *ngIf="viewType==='upload'">
+                                    <h6>Add an video from your computer or phone</h6>
+                                    <div class="border text-center p-5">
+                                        <p>Upload video here</p>
+                                        <button (click)="browseFile('video-file')" class="btn btn-success">Upload</button>
+                                        <input (change)="uploadVideo($event)" id="video-file" accept="video/*" type="file" class="d-none">
                                     </div>
                                 </div>
-                            </section>
-                            <section class="mb-3" *ngIf="selectedMedia">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <img *ngIf="activateNav=='image' || activateNav=='gif'" id="imgIDSelector" 
-                                                style="width: 100%; max-height: 400px;" [src]="selectedMedia" alt="image" >
-                                        <div *ngIf="activateNav==='video'">
+                                <div class="card-body bg-light" *ngIf="viewType==='online'" >
+                                    <div class="input-group mb-3">
+                                        <input name="searchValue" [(ngModel)]="searchValue" type="url" class="form-control" placeholder="Paste link to youtube" >
+                                        <div class="input-group-append">
+                                            <button [disabled]="!searchValue" (click)="addYoutubeUrl()" class=" btn btn-success">
+                                                <span>Add</span>
+                                            </button>
+                                        </div>
+                                      </div>
+                                </div>
+                            </div>
+                        </section>
+                        <section class="mb-3" *ngIf="selectedMedia">
+                            <div class="card">
+                                <div class="card-body">
+                                    <img *ngIf="activateNav=='image' || activateNav=='gif'" id="imgIDSelector" 
+                                            style="width: 100%; max-height: 400px;" [src]="selectedMedia" alt="image" >
+                                    <div *ngIf="activateNav==='video'">
+                                        <ng-container  *ngIf="viewType==='upload'">
                                             <video width="320" height="240" controls>
                                                 <source id="videoIDSelector" [src]="selectedMedia" type="video/mp4">
                                               Your browser does not support the video tag.
                                               </video>
-                                        </div>
-                                        <div class="mt-2">
-                                            <button (click)="selectMedia('')" class="btn btn-danger">Delete</button>
-                                        </div>
+                                        </ng-container>
+                                        <ng-container  *ngIf="viewType==='online'">
+                                            <iframe width="420" height="315"
+                                            [src]="domSanitizer.bypassSecurityTrustResourceUrl(this.selectedMedia)">
+                                         </iframe>
+                                        </ng-container>
+                                    </div>
+                                    <div class="mt-2">
+                                        <button (click)="selectMedia('')" class="btn btn-danger">Delete</button>
                                     </div>
                                 </div>
-
-                            </section>
-                            <textarea class="form-control" placeholder="Complimentory message" cols="30" rows="10"></textarea>
-                            <div class="mt-4 mb-2">
-                                <button class="btn btn-pry btn-lg">Create card</button>
-                                <button (click)="location.back()" class="btn text-pry btn-lg">Cancel</button>
                             </div>
+
+                        </section>
+                        <textarea class="form-control" [(ngModel)]="message" name="messafe" placeholder="Complimentory message" cols="30" rows="10"></textarea>
+                        <div class=" text-danger" *ngIf="!isFormValid && submitted">
+                            <p>The card needs to have a video, photo, or message.</p>
                         </div>
-                    </div> 
-                </div>
+                        <div class="mt-4 mb-2">
+                            <button [disabled]="loading" (click)="createCard()" class="btn btn-pry btn-lg">
+                                Create card <i *ngIf="loading" class="fa fa-spinner fa-spin"></i>
+                            </button>
+                            <button (click)="location.back()" class="btn text-pry btn-lg">Cancel</button>
+                        </div>
+                    </div>
+                </div> 
             </div>
         </div>
     </div>
