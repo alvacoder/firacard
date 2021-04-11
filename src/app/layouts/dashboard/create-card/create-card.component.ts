@@ -102,7 +102,7 @@ export class CreateCardComponent implements OnInit {
         this.toastr.success('Card created successfully');
         this.location.back();
       }, err => {
-        this.toastr.error('Create Card error');
+        this.toastr.error(err.message);
       }).add(() => this.loading = false);
     }
   }
