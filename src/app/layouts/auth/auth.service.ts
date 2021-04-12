@@ -35,8 +35,8 @@ export class AuthService {
   login(payload: {email: string, password: string}): Observable<any> {
     return this.http.post(`${this.apiUrl}/users/login`, payload);
   }
-  oauthLogin(email: string): Observable<any> {
-    return this.http.post(`${this.apiUrl}/users/oauth`, {email});
+  oauthLogin(payload: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/users/oauth`, payload);
   }
 
   get userToken(): string {
