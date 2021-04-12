@@ -1,9 +1,9 @@
 <div class="container create-card-container">
     <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-8" *ngIf="!cardDetail._id || (cardDetail._id && cardDetail.loading); else loadingPage">
             <div class="card border-0 mt-3">
                 <div class="card-body p-0">
-                    <h3 class="card-header bg-white border-0 text-blue p-0">Create Card</h3>
+                    <h3 class="card-header bg-white border-0 text-blue p-0">{{cardDetail._id ? 'Update': 'Create'}} Card</h3>
                     <div>
                         <nav class="d-flex text-blue mt-4 nav-menu">
                             <h5 (click)="showNav('image')" class="nav-item {{activateNav==='image' && 'active'}}" >
@@ -137,18 +137,39 @@
 
                         </section>
                         <textarea class="form-control" [(ngModel)]="message" name="messafe" placeholder="Complimentory message" cols="30" rows="10"></textarea>
-                        <div class=" text-danger" *ngIf="!isFormValid && submitted">
+                        <div class="text-danger" *ngIf="!isFormValid && submitted">
                             <p>The card needs to have a video, photo, or message.</p>
                         </div>
+                        <div class="row">
+                            <div class="col-12 mt-2">
+                                <label>What name would you like attached to your posts?</label>
+                            </div>
+                            <div class="col-md-12 form-group">
+                                <input [(ngModel)]="name.firstName" name="fullname" type="text" class="form-control" placeholder="enter name">
+                                <div class="text-danger" *ngIf="!(name.firstName) && submitted">
+                                    <span>name is required</span>
+                                </div>
+                            </div>
+                            <!-- <div class="col-md-6 form-group">
+                                <input [(ngModel)]="name.lastName" name="lastName" type="text" class="form-control" placeholder="Last name">
+                            </div> -->
+                        </div>
+                   
+
                         <div class="mt-4 mb-2">
                             <button [disabled]="loading" (click)="createCard()" class="btn btn-pry btn-lg">
-                                Create card <i *ngIf="loading" class="fa fa-spinner fa-spin"></i>
+                                {{cardDetail._id ? 'Update' : 'Create'}} card <i *ngIf="loading" class="fa fa-spinner fa-spin"></i>
                             </button>
-                            <button (click)="location.back()" class="btn text-pry btn-lg">Cancel</button>
+                            <button (click)="goBack()" class="btn text-pry btn-lg">Cancel</button>
                         </div>
                     </div>
                 </div> 
             </div>
         </div>
+        <ng-template #loadingPage>
+            <div class="col-md-12">
+                <app-loader></app-loader>
+            </div>
+        </ng-template>
     </div>
 </div>

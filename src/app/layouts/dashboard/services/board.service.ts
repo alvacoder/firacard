@@ -29,11 +29,17 @@ export class BoardService {
   createBoard(payload: any): Observable<any>  {
     return this.http.post(`${this.apiUrl}/boards/create`, payload);
   }
+  updateBoard(payload: any): Observable<any> {
+    return this.http.patch(`${this.apiUrl}/boards/${payload.boardId}`, payload);
+  }
   getBoard(id: string): Observable<any>  {
     return this.http.get(`${this.apiUrl}/boards/${id}`);
   }
   createCard(boardId: string, body: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/boards/${boardId}/create`, body);
+  }
+  updateCard(boardId: string, body: any): Observable<any> {
+    return this.http.patch(`${this.apiUrl}/boards/${boardId}/card`, body);
   }
   createReminder(payload: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/reminders`, payload);

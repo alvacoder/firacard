@@ -44,7 +44,7 @@
                   <h4 class="card-title">{{board.boardTitle}}</h4>
                   <p class="card-text"> 
                     <span class="text-muted">Recipient:</span>
-                    <span>Idris Adeniji</span>
+                    <span>{{board.recipientEmail || 'nil'}}</span>
                   </p>
                   <div class="mb-5 form-container">
                     <p class="card-text"> 
@@ -149,45 +149,7 @@
   </ng-container>
 </div>
 
-<!-- Create Board Modal -->
-<div class="modal fade" id="createBoardModal" tabindex="-1" role="dialog" aria-labelledby="createBoardTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="">
-        <div class="text-right mr-2">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span style="font-size: 30px;" aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <h4 class="mt-3 modal-title text-center">Create Board</h4>
-        
-      </div>
-      <div class="modal-body" [formGroup]="form">
-        <ng-container formArrayName="recipients"  *ngFor="let recp of getRecpControls; let i = index;">
-          <div [formGroupName]="i" class="form-group">
-            <label>Recipient’s Name</label>
-            <input formControlName="name" type="text" class="form-control" placeholder="recipient’s name" >
-            <div *ngIf="i>0" class="text-danger text-right cursor-pointer">
-              <small (click)="removeRecp(i)" > delete</small>
-            </div>
-          </div>
-        </ng-container>
-        <div class="text-right cursor-pointer">
-          <small (click)="addRecp()" class="text-pry">+ more recipient</small>
-        </div>
-        <div class="form-group">
-          <label>Board Name</label>
-          <input formControlName="boardTitle" type="text" class="form-control" placeholder="board name" >
-        </div>
-      </div>
-      <div class="modal-footer border-0 pt-0">
-        <button [disabled]="form.invalid || loading" (click)="createBoard()" type="button" class="btn btn-pry btn-block">
-          Create board  <span *ngIf="loading" class="fa fa-spinner fa-spin"></span>
-        </button>
-      </div>
-    </div>
-  </div>
-</div>
+<app-create-board (emitEvent)="getBoards()" ></app-create-board>
 <!--Create Reminder Modal -->
 <div class="modal fade" id="reminderModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">

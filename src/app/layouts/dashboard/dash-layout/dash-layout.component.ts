@@ -15,11 +15,22 @@ export class DashLayoutComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
+    this.authSrv.userTokenSubject.subscribe(res => {
+      if (res) {
+        this.getProfile();
+      }
+    });
   }
 
 
   logout(): void {
     this.authSrv.logout();
     this.router.navigate(['/login']);
+  }
+  getProfile(): void {
+    this.authSrv.getProfile().subscribe(res => {
+      const body = res.payload;
+      this.authSrv.userDetailSubject.next(body);
+    });
   }
 }
