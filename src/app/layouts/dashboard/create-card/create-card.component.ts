@@ -1,5 +1,6 @@
+import { Observable } from 'rxjs';
 import { DomSanitizer } from '@angular/platform-browser';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CloudinaryService } from './../../../shared/services/cloudinary.service';
 import { BoardService } from './../services/board.service';
 import { Component, OnInit } from '@angular/core';
@@ -23,6 +24,7 @@ export class CreateCardComponent implements OnInit {
   submitted = false;
   loading = false;
   name = {firstName: '', lastName: ''};
+  cardDetail = {_id: '', mediaType: '', mediaUrl: '', postContent: '', loading: false};
 
   constructor(
     route: ActivatedRoute,
@@ -30,11 +32,15 @@ export class CreateCardComponent implements OnInit {
     private boardSrv: BoardService,
     private toastr: ToastrService,
     private cloudinarySrv: CloudinaryService,
+    private router: Router,
     public location: Location) {
       this.boardId = route.snapshot.params.id;
+      this.cardDetail._id = route.snapshot.queryParams.cardId;
     }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getBoard();
+  }
 
   searchGiphy(): void {
     this.searchLoading = true;
@@ -42,6 +48,23 @@ export class CreateCardComponent implements OnInit {
     this.boardSrv.giphySearch(this.searchValue).subscribe(res => {
       this.data.gifs = res.data;
     }).add(() => this.searchLoading = false);
+  }
+  getBoard(): void {
+    this.boardSrv.getBoard(this.boardId).subscribe(res => {
+      const { cards } = res.payload[0];
+      if (this.cardDetail._id) {
+        this.cardDetail = cards.find((card: any) => card._id === this.cardDetail._id);
+        this.fillCard();
+      }
+    });
+  }
+  fillCard(): void {
+    if (this.cardDetail) {
+      this.message = this.cardDetail.postContent;
+      this.selectedMedia = this.cardDetail.mediaUrl;
+      this.activateNav = this.cardDetail.mediaType;
+      this.cardDetail.loading = true;
+    }
   }
   saerchUnslash(): void {
     this.searchLoading = true;
@@ -85,30 +108,36 @@ export class CreateCardComponent implements OnInit {
     this.readURL(event.target, 'videoIDSelector');
     // document.getElementById('videoIDSelector')?.setAttribute('src', blobURL);
   }
-
   createCard(): void {
     this.submitted = true;
-    if (this.isFormValid) {
+    if (this.isFormValid && this.name.firstName) {
       this.loading = true;
       const file: any = this.selectedMedia || '';
       const fd = new FormData();
       fd.append('postContent', this.message);
       fd.append('mediaType', this.activateNav);
+      fd.append('creatorName', this.name.firstName);
       if (this.viewType === 'upload') {
         fd.append('mediaFile', file);
       } else {
         fd.append('mediaUrl', file);
       }
-      this.boardSrv.createCard(this.boardId, fd).subscribe((res) => {
-        this.toastr.success('Card created successfully');
-        this.location.back();
+      if (this.cardDetail._id) {
+        fd.append('cardId', this.cardDetail._id);
+      }
+      const obs: Observable<any> = this.cardDetail._id ?
+      this.boardSrv.updateCard(this.boardId, fd) : this.boardSrv.createCard(this.boardId, fd);
+      obs.subscribe(() => {
+        const text = this.cardDetail._id ? 'updated' : 'created';
+        this.toastr.success(`Card ${text} successfully`);
+        this.goBack();
       }, err => {
         this.toastr.error(err.message);
       }).add(() => this.loading = false);
     }
   }
- get isFormValid(): any {
-  return this.message || this.selectedMedia;
+  get isFormValid(): any {
+  return (this.message || this.selectedMedia);
   }
   addYoutubeUrl(): void {
     if (this.validateYouTubeUrl(this.searchValue)) {
@@ -134,6 +163,10 @@ export class CreateCardComponent implements OnInit {
     }
     return url;
   }
+  goBack(): void {
+    this.router.navigate(['/boards', this.boardId]);
+  }
+
 
 
 }

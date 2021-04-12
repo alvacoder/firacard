@@ -1,4 +1,4 @@
-import { AuthService } from 'src/app/layouts/auth/auth.service';
+import { AuthService, UserI } from 'src/app/layouts/auth/auth.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { BoardService } from './../services/board.service';
 import { Component, OnInit } from '@angular/core';
@@ -20,9 +20,10 @@ export class BoardComponent implements OnInit {
   ];
   board!: {
     boardTitle: string;
-    cards: any[]
+    cards: any[],
+    creatorId: string;
   };
-  userDetail!: any;
+  userDetail!: UserI;
 
   constructor(
     route: ActivatedRoute,
@@ -67,6 +68,11 @@ export class BoardComponent implements OnInit {
       url = `https://www.youtube.com/embed/${hashUrl}`;
     }
     return url;
+  }
+
+  editCard(cardId: string): void {
+    const queryParams = {cardId};
+    this.router.navigate(['boards/create-card', this.boardId], {queryParams});
   }
 
 }
