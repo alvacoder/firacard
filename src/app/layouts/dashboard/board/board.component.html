@@ -5,7 +5,12 @@
     <header class="container text-center">
         <div>
             <div class="my-5">
-                <h2 class="text-center">{{board.boardTitle}}</h2>
+                <h2 class="text-center">
+                    <span>{{board.boardTitle}}</span>
+                    <span class="ml-2 cursor-pointer" data-toggle="modal" data-target="#createBoardModal" >
+                        <i style="font-size: 20px;" class="fa fa-edit text-pry"></i>
+                    </span>
+                </h2>
             </div>
             <nav class=" d-flex justify-content-center nav-menu">
                 <div *ngFor="let menu of navMenus" class="nav-item" (click)="navClick(menu.slug)" >
@@ -74,6 +79,8 @@
             </div>
         </section>
     </div>
+<app-create-board [board]="board" (emitEvent)="getBoard()" ></app-create-board>
+
 </ng-container>
 <ng-template #loadingPage>
     <app-loader></app-loader>

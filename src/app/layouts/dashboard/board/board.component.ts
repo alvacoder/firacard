@@ -37,6 +37,8 @@ export class BoardComponent implements OnInit {
     this.authSrv.userDetailSubject.subscribe(res => {
       this.userDetail = res;
     });
+    if (this.boardId) {
+    }
     this.getBoard();
   }
 

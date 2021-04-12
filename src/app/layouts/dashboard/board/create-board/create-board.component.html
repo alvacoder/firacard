@@ -1,0 +1,59 @@
+<!-- Create Board Modal -->
+<div class="modal fade" id="createBoardModal" tabindex="-1" role="dialog" aria-labelledby="createBoardTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="">
+          <div class="text-right mr-2">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span style="font-size: 30px;" aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <h4 class="mt-3 modal-title text-center">{{board ? 'Update' : 'Create'}} Board</h4>
+          
+        </div>
+        <div class="modal-body" [formGroup]="form">
+          <!-- <ng-container formArrayName="recipients"  *ngFor="let recp of getRecpControls; let i = index;">
+            <div [formGroupName]="i" class="form-group">
+              <label>Recipient’s Email</label>
+              <input formControlName="name" type="text" class="form-control" placeholder="recipient’s name" >
+              <div *ngIf="i>0" class="text-danger text-right cursor-pointer">
+                <small (click)="removeRecp(i)" > delete</small>
+              </div>
+            </div>
+          </ng-container>
+          <div class="text-right cursor-pointer">
+            <small (click)="addRecp()" class="text-pry">+ more recipient</small>
+          </div> -->
+          <div class="form-group">
+            <label>Recipient’s Email</label>
+            <input formControlName="recipientEmail" type="email" class="form-control" placeholder="recipient’s email" >
+            <div class="text-danger" *ngIf="form.controls.recipientEmail.touched && form.controls.recipientEmail.invalid ">
+                <span *ngIf="form.controls.recipientEmail.errors?.required">recipient’s email is required</span>
+                <span *ngIf="!(form.controls.recipientEmail.errors?.required)" >
+                    recipient’s email must be a valid email address
+                </span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Board Name</label>
+            <input formControlName="boardTitle" type="text" class="form-control" placeholder="board name" >
+            <div class="text-danger" *ngIf="form.controls.boardTitle.touched && form.controls.boardTitle.invalid ">
+                <span>board name is required</span>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer border-0 pt-0">
+          <ng-container *ngIf="board; else noBoardId">
+            <button [disabled]="form.invalid || loading" (click)="updateBoard()" type="button" class="btn btn-pry btn-block">
+                Update board  <span *ngIf="loading" class="fa fa-spinner fa-spin"></span>
+              </button>
+          </ng-container>
+          <ng-template #noBoardId>
+            <button [disabled]="form.invalid || loading" (click)="createBoard()" type="button" class="btn btn-pry btn-block">
+                Create board  <span *ngIf="loading" class="fa fa-spinner fa-spin"></span>
+              </button>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -15,10 +15,7 @@ export class DashHomeComponent implements OnInit {
   boards!: any[];
   reminders!: any[];
   activeTab = 'curratedCards';
-  form = this.fb.group({
-    boardTitle: ['', [Validators.required]],
-    recipients: this.fb.array([this.createRecp()])
-  });
+
   reminderForm = this.fb.group({
     reminderName: [''],
     eventTitle: [''],
@@ -26,7 +23,6 @@ export class DashHomeComponent implements OnInit {
   });
   loading = false;
 
-  get recpForm(): FormArray {return this.form.get('recipients') as FormArray; }
   constructor(
     private route: ActivatedRoute,
     private fb: FormBuilder,
@@ -51,34 +47,7 @@ export class DashHomeComponent implements OnInit {
       this.reminders = res.payload;
     });
   }
-  get getRecpControls(): any[] {
-    return ((this.form.get('recipients') as any).controls);
-  }
-  createRecp(): FormGroup {
-    return this.fb.group({
-      name: ['']
-    });
-  }
-  addRecp(): void {
-    this.recpForm.push(this.createRecp());
-  }
-  removeRecp(i: any): void {
-    this.recpForm.removeAt(i);
-  }
 
-  createBoard(): void {
-    if (this.form.valid) {
-      const payload = {boardTitle: this.form.value.boardTitle};
-      this.loading = true;
-      this.boardSrv.createBoard(payload).subscribe(res => {
-        this.toastr.success('Board created successfully');
-        this.getBoards();
-        (document.querySelector('.close') as any).click();
-      }, err => {
-        this.toastr.error('create board error');
-      }).add(() => this.loading = false);
-    }
-  }
   getBoardImg(board: any): string {
     const boardImg = board.cards.find((card: any) => card.mediaUrl && (card.mediaType === 'gif' || card.mediaType === 'image'));
     return boardImg && boardImg.mediaUrl;
