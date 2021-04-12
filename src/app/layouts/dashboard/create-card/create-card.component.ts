@@ -80,7 +80,7 @@ export class CreateCardComponent implements OnInit {
   }
   uploadVideo(event: any): void {
     const blobURL = URL.createObjectURL(event.target?.files[0]);
-    this.selectedMedia = blobURL;
+    this.selectedMedia = event.target?.files[0];
     this.readURL(event.target, 'videoIDSelector');
     // document.getElementById('videoIDSelector')?.setAttribute('src', blobURL);
   }
@@ -118,13 +118,21 @@ export class CreateCardComponent implements OnInit {
   }
   validateYouTubeUrl(urlToParse: string): boolean{
     if (urlToParse) {
-        const regExp = /^https:\/\/(?:www\.)?youtube.com\/embed\/[A-z0-9]/;
+        const regExp = /^https:\/\/(?:www\.)?youtube.com\/[A-z0-9]/;
         if (urlToParse.match(regExp)) {
             return true;
         }
     }
     return false;
-}
+  }
+  getYoutubeEmbedUrl(youtubeUrl: string): string {
+    let url = youtubeUrl;
+    if (youtubeUrl.includes('watch')) {
+      const hashUrl = youtubeUrl.split('v=')[1];
+      url = `https://www.youtube.com/embed/${hashUrl}`;
+    }
+    return url;
+  }
 
 
 }

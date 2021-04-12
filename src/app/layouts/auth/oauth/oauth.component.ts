@@ -44,7 +44,7 @@ export class OauthComponent implements OnInit {
   }
   oauthLogin(payload: any, provider: 'facebook' | 'google'): void {
     this.loading[provider] = true;
-    this.authSrv.oauthLogin(payload.res).subscribe(res => {
+    this.authSrv.oauthLogin(payload).subscribe(res => {
       this.authSrv.storeUserToken(res.token);
       this.toastr.success('Oauth Login successful').onShown.subscribe(() => {
         this.successLoginAction();
