@@ -44,7 +44,9 @@ export class AuthService {
     return this.http.patch(`${this.apiUrl}/users/updatepassword`, payload);
   }
 
-
+  isUserLoggedIn(): boolean {
+    return !!this.userToken;
+  }
   get userToken(): string {
     return this.userTokenSubject.value;
   }

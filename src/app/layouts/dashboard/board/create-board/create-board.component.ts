@@ -11,7 +11,7 @@ import { ToastrService } from 'ngx-toastr';
 export class CreateBoardComponent implements OnInit {
   @Output() emitEvent = new EventEmitter();
   loading = false;
-  @Input() board!: {boardId: string, boardTitle: string, recipientEmail: string};
+  @Input() board!: any;
 
   form = this.fb.group({
     boardTitle: ['', [Validators.required]],

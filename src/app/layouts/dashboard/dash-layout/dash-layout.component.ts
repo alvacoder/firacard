@@ -10,7 +10,7 @@ import { Component, OnInit } from '@angular/core';
 export class DashLayoutComponent implements OnInit {
 
   constructor(
-    private authSrv: AuthService,
+    public authSrv: AuthService,
     private router: Router,
     ) { }
 

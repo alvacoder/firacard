@@ -1,3 +1,4 @@
+import { AuthService } from 'src/app/layouts/auth/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
@@ -8,7 +9,9 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(
+    private route: ActivatedRoute,
+    public authSrv: AuthService) {}
 
   ngOnInit(): void {
     this.route.fragment.subscribe(id => {

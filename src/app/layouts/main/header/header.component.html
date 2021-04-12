@@ -22,10 +22,18 @@
         </div>
         <div class="close closeBtn"><i class="fa fa-times"></i></div> -->
         <div class="navBtn">
-            <span><a routerLink="/signin">Sign in</a></span>
-            <div class="btnx green">
-                <a routerLink="/register"><button>Create a Group Board</button></a>
-            </div>
+            <ng-container *ngIf="authSrv.isUserLoggedIn(); else notLogin">
+                <div class="btnx green">
+                    <a routerLink="/dashboard"><button>Dashboard</button></a>
+                </div>
+            </ng-container>
+            <ng-template #notLogin>
+                <span><a routerLink="/signin">Sign in</a></span>
+                <div class="btnx green">
+                    <a routerLink="/register"><button>Create a Group Board</button></a>
+                </div>
+            </ng-template>
+
         </div>
     </div>
     <!-- End Nav -->
