@@ -22,6 +22,7 @@ export class CreateCardComponent implements OnInit {
   boardId!: string;
   submitted = false;
   loading = false;
+  name = {firstName: '', lastName: ''};
 
   constructor(
     route: ActivatedRoute,

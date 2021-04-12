@@ -137,9 +137,22 @@
 
                         </section>
                         <textarea class="form-control" [(ngModel)]="message" name="messafe" placeholder="Complimentory message" cols="30" rows="10"></textarea>
-                        <div class=" text-danger" *ngIf="!isFormValid && submitted">
+                        <div class="text-danger" *ngIf="!isFormValid && submitted">
                             <p>The card needs to have a video, photo, or message.</p>
                         </div>
+                        <div class="row">
+                            <div class="col-12 mt-2">
+                                <label>What name would you like attached to your posts?</label>
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <input [(ngModel)]="name.firstName" name="firstName" type="text" class="form-control" placeholder="First name">
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <input [(ngModel)]="name.lastName" name="lastName" type="text" class="form-control" placeholder="Last name">
+                            </div>
+                        </div>
+                   
+
                         <div class="mt-4 mb-2">
                             <button [disabled]="loading" (click)="createCard()" class="btn btn-pry btn-lg">
                                 Create card <i *ngIf="loading" class="fa fa-spinner fa-spin"></i>
