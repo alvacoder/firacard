@@ -3,11 +3,12 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
+    "start": "node server.js",
+    "build": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "heroku-postbuild": "ng build --prod"
   },
   "private": true,
   "dependencies": {
@@ -22,6 +23,7 @@
     "@fortawesome/fontawesome-free": "^5.15.3",
     "angularx-social-login": "^2.3.1",
     "bootstrap": "^4.6.0",
+    "express": "^4.17.1",
     "i": "^0.3.6",
     "jquery": "^3.6.0",
     "jwt-decode": "^3.1.2",
