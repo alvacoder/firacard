@@ -6,15 +6,45 @@
         h6 {
             font-size: 16px;
             line-height: 180%;
-            color: #A1C042;
         }
         .icon-circle {
             margin-right: 10px;
             background: #FFFFFF;
+            width: 50px;
+            height: 50px;
             box-shadow: 0px 20.9725px 71.9057px rgba(85, 42, 4, 0.08);
+            img{
+                margin-bottom: 9px;
+                width: 17px;
+            }
         }
     }
 } 
+.nav-tabs {
+    border: none;
+    .nav-link {
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 180%;
+        color: #4F4F4F;
+        height: 40px;
+        border: none;
+        padding-left: 0px;
+        padding-right: 0px;
+        margin-right: 10px;
+        &.active {
+            color: #1976D2;
+            border-bottom: 2px solid #1976D2;
+
+        }
+    }
+}
+.btn-copy {
+    background: #F6FAF1;
+    color: yellowgreen;
+    font-size: 15px;
+    text-align: center;
+}
 .main-container {
     background-image: url('/assets/img/board-banner.png');
     min-height: 65vh;
@@ -25,6 +55,42 @@
     //     padding: 5em 4em 3em;
     // }
 }
-
-
+.custom-switch .custom-control-input:checked~.custom-control-label::before {
+    color: #fff;
+    border-color: #A1C042;
+    background-color: #A1C042;
+}
 .dropdown-toggle:after { content: none }
+
+.pattern1 {
+    &.main-header {
+        background-color: #97B0CE;
+    }
+    &.main-container{
+        background: url('https://s3.amazonaws.com/kudoboard-assets/templates/619/backgrounds/lowres/Es30NFBh.jpg');
+    }
+}
+.pattern2 {
+    &.main-header {
+        background-color: #B64D44;
+    }
+    &.main-container{
+        background: url('https://s3.amazonaws.com/kudoboard-assets/templates/620/backgrounds/lowres/EUWHBsB8.jpg');
+    }
+}
+.solid1 {
+    &.main-header {
+        background-color: #274140;
+    }
+    &.main-container{
+        background: #9FBC96;
+    }
+}
+.solid2 {
+    &.main-header {
+        background-color: #2D2926;
+    }
+    &.main-container{
+        background: #E47A71;
+    }
+}

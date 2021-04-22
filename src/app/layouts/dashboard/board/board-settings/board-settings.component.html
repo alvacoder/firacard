@@ -70,8 +70,8 @@
                             </div>
                             <h6 class="mb-3">Select background</h6>
                             <div class="row">
-                                <div class="col-md-4 mb-3" *ngFor="let bg of bgs">
-                                    <img width="100%" src="/assets/img/settings-bg.png" alt="img">
+                                <div class="col-md-4 mb-3 cursor-pointer" (click)="changeBg(bg)" *ngFor="let bg of backgrounds">
+                                    <img width="100%" [src]="'/assets/img/backgrounds/'+bg.slug" alt="img">
                                 </div>
                             </div>
                         </div>

@@ -1,38 +1,40 @@
-<app-board-settings></app-board-settings>
+<app-board-settings (emitEvent)="changeBg($event)" ></app-board-settings>
 
 
 <ng-container *ngIf="board; else loadingPage">
-    <header class="container text-center">
-        <div>
-            <div class="my-5">
-                <h2 class="text-center">
-                    <span>{{board.boardTitle}}</span>
-                    <span *ngIf="userDetail._id === board?.creatorId"
-                        class="ml-2 cursor-pointer" data-toggle="modal" data-target="#createBoardModal" >
-                        <i style="font-size: 20px;" class="fa fa-edit text-pry"></i>
-                    </span>
-                </h2>
-            </div>
-            <nav class=" d-flex justify-content-center nav-menu">
-                <div *ngFor="let menu of navMenus" class="nav-item" (click)="navClick(menu.slug)" >
-                    <h6 *ngIf="userDetail._id === board?.creatorId && menu.slug != 'add_to_board'" >
-                        <span class="d-inline-block p-3 shadow-sm rounded-circle icon-circle">
-                            <img [src]="'/assets/icons/'+ menu.icon" [alt]="menu.icon">
+    <section class="py-5 {{className}} main-header {{className==='default'? 'text-pry': 'text-light'}}">
+        <header class="container text-center">
+            <div>
+                <div class="">
+                    <h2 class="text-center">
+                        <span>{{board.boardTitle}}</span>
+                        <span *ngIf="userDetail._id === board?.creatorId"
+                            class="ml-2 cursor-pointer" data-toggle="modal" data-target="#createBoardModal" >
+                            <i style="font-size: 20px;" class="fa fa-edit {{className==='default' && 'text-pry'}}"></i>
                         </span>
-                        <span>{{menu.name}}</span>
-                    </h6> 
-                    <h6 *ngIf="menu.slug == 'add_to_board'" >
-                        <span class="d-inline-block p-3 shadow-sm rounded-circle icon-circle">
-                            <img [src]="'/assets/icons/'+ menu.icon" [alt]="menu.icon">
-                        </span>
-                        <span>{{menu.name}}</span>
-                    </h6> 
-
+                    </h2>
                 </div>
-            </nav> 
-        </div>
-    </header>
-    <div class="main-container">
+                <nav class="mt-3 d-flex justify-content-center nav-menu">
+                    <div *ngFor="let menu of navMenus" class="nav-item" (click)="navClick(menu.slug)" >
+                        <h6 class="{{className==='default'?'text-pry': 'text-light'}}" *ngIf="userDetail._id === board?.creatorId && menu.slug != 'add_to_board'" >
+                            <span class="d-inline-block p-3 shadow-sm rounded-circle icon-circle">
+                                <img [src]="'/assets/icons/'+ menu.icon" [alt]="menu.icon">
+                            </span>
+                            <span>{{menu.name}}</span>
+                        </h6> 
+                        <h6 class="{{className==='default'?'text-pry':'text-light'}}" *ngIf="menu.slug == 'add_to_board'" >
+                            <span class="d-inline-block p-3 shadow-sm rounded-circle icon-circle">
+                                <img [src]="'/assets/icons/'+ menu.icon" [alt]="menu.icon">
+                            </span>
+                            <span>{{menu.name}}</span>
+                        </h6> 
+    
+                    </div>
+                </nav> 
+            </div>
+        </header>
+    </section>
+    <div class="main-container {{className}}">
         <section class="container">
             <div class="row">
                 <div class="col-md-4 my-4" *ngFor="let card of board.cards; let i = index">
@@ -81,6 +83,87 @@
         </section>
     </div>
 <app-create-board [board]="board" (emitEvent)="getBoard()" ></app-create-board>
+<!-- Button trigger modal -->
+<button type="button" id="inviteContrBtn" class="btn btn-primary d-none" data-toggle="modal" data-target="#inviteContributors">
+    invite user
+  </button>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="inviteContributors" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="">
+            <div class="text-right mr-2">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span style="font-size: 30px;" aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <h4 class="mt-3 modal-title text-center">Invite Contributors</h4>
+          </div>
+        <div class="modal-body">
+            <ul class="nav nav-tabs mb-2" id="myTab" role="tablist">
+                <li class="nav-item">
+                  <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Email Invite</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Direct Link</a>
+                </li>
+              </ul>
+              <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                    <div >
+                        <div class="form-group">
+                            <label>Contributor’s Email</label>
+                            <input [(ngModel)]="contributorsEmail" name="contributorEmail" type="text"
+                                placeholder="use a comma to seprate emails" class="form-control mb-2">
+                            <!-- <p (click)="addMoreContributor()" class="cursor-pointer text-right text-pry ">+ more contributors</p> -->
+                        </div>
+                        <div class="form-group">
+                            <div class="d-flex">
+                                <p>
+                                    Notify contributors that they have been invited to edit and contribute to the board.
+                                </p>
+                                <div>
+                                    <div class="custom-control custom-switch">
+                                        <input type="checkbox" class="custom-control-input" id="customSwitch1">
+                                        <label class="custom-control-label" for="customSwitch1"></label>
+                                      </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="d-flex">
+                                <p>
+                                    Notify contributors 24hrs before scheduled delivery of  delivery time.
+                                </p>
+                                <div>
+                                    <div class="custom-control custom-switch">
+                                        <input type="checkbox" class="custom-control-input" id="customSwitch2">
+                                        <label class="custom-control-label" for="customSwitch2"></label>
+                                      </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-2">
+                            <button [disabled]="!contributorsEmail || laodingSendInvite" (click)="sendInvite()" type="button" class="btn btn-pry btn-block">
+                                Send Invite <i *ngIf="laodingSendInvite" class="fa fa-spinner fa-spin"></i>
+                            </button>
+                          </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                    <button class="btn btn-copy btn-block my-4">
+                        <span>{{boardLink}}</span>
+                        <input type="text" id="contr_direct_link" [value]="boardLink" class="d-none">
+                    </button>
+
+                    <button (click)="copyDirectLink()" class="btn btn-pry mt-3 btn-block">Copy invite Link</button>
+                </div>
+              </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
 </ng-container>
 <ng-template #loadingPage>

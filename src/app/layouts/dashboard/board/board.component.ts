@@ -3,6 +3,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { BoardService } from './../services/board.service';
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-board',
@@ -11,6 +12,10 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class BoardComponent implements OnInit {
   boardId!: string;
+  className = 'default';
+  contributorsEmail = '';
+  laodingSendInvite = false;
+
   navMenus = [
     {name: 'Send/Schedule', icon: 'send.svg', slug: 'send_schedule'},
     {name: 'View as recepient', icon: 'eye.svg', slug: 'view_as_recepient'},
@@ -30,6 +35,7 @@ export class BoardComponent implements OnInit {
     private router: Router,
     public domSanitizer: DomSanitizer,
     private authSrv: AuthService,
+    private toastr: ToastrService,
     private boardSrv: BoardService) {
       this.boardId = route.snapshot.params.id;
     }
@@ -42,6 +48,9 @@ export class BoardComponent implements OnInit {
     }
     this.getBoard();
   }
+  changeBg(event: any): void {
+    this.className = event.data.name;
+  }
 
   navClick(slug: string): void {
     switch (slug) {
@@ -51,6 +60,9 @@ export class BoardComponent implements OnInit {
       case 'settings':
         document.getElementById('settingsModalId')?.click();
         break;
+      case 'invite_contributors':
+          document.getElementById('inviteContrBtn')?.click();
+          break;
       default:
         break;
     }
@@ -60,7 +72,6 @@ export class BoardComponent implements OnInit {
       this.board = res.payload[0];
     });
   }
-
   getYoutubeEmbedUrl(youtubeUrl: string): string {
     let url = youtubeUrl;
     if (youtubeUrl.includes('watch')) {
@@ -69,10 +80,36 @@ export class BoardComponent implements OnInit {
     }
     return url;
   }
-
   editCard(cardId: string): void {
     const queryParams = {cardId};
     this.router.navigate(['boards/create-card', this.boardId], {queryParams});
   }
+  get boardLink(): string {
+    return window.location.href;
+  }
+  sendInvite(): void {
+    const payload = {
+      contributorEmails: this.contributorsEmail.split(',').map(e => e.trim()),
+      boardUrl: this.boardLink
+    };
+    this.laodingSendInvite = true;
+    this.boardSrv.inviteContributors(this.boardId, payload).subscribe(res => {
+      this.toastr.success('Invite sent successfully');
+      this.contributorsEmail = '';
+    }, err => {
+      this.toastr.error(err.error.message);
+    }).add(() => this.laodingSendInvite = false);
+  }
+  copyDirectLink(): void {
+    const copyText: any = document.getElementById('contr_direct_link');
+    copyText.classList.toggle('d-none');
+    copyText.select();
+    copyText.setSelectionRange(0, 99999);
+    document.execCommand('');
+    copyText.classList.toggle('d-none');
+    this.toastr.success('The link has been copied to your clipboard.');
+  }
+
+
 
 }

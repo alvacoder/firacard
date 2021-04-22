@@ -47,4 +47,7 @@ export class BoardService {
   getReminders(): Observable<any> {
     return this.http.get(`${this.apiUrl}/reminders`);
   }
+  inviteContributors(boardId: string, payload: any): Observable<any>  {
+    return this.http.post(`${this.apiUrl}/boards/${boardId}/invite`, payload);
+  }
 }
