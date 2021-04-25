@@ -30,7 +30,9 @@ export class BoardService {
     return this.http.post(`${this.apiUrl}/boards/create`, payload);
   }
   updateBoard(payload: any): Observable<any> {
-    return this.http.patch(`${this.apiUrl}/boards/${payload.boardId}`, payload);
+    const { boardTitle, recipientEmail, relationship} = payload;
+    const body = {boardTitle, recipientEmail, relationship};
+    return this.http.patch(`${this.apiUrl}/boards/${payload.boardId}`, body);
   }
   getBoard(id: string): Observable<any>  {
     return this.http.get(`${this.apiUrl}/boards/${id}`);
@@ -49,5 +51,8 @@ export class BoardService {
   }
   inviteContributors(boardId: string, payload: any): Observable<any>  {
     return this.http.post(`${this.apiUrl}/boards/${boardId}/invite`, payload);
+  }
+  deliverBoard(boardId: string, payload: any): Observable<any>  {
+    return this.http.post(`${this.apiUrl}/boards/${boardId}/deliver`, payload);
   }
 }

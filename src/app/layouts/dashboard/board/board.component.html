@@ -1,7 +1,7 @@
 
 <ng-container *ngIf="board; else loadingPage">
     <app-board-settings (emitEvent)="changeBg($event)" [board]="board" ></app-board-settings>
-    <app-send-board></app-send-board>
+    <app-send-board  [board]="board" [boardUrl]="boardLink" ></app-send-board>
     <section class="py-5 {{className}} main-header {{className==='default'? 'text-pry': 'text-light'}}">
         <header class="container text-center">
             <div>
