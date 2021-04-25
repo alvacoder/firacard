@@ -67,3 +67,9 @@
 .btn, .form-control {
     box-shadow: none !important;
 }
+.modal-dialog-centered.right{
+    display: flex;
+    align-items: flex-end;
+    float: right;
+    width: 500px;
+}

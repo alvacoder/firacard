@@ -13,12 +13,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BoardSettingsComponent } from './board/board-settings/board-settings.component';
 import { ProfileComponent } from './profile/profile.component';
 import { CreateBoardComponent } from './board/create-board/create-board.component';
+import { SendBoardComponent } from './board/send-board/send-board.component';
 
 
 @NgModule({
   declarations: [
     DashHomeComponent, DashFooterComponent, BoardComponent, DashLayoutComponent,
-    CreateCardComponent, BoardSettingsComponent, ProfileComponent, CreateBoardComponent,
+    CreateCardComponent, BoardSettingsComponent, ProfileComponent, CreateBoardComponent, SendBoardComponent,
   ],
   imports: [
     CommonModule,

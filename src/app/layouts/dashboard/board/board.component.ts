@@ -17,7 +17,7 @@ export class BoardComponent implements OnInit {
   laodingSendInvite = false;
 
   navMenus = [
-    {name: 'Send/Schedule', icon: 'send.svg', slug: 'send_schedule'},
+    {name: 'Send/Schedule', icon: 'send.svg', slug: 'send_board'},
     {name: 'View as recepient', icon: 'eye.svg', slug: 'view_as_recepient'},
     {name: 'Settings', icon: 'settings.svg', slug: 'settings'},
     {name: 'Invite Contributors', icon: 'invite-user.svg', slug: 'invite_contributors'},
@@ -26,7 +26,7 @@ export class BoardComponent implements OnInit {
   board!: {
     boardTitle: string;
     cards: any[],
-    creatorId: string;
+    creatorId: any;
   };
   userDetail!: UserI;
 
@@ -63,6 +63,9 @@ export class BoardComponent implements OnInit {
       case 'invite_contributors':
           document.getElementById('inviteContrBtn')?.click();
           break;
+      case 'send_board':
+        document.getElementById('sendBoardId')?.click();
+        break;
       default:
         break;
     }
