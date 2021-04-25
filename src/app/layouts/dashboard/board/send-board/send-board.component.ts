@@ -1,6 +1,6 @@
 import { ToastrService } from 'ngx-toastr';
 import { BoardService } from './../../services/board.service';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-send-board',
@@ -10,6 +10,8 @@ import { Component, Input, OnInit } from '@angular/core';
 export class SendBoardComponent implements OnInit {
   @Input() board: any;
   @Input() boardUrl: string | undefined;
+  @Output() emitEvent = new EventEmitter();
+
   recipientEmail: string | undefined;
   loading = {save: false, deliver: false};
   showDeliveryDate = false;
@@ -55,5 +57,8 @@ export class SendBoardComponent implements OnInit {
   toggleShowDelDate(condition: boolean): void {
     this.showDeliveryDate = condition;
     this.deliveryDate = '';
+  }
+  copyDirectLink(): void {
+    this.emitEvent.emit({type: 'copy_direct_link'});
   }
 }

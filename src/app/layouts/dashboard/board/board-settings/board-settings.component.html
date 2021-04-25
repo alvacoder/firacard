@@ -13,7 +13,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <div class="container-fluid">
+        <div class="container-fluid d-none">
             <div class="row">
                 <div class="col-md-12">
                     <div class="border-bottom">
@@ -80,7 +80,62 @@
                 </div>
             </div>
         </div>
+        <div class="container-fluid background-container">
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item">
+                  <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Patterns</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Solids</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Holidays</a>
+                </li>
+              </ul>
+              <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active my-3" id="home" role="tabpanel" aria-labelledby="home-tab">
+                    <div class="row">
+                        <ng-container *ngIf="backgrounList.pattern; else loaingpatternBgs">
+                            <div *ngFor="let patternBgs of backgrounList.pattern" class="col-md-6 mb-2">
+                                <div class="card shadow cursor-pointer" (click)="changeBg(patternBgs)">
+                                    <header [style.background]="patternBgs.header_color" class="p-3" >
+                                    </header>
+                                    <section  [style.background]="'url('+patternBgs.low_res_url+')'" class="bg-content">
+                                    </section>
+                                </div>
+                            </div>
+                        </ng-container>
+                        <ng-template #loaingpatternBgs>
+                            <div class="text-center">
+                                <i class="fa fa-spinner fa-spin fa-2x"></i>
+                            </div>
+                        </ng-template>
+                    </div>
+                </div>
+                <div class="tab-pane fade my-3" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                    <div class="row">
+                        <ng-container *ngIf="backgrounList.solid; else loadingPatternBgs">
+                            <div *ngFor="let solidBgs of backgrounList.solid" class="col-md-6 mb-2">
+                                <div class="card shadow cursor-pointer" (click)="changeBg(solidBgs)">
+                                    <header [style.background]="solidBgs.header_color" class="p-3" >
+                                    </header>
+                                    <section  [style.background]="solidBgs.background_color" class="bg-content">
+                                    </section>
+                                </div>
+                            </div>
+                        </ng-container>
+                        <ng-template #loadingPatternBgs>
+                            <div class="text-center">
+                                <i class="fa fa-spinner fa-spin fa-2x"></i>
+                            </div>
+                        </ng-template>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
+              </div>
+        </div>
       </div>
+
 
     </div>
   </div>

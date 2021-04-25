@@ -50,7 +50,7 @@
                         <button (click)="toggleShowDelDate(true)" class="btn btn-pry-outline">Schedule delivery for later</button>
                     </div>
                     <div class="my-4">
-                        <a  class="text-pry cursor-pointer">Or click here toc opy the direct link for sharing</a>
+                        <a (click)="copyDirectLink()" class="text-pry cursor-pointer">Or click here to copy the direct link for sharing</a>
                     </div>
                     <div class="mt-5">
                         <button (click)="saveChanges()" [disabled]="repEmail.invalid || loading.save" class="btn btn-pry mr-3">

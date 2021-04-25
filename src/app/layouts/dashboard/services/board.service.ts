@@ -55,4 +55,7 @@ export class BoardService {
   deliverBoard(boardId: string, payload: any): Observable<any>  {
     return this.http.post(`${this.apiUrl}/boards/${boardId}/deliver`, payload);
   }
+  getBackgrounds(): Observable<any> {
+    return this.http.get(`https://api.jsonbin.io/b/60859344f6655022c46b8508`);
+  }
 }

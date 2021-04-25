@@ -1,3 +1,4 @@
+import { BoardService } from './../../services/board.service';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
@@ -27,12 +28,25 @@ export class BoardSettingsComponent implements OnInit {
       background: '#E47A71'
     }
   ];
-  constructor() { }
+  backgrounList = {
+    solid: null, pattern: null, holidays: []
+  };
+  constructor(private boardSrv: BoardService) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getBackgrounds();
+  }
+
+  getBackgrounds(): void {
+    this.boardSrv.getBackgrounds().subscribe(res => {
+      this.backgrounList.pattern = res.data.filter((bg: any) => (bg.set === 'PATTERN' && bg.low_res_url.includes('http')));
+      this.backgrounList.solid = res.data.filter((bg: any) => (bg.set === 'SOLID_COLOR'));
+      console.log(this.backgrounList.solid);
+    });
+  }
 
   changeBg(background: any): void {
-    this.emitEvent.emit({action: 'changeBg', data: background});
+    this.emitEvent.emit({type: 'changeBg', data: background});
   }
 
 }
