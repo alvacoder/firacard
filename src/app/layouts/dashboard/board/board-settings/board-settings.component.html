@@ -27,17 +27,18 @@
                     </div>
                     <div class="border-bottom my-3 ">
                         <header class=" d-flex justify-content-between">
-                            <h4 class="text-blue">Recipient(s)</h4>
+                            <h4 class="text-blue">Recipient</h4>
                             <div>
                                 <button class="btn btn-pry-outline">Edit</button>
                             </div>
                         </header>
-                        <p class="py-2"><small>Click on a name to edit and/or add receiving email address</small></p>
-                        <div class="text-pry">
-                            <p>Idris Adeniji</p>
-                            <p>Idris Adeniji</p>
-                            <p>Idris Adeniji</p>
-                        </div>
+                        <p class="py-2">
+                            <small>Click on a name to edit and/or add receiving email address</small> <br>
+                            <span class="text-pry">
+                                <p>{{board.recipientEmail || 'nil'}}</p>
+                            </span>
+                        </p>
+                     
                         <div class="d-flex justify-content-between mb-3">
                             <h6>DELIVERY STATUS</h6>
                             <div>

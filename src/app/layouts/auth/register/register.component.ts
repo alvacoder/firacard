@@ -41,6 +41,8 @@ export class RegisterComponent implements OnInit {
           const  { redirectUrl } = this.route.snapshot.queryParams;
           this.router.navigate([redirectUrl || '/dashboard']);
         });
+      }, err => {
+        this.toastr.error(err.error.message);
       }).add(() => this.loading = false);
     }
   }

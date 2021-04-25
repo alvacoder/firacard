@@ -16,10 +16,12 @@ export class RequestInterceptor implements HttpInterceptor {
   apiUrl = environment.apiUrl;
   private baseUrl = environment.apiUrl;
   constructor(private authSrv: AuthService) {
-    this.authSrv.userTokenSubject.subscribe(res => this.token = res);
+    this.authSrv.userTokenSubject.subscribe(res => {
+      this.token = res;
+    });
   }
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    if (this.token && req.url.includes(this.apiUrl)) {
+    if (req.url.includes(this.apiUrl)) {
         req = req.clone({
             setHeaders: {Authorization: `Bearer ${this.token}`},
         });

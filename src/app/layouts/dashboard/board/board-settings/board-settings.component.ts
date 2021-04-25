@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-board-settings',
@@ -7,6 +7,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 })
 export class BoardSettingsComponent implements OnInit {
   @Output() emitEvent = new EventEmitter();
+  @Input() board: any;
   bgs = [1, , 2, 3, 4, 5];
   backgrounds = [
     {
@@ -28,8 +29,8 @@ export class BoardSettingsComponent implements OnInit {
   ];
   constructor() { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
+
   changeBg(background: any): void {
     this.emitEvent.emit({action: 'changeBg', data: background});
   }

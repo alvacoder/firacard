@@ -31,6 +31,8 @@ export class DashLayoutComponent implements OnInit {
     this.authSrv.getProfile().subscribe(res => {
       const body = res.payload;
       this.authSrv.userDetailSubject.next(body);
+    }, err => {
+      console.log('dasherror', err.error.message);
     });
   }
 }
