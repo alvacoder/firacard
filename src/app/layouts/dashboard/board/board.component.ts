@@ -1,7 +1,8 @@
+import { BoardSettingsComponent } from './board-settings/board-settings.component';
 import { AuthService, UserI } from 'src/app/layouts/auth/auth.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { BoardService } from './../services/board.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 
@@ -11,17 +12,18 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./board.component.scss']
 })
 export class BoardComponent implements OnInit {
+  @ViewChild('boardSettingComp') boardSettingComp: BoardSettingsComponent | undefined;
   boardId!: string;
   className = 'default';
   contributorsEmail = '';
   laodingSendInvite = false;
 
   navMenus = [
-    {name: 'Send/Schedule', icon: 'send.svg', slug: 'send_board'},
-    {name: 'View as recepient', icon: 'eye.svg', slug: 'view_as_recepient'},
-    {name: 'Settings', icon: 'settings.svg', slug: 'settings'},
-    {name: 'Invite Contributors', icon: 'invite-user.svg', slug: 'invite_contributors'},
-    {name: 'Add to board', icon: 'plus.svg', slug: 'add_to_board'},
+    {name: 'Send/Schedule', icon: 'fa-paper-plane', slug: 'send_board'},
+    {name: 'View as recepient', icon: 'fa-eye', slug: 'view_as_recepient'},
+    {name: 'Settings', icon: 'fa-cogs', slug: 'settings'},
+    {name: 'Invite Contributors', icon: 'fa-user-plus', slug: 'invite_contributors'},
+    {name: 'Add to board', icon: 'fa-plus', slug: 'add_to_board'},
   ];
   board!: {
     boardTitle: string;
@@ -29,6 +31,12 @@ export class BoardComponent implements OnInit {
     creatorId: any;
   };
   userDetail!: UserI;
+  seletedTemplate = {
+    header_color: 'white',
+    background_color: '',
+    low_res_url: '/assets/img/board-banner.png',
+    font_color: '#A1C042'
+  };
 
   constructor(
     route: ActivatedRoute,
@@ -48,8 +56,17 @@ export class BoardComponent implements OnInit {
     }
     this.getBoard();
   }
-  changeBg(event: any): void {
-    this.className = event.data.name;
+  eventEmitted(event: {type: string, data: any}): void {
+    if (event.type === 'copy_direct_link') {
+      this.copyDirectLink();
+    } else if (event.type === 'changeBg') {
+      this.changeBg(event.data);
+    } else if (event.type === 'edit_recipient') {
+      document.getElementById('sendBoardId')?.click();
+    }
+  }
+  changeBg(data: any): void {
+    this.seletedTemplate = data;
   }
 
   navClick(slug: string): void {
@@ -58,6 +75,7 @@ export class BoardComponent implements OnInit {
         this.router.navigate(['boards/create-card', this.boardId]);
         break;
       case 'settings':
+        this.boardSettingComp?.toggleShowBgs(false);
         document.getElementById('settingsModalId')?.click();
         break;
       case 'invite_contributors':
@@ -108,7 +126,7 @@ export class BoardComponent implements OnInit {
     copyText.classList.toggle('d-none');
     copyText.select();
     copyText.setSelectionRange(0, 99999);
-    document.execCommand('');
+    document.execCommand('copy');
     copyText.classList.toggle('d-none');
     this.toastr.success('The link has been copied to your clipboard.');
   }

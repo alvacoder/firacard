@@ -1,0 +1,29 @@
+.plan-info {
+    font-size: 16px;
+    line-height: 156.52%;
+    color: #333333;
+}
+#accordion {
+    .card {
+        border: none;
+    }
+     .card-header {
+         .btn-link[aria-expanded=true]{
+            .fa-angle-right {
+                display: none;
+            }
+            .fa-angle-down {
+                display: inline-block;
+            }
+
+        }
+        .btn-link[aria-expanded=false]{
+            .fa-angle-down {
+                display: none;
+            }
+            .fa-angle-right {
+                display: inline-block;
+            }
+        }
+    }
+}

@@ -1,3 +1,4 @@
+import { UpgradeBoardComponent } from './board/upgrade-board/upgrade-board.component';
 import { ProfileComponent } from './profile/profile.component';
 import { CreateCardComponent } from './create-card/create-card.component';
 import { DashLayoutComponent } from './dash-layout/dash-layout.component';
@@ -14,6 +15,7 @@ const routes: Routes = [
       {path: 'dashboard', component: DashHomeComponent, canActivate: [AuthGuard]},
       {path: 'boards/:id', component: BoardComponent},
       {path: 'boards/create-card/:id', component: CreateCardComponent, canActivate: [AuthGuard]},
+      {path: 'boards/upgrade/:id', component: UpgradeBoardComponent, canActivate: [AuthGuard]},
       {path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]}
     ]
   },

@@ -23,6 +23,7 @@ export class ErrorInterceptor implements HttpInterceptor {
                 case 401:
                     this.authSrv.logout();
                     this.router.navigate(['/login'], { queryParams: { returnUrl: this.router.url }}).finally(() => {
+                        window.location.reload();
                         this.toastr.warning('Session timeout, please login');
                     });
                     break;

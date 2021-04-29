@@ -46,51 +46,24 @@
     text-align: center;
 }
 .main-container {
-    background-image: url('/assets/img/board-banner.png');
     min-height: 65vh;
-    background-repeat: no-repeat;
-    background-size: cover;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
     // background-position: center;
     // .container-fluid {
     //     padding: 5em 4em 3em;
     // }
 }
-.custom-switch .custom-control-input:checked~.custom-control-label::before {
-    color: #fff;
-    border-color: #A1C042;
-    background-color: #A1C042;
-}
-.dropdown-toggle:after { content: none }
 
-.pattern1 {
-    &.main-header {
-        background-color: #97B0CE;
-    }
-    &.main-container{
-        background: url('https://s3.amazonaws.com/kudoboard-assets/templates/619/backgrounds/lowres/Es30NFBh.jpg');
-    }
-}
-.pattern2 {
-    &.main-header {
-        background-color: #B64D44;
-    }
-    &.main-container{
-        background: url('https://s3.amazonaws.com/kudoboard-assets/templates/620/backgrounds/lowres/EUWHBsB8.jpg');
-    }
-}
-.solid1 {
-    &.main-header {
-        background-color: #274140;
-    }
-    &.main-container{
-        background: #9FBC96;
-    }
-}
-.solid2 {
-    &.main-header {
-        background-color: #2D2926;
-    }
-    &.main-container{
-        background: #E47A71;
+.dropdown-toggle:after { content: none }
+.row-content {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    width: 100%;
+    .column-md-3 {
+        flex: 1 auto;
+        padding: 10px;
+        width: 33%;
     }
 }

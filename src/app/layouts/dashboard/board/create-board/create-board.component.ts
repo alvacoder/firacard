@@ -16,6 +16,7 @@ export class CreateBoardComponent implements OnInit {
   form = this.fb.group({
     boardTitle: ['', [Validators.required]],
     recipientEmail: ['', [Validators.required, Validators.email]],
+    relationship: ['', Validators.required],
     recipients: this.fb.array([this.createRecp()])
   });
 
@@ -62,8 +63,7 @@ export class CreateBoardComponent implements OnInit {
   }
   updateBoard(): void {
     if (this.form.valid) {
-      const {boardTitle, recipientEmail } = this.form.value;
-      const payload = {boardTitle, recipientEmail, boardId: this.board.boardId};
+      const payload = {...this.form.value, boardId: this.board.boardId};
       this.loading = true;
       this.boardSrv.updateBoard(payload).subscribe(() => {
         (document.querySelectorAll('.close')[1] as any).click();

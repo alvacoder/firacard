@@ -1,0 +1,101 @@
+<div class="container">
+    <section class="my-3"> 
+        <h3 class="text-blue">Please choose your board type</h3>
+        <div class="row my-4">
+            <div class="col-md-4">
+                <div class="custom-control custom-radio custom-control-inline">
+                    <input  [(ngModel)]="selectedPlan" value="free" type="radio" id="freePlanVal" name="plan" class="custom-control-input">
+                    <label class="custom-control-label text-dark" for="freePlanVal">
+                        <h5>Free Plan</h5>
+                        <p>Free</p>
+                    </label>
+                  </div>
+            </div>
+            <div class="col-md-4">
+                <div class="custom-control custom-radio custom-control-inline">
+                    <input [(ngModel)]="selectedPlan" value="premium" type="radio" id="premiumPlanVal" name="plan" class="custom-control-input">
+                    <label class="custom-control-label text-dark" for="premiumPlanVal">
+                        <h5>Premium Plan</h5>
+                        <p>$12 per board</p>
+                    </label>
+                  </div>
+            </div>
+            <div class="col-md-4">
+                <div class="custom-control custom-radio custom-control-inline">
+                    <input [(ngModel)]="selectedPlan" value="enterprise" type="radio" id="enterprisePlanVal" name="plan" class="custom-control-input">
+                    <label class="custom-control-label text-dark" for="enterprisePlanVal">
+                        <h5>Enterprise Plan</h5>
+                        <p>$24 per board</p>
+                    </label>
+                  </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8">
+                <p class="plan-info" [innerHTML]="SelectedPlanDetail.desc" ></p>
+                <div class="{{SelectedPlanDetail.amount ? 'd-block': 'd-none'}}" >
+                    <div class="border px-2 py-3 rounded mb-2">
+                        <div id="card-element"><!--Stripe.js injects the Card Element--></div>
+                    </div>
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="customCheck1">
+                        <label class="custom-control-label" for="customCheck1">
+                            <span>save this card </span>
+                            <span><b>(this is a one-time charge)</b></span>
+                        </label>
+                      </div>
+                      <div class="mt-3" >
+                          <h6 class="my-3">Total: {{SelectedPlanDetail.amount | currency}} (one-time charge)</h6>
+                          <button [disabled]="loading" (click)="checkout()" class="btn btn-pry">
+                              Upgrade board <i *ngIf="loading" class="fa fa-spinner fa-spin"></i>
+                            </button>
+                      </div>
+                  </div>
+                <div class="my-5">
+                    <p class="text-blue">
+                        For unlimited boards, multiple creators, and all the extra bells & whistles?
+                    </p>
+                    <a class="text-pry" href="#">Use the enterprise plan</a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card bg-pry text-white px-4" style="border-radius: 15px; height: 340px;">
+                    <div class="card-body pt-4">
+                        <h5><span class=" text-capitalize">{{SelectedPlanDetail.name}}</span> Board Features</h5>
+                        <h2 class="text-center">{{SelectedPlanDetail.amount | currency}}</h2>
+                        <div class="mb-5">
+                            <ul>
+                                <li *ngFor="let detail of getPlanDetails(SelectedPlanDetail.details)">{{detail}}</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-md-12">
+                <h5 class="text-blue">Frequent Asked Questions(FAQ) </h5>
+                <div id="accordion">
+                    <div class="card" *ngFor="let faq of faqs; let i = index">
+                      <div class="card-header bg-white pl-0 border-bottom-0" id="headingOne">
+                        <h5 class="mb-0">
+                          <button class="btn btn-link text-dark p-0" data-toggle="collapse" [attr.data-target]="'#collapse'+i" 
+                            [attr.aria-expanded]="i==0 ? true: false" aria-controls="collapseOne">
+                            <i class="fa fa-angle-down"></i>
+                            <i class="fa fa-angle-right"></i>
+                            <span class="ml-3">{{faq.title}}</span>
+                          </button>
+                        </h5>
+                      </div>
+                  
+                      <div [id]="'collapse'+i" class="collapse {{i==0 && 'show'}}" aria-labelledby="headingOne" data-parent="#accordion">
+                        <div class="card-body">
+                            <p>{{faq.desc}}</p>        
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+            </div>
+        </div>
+    </section>
+</div>
