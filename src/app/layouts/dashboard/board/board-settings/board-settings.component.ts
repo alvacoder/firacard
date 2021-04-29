@@ -31,6 +31,8 @@ export class BoardSettingsComponent implements OnInit {
   backgrounList = {
     solid: null, pattern: null, holidays: []
   };
+  showBackgrounds = false;
+  selectedBg!: any;
   constructor(private boardSrv: BoardService) { }
 
   ngOnInit(): void {
@@ -39,14 +41,24 @@ export class BoardSettingsComponent implements OnInit {
 
   getBackgrounds(): void {
     this.boardSrv.getBackgrounds().subscribe(res => {
+      this.selectedBg = res.data[0];
       this.backgrounList.pattern = res.data.filter((bg: any) => (bg.set === 'PATTERN' && bg.low_res_url.includes('http')));
       this.backgrounList.solid = res.data.filter((bg: any) => (bg.set === 'SOLID_COLOR'));
-      console.log(this.backgrounList.solid);
     });
   }
 
   changeBg(background: any): void {
+    this.selectedBg = background;
     this.emitEvent.emit({type: 'changeBg', data: background});
   }
-
+  editRecipient(): void {
+    this.closeModal();
+    this.emitEvent.emit({type: 'edit_recipient'});
+  }
+  toggleShowBgs(condition: boolean): void {
+    this.showBackgrounds = condition;
+  }
+  closeModal(): void {
+    document.getElementById('closeBoardSettingsbtn')?.click();
+  }
 }

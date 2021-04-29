@@ -54,9 +54,16 @@
     //     padding: 5em 4em 3em;
     // }
 }
-.custom-switch .custom-control-input:checked~.custom-control-label::before {
-    color: #fff;
-    border-color: #A1C042;
-    background-color: #A1C042;
-}
+
 .dropdown-toggle:after { content: none }
+.row-content {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    width: 100%;
+    .column-md-3 {
+        flex: 1 auto;
+        padding: 10px;
+        width: 33%;
+    }
+}

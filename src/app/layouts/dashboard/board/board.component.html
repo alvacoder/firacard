@@ -1,7 +1,7 @@
 
 <ng-container *ngIf="board; else loadingPage">
      
-    <app-board-settings (emitEvent)="eventEmitted($event)" [board]="board" ></app-board-settings>
+    <app-board-settings (emitEvent)="eventEmitted($event)" [board]="board"  #boardSettingComp></app-board-settings>
     <app-send-board  [board]="board" [boardUrl]="boardLink" (emitEvent)="eventEmitted($event)" ></app-send-board>
     <section class="py-5 main-header"  
         [style.background]="seletedTemplate.header_color"
@@ -46,9 +46,9 @@
         class="main-container" 
     >
         <section class="container">
-            <div class="row">
-                <div class="col-md-4 my-4" *ngFor="let card of board.cards; let i = index">
-                    <div class="card rounded-lg">
+            <div class="row-content">
+                <div class="column-md-3 my-4" *ngFor="let card of board.cards; let i = index">
+                    <div class="card w-100 rounded-lg">
                         <div class="card-body">
                             <ng-container *ngIf="card.mediaType === 'image' || card.mediaType === 'gif'">
                                 <img *ngIf="card.mediaUrl" class="card-img-top" height="80%" [src]="card.mediaUrl" alt="img">
@@ -137,7 +137,7 @@
                                     Notify contributors that they have been invited to edit and contribute to the board.
                                 </p>
                                 <div>
-                                    <div class="custom-control custom-switch">
+                                    <div class="custom-control custom-switch pry">
                                         <input type="checkbox" class="custom-control-input" id="customSwitch1">
                                         <label class="custom-control-label" for="customSwitch1"></label>
                                       </div>

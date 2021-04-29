@@ -8,19 +8,19 @@
   <div class="modal-dialog modal-dialog-centered right" role="document">
     <div class="modal-content">
       <div class="modal-header border-0">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <button id="closeBoardSettingsbtn" type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true"><img width="30px" src="/assets/icons/modal-close.svg" alt="icon"></span>
         </button>
       </div>
       <div class="modal-body">
-        <div class="container-fluid d-none">
+        <div class="container-fluid" *ngIf="!showBackgrounds">
             <div class="row">
                 <div class="col-md-12">
                     <div class="border-bottom">
                         <header class=" d-flex justify-content-between">
                             <h4 class="text-blue">Free Plan</h4>
                             <div>
-                                <button class="btn btn-pry-outline">Upgrade board</button>
+                                <a [routerLink]="['/boards/upgrade', board.boardId]" (click)="closeModal()" class="btn btn-pry-outline">Upgrade board</a>
                             </div>
                         </header>
                         <p class="py-2 "><small>This board is on a free plan and it is limited to 10 cards. Upgrade for more  features</small></p>
@@ -29,7 +29,7 @@
                         <header class=" d-flex justify-content-between">
                             <h4 class="text-blue">Recipient</h4>
                             <div>
-                                <button class="btn btn-pry-outline">Edit</button>
+                                <button (click)="editRecipient()" class="btn btn-pry-outline">Edit</button>
                             </div>
                         </header>
                         <p class="py-2">
@@ -42,7 +42,7 @@
                         <div class="d-flex justify-content-between mb-3">
                             <h6>DELIVERY STATUS</h6>
                             <div>
-                                <span class="badge badge-lt-blue p-2 text-pry">Not Scheduled</span>
+                                <span class="badge badge-lt-blue p-2 text-pry">{{board.isDelivered ? 'Delivered': 'Not Delivered'}}</span>
                             </div>
                         </div>
                     </div>
@@ -53,26 +53,38 @@
                     <div>
                         <h4 class="my-3 text-blue">Administration</h4>
                         <div>
-                            <div class="form-group">
-                                <label>Access to board</label>
-                                <select class="form-control">
-                                    <option value="private">Private</option>
-                                </select>
-                                <h6 class="my-3">
-                                    <span>Include contributors name?</span>
-                                   <!-- Rounded switch -->
-                                    <span class="float-right">
-                                        <label class="switch">
-                                            <input type="checkbox">
-                                            <span class="slider round"></span>
-                                        </label>
-                                    </span>
-                                </h6>
+                            <div>
+                                <div class="form-group">
+                                    <label>Access to board</label>
+                                    <select class="form-control">
+                                        <option value="private">Private</option>
+                                    </select>
+                                    <div class="my-3 d-flex justify-content-between">
+                                        <h6>Include contributors name?</h6>
+                                        <div class="">
+                                            <div class="custom-control custom-switch pry">
+                                                <input type="checkbox" class="custom-control-input" id="customSwitch1">
+                                                <label class="custom-control-label" for="customSwitch1"></label>
+                                              </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <h6 class="mb-3">Select background</h6>
-                            <div class="row">
-                                <div class="col-md-4 mb-3 cursor-pointer" (click)="changeBg(bg)" *ngFor="let bg of backgrounds">
-                                    <img width="100%" [src]="'/assets/img/backgrounds/'+bg.slug" alt="img">
+                            <div class="d-flex justify-content-between" *ngIf="selectedBg">
+                                <div class="cols">
+                                    <h6 class="mb-3">Select background</h6>
+                                </div>
+                                <div class="cols mb-3 cursor-pointer" (click)="toggleShowBgs(true)">
+                                    <div class="card shadow" style="width: 150px;">
+                                        <header [style.background]="selectedBg.header_color" class="p-3">
+                                        </header>
+                                        <section  
+                                            [style.background]="
+                                            selectedBg.low_res_url ? 'url('+selectedBg.low_res_url+')': 
+                                            selectedBg.background_color" 
+                                            class="bg-content">
+                                        </section>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -80,7 +92,7 @@
                 </div>
             </div>
         </div>
-        <div class="container-fluid background-container">
+        <div class="container-fluid background-container"  *ngIf="showBackgrounds">
             <ul class="nav nav-tabs" id="myTab" role="tablist">
                 <li class="nav-item">
                   <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Patterns</a>

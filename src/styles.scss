@@ -10,6 +10,9 @@
 .text-pry{
     color: #A1C042;
 }
+.bg-pry {
+    background: #A1C042;
+}
 .h-80v {
     height: 80vh;
 }
@@ -36,6 +39,11 @@
 }
 .cursor-pointer {
     cursor: pointer;
+}
+.custom-switch.pry .custom-control-input:checked~.custom-control-label::before {
+    color: #fff;
+    border-color: #A1C042;
+    background-color: #A1C042;
 }
 .pricingCard {
     p {

@@ -14,12 +14,13 @@ import { BoardSettingsComponent } from './board/board-settings/board-settings.co
 import { ProfileComponent } from './profile/profile.component';
 import { CreateBoardComponent } from './board/create-board/create-board.component';
 import { SendBoardComponent } from './board/send-board/send-board.component';
+import { UpgradeBoardComponent } from './board/upgrade-board/upgrade-board.component';
 
 
 @NgModule({
   declarations: [
     DashHomeComponent, DashFooterComponent, BoardComponent, DashLayoutComponent,
-    CreateCardComponent, BoardSettingsComponent, ProfileComponent, CreateBoardComponent, SendBoardComponent,
+    CreateCardComponent, BoardSettingsComponent, ProfileComponent, CreateBoardComponent, SendBoardComponent, UpgradeBoardComponent,
   ],
   imports: [
     CommonModule,

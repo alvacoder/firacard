@@ -1,7 +1,8 @@
+import { BoardSettingsComponent } from './board-settings/board-settings.component';
 import { AuthService, UserI } from 'src/app/layouts/auth/auth.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { BoardService } from './../services/board.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 
@@ -11,6 +12,7 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./board.component.scss']
 })
 export class BoardComponent implements OnInit {
+  @ViewChild('boardSettingComp') boardSettingComp: BoardSettingsComponent | undefined;
   boardId!: string;
   className = 'default';
   contributorsEmail = '';
@@ -59,6 +61,8 @@ export class BoardComponent implements OnInit {
       this.copyDirectLink();
     } else if (event.type === 'changeBg') {
       this.changeBg(event.data);
+    } else if (event.type === 'edit_recipient') {
+      document.getElementById('sendBoardId')?.click();
     }
   }
   changeBg(data: any): void {
@@ -71,6 +75,7 @@ export class BoardComponent implements OnInit {
         this.router.navigate(['boards/create-card', this.boardId]);
         break;
       case 'settings':
+        this.boardSettingComp?.toggleShowBgs(false);
         document.getElementById('settingsModalId')?.click();
         break;
       case 'invite_contributors':

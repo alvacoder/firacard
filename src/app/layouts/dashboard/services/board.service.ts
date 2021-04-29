@@ -53,9 +53,19 @@ export class BoardService {
     return this.http.post(`${this.apiUrl}/boards/${boardId}/invite`, payload);
   }
   deliverBoard(boardId: string, payload: any): Observable<any>  {
-    return this.http.post(`${this.apiUrl}/boards/${boardId}/deliver`, payload);
+    const {deliveryDate, ...restPayload } = payload;
+    const body = deliveryDate ? {...restPayload, deliveryDate } : restPayload;
+    const endpoint = deliveryDate ? 'schedule' : 'deliver';
+    return this.http.post(`${this.apiUrl}/boards/${boardId}/${endpoint}`, body);
   }
   getBackgrounds(): Observable<any> {
     return this.http.get(`https://api.jsonbin.io/b/60859344f6655022c46b8508`);
+  }
+  getStripeClientSecret(items: any): Observable<any>  {
+    const url = 'https://us-central1-location-api-1555020524649.cloudfunctions.net/app/create-payment-intent';
+    return this.http.post(url, items);
+  }
+  getBoardTypes(): Observable<any> {
+    return this.http.get(`${this.apiUrl}/boardtypes`);
   }
 }
