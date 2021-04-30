@@ -17,6 +17,8 @@ export class BoardComponent implements OnInit {
   className = 'default';
   contributorsEmail = '';
   laodingSendInvite = false;
+  inputtedPwd = '';
+  loadingVerify = false;
 
   navMenus = [
     {name: 'Send/Schedule', icon: 'fa-paper-plane', slug: 'send_board'},
@@ -29,13 +31,17 @@ export class BoardComponent implements OnInit {
     boardTitle: string;
     cards: any[],
     creatorId: any;
+    className?: any;
+    isLocked: boolean;
+    password: string;
   };
   userDetail!: UserI;
   seletedTemplate = {
     header_color: 'white',
     background_color: '',
     low_res_url: '/assets/img/board-banner.png',
-    font_color: '#A1C042'
+    font_color: '#A1C042',
+    id: -1
   };
 
   constructor(
@@ -91,6 +97,7 @@ export class BoardComponent implements OnInit {
   getBoard(): void {
     this.boardSrv.getBoard(this.boardId).subscribe((res: any) => {
       this.board = res.payload[0];
+      this.getBackgrounds();
     });
   }
   getYoutubeEmbedUrl(youtubeUrl: string): string {
@@ -130,7 +137,27 @@ export class BoardComponent implements OnInit {
     copyText.classList.toggle('d-none');
     this.toastr.success('The link has been copied to your clipboard.');
   }
-
+  getBackgrounds(): void {
+    this.boardSrv.getBackgrounds().subscribe(res => {
+      const backgrounds: any = res.data;
+      const background = backgrounds.find((bg: any) => bg.id === this.board.className);
+      if (background) {
+        this.seletedTemplate = background;
+      }
+    });
+  }
+  verifyPwd(): void {
+    this.loadingVerify = true;
+    setTimeout(() => {
+      if (this.inputtedPwd === this.board.password) {
+        this.board.isLocked = false;
+      } else {
+        this.toastr.error('That password is not valid. Please enter the password that the board creator shared with you.');
+      }
+      this.loadingVerify = false;
+    }, 3000);
+    console.log(this.inputtedPwd);
+  }
 
 
 }

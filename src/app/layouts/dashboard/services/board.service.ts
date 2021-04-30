@@ -34,6 +34,9 @@ export class BoardService {
     const body = {boardTitle, recipientEmail, relationship};
     return this.http.patch(`${this.apiUrl}/boards/${payload.boardId}`, body);
   }
+  saveBoardUpdate(boardId: string, payload: any): Observable<any> {
+    return this.http.patch(`${this.apiUrl}/boards/${boardId}`, payload);
+  }
   getBoard(id: string): Observable<any>  {
     return this.http.get(`${this.apiUrl}/boards/${id}`);
   }
@@ -66,6 +69,6 @@ export class BoardService {
     return this.http.post(url, items);
   }
   getBoardTypes(): Observable<any> {
-    return this.http.get(`${this.apiUrl}/boardtypes`);
+    return this.http.get(`https://firacard-express.herokuapp.com/v1/boardtypes`);
   }
 }
