@@ -56,9 +56,36 @@
                             <div>
                                 <div class="form-group">
                                     <label>Access to board</label>
-                                    <select class="form-control">
-                                        <option value="private">Private</option>
+                                    <select (change)="updateBoardAccess()" class="form-control" [(ngModel)]="boardAccess" name="boardAccess">
+                                        <option value="public">Public</option>
+                                        <option value="password_protected">Password Protected</option>
                                     </select>
+                                    <div class="w-75 mt-2" *ngIf="boardAccess==='password_protected'">
+                                        <ng-container *ngIf="showBoardPwd;">
+                                            <div class="input-group mb-3">
+                                                <input [(ngModel)]="boardPassword" name="password" type="text" class="form-control" 
+                                                   #boardAccessPwd="ngModel" placeholder="enter password" required>
+                                                <div class="input-group-append">
+                                                  <span (click)="updateBoardAccess()" class="input-group-text cursor-pointer" id="basic-addon2"> 
+                                                      <i class="fa fa-check"></i> 
+                                                    </span>
+                                                </div>
+                                                <div class="input-group-append">
+                                                    <span class="input-group-text cursor-pointer" (click)="toggleShowPwd(false)" id="basic-addon2"><i class="fa fa-times"></i></span>
+                                                  </div>
+                                              </div>
+                                              <div class="text-danger" *ngIf="boardAccess==='password_protected' && (boardAccessPwd.touched)">
+                                                  <span *ngIf="boardAccessPwd.invalid || (boardAccessPwd.value && boardAccessPwd.value.length<4)">
+                                                      <span>The password cannot be less than 4 characters</span>
+                                                  </span>
+                                             
+                                              </div>
+                                        </ng-container>
+                                        <div *ngIf="!showBoardPwd">
+                                            <a  class="text-info cursor-pointer" (click)="toggleShowPwd(true)" >{{boardPassword}}</a>
+                                        </div>
+                                     
+                                    </div>
                                     <div class="my-3 d-flex justify-content-between">
                                         <h6>Include contributors name?</h6>
                                         <div class="">

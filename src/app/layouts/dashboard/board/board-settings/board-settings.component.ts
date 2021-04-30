@@ -1,3 +1,4 @@
+import { ToastrService } from 'ngx-toastr';
 import { BoardService } from './../../services/board.service';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
@@ -29,27 +30,48 @@ export class BoardSettingsComponent implements OnInit {
     }
   ];
   backgrounList = {
-    solid: null, pattern: null, holidays: []
+    solid: null, pattern: null, holidays: [],
+    all: null
   };
+  boardAccess = 'public';
+  boardPassword = '';
+  showBoardPwd = false;
+
   showBackgrounds = false;
   selectedBg!: any;
-  constructor(private boardSrv: BoardService) { }
+  constructor(
+    private boardSrv: BoardService,
+    private toastr: ToastrService) { }
 
   ngOnInit(): void {
+    this.setValue();
     this.getBackgrounds();
   }
 
   getBackgrounds(): void {
     this.boardSrv.getBackgrounds().subscribe(res => {
       this.selectedBg = res.data[0];
+      this.backgrounList.all = res.data;
       this.backgrounList.pattern = res.data.filter((bg: any) => (bg.set === 'PATTERN' && bg.low_res_url.includes('http')));
       this.backgrounList.solid = res.data.filter((bg: any) => (bg.set === 'SOLID_COLOR'));
     });
+  }
+  setValue(): void {
+    const {isLocked, password } = this.board;
+    this.boardAccess = isLocked ? 'password_protected' : 'public';
+    this.showBoardPwd = isLocked ? false : true;
+    this.boardPassword = password;
   }
 
   changeBg(background: any): void {
     this.selectedBg = background;
     this.emitEvent.emit({type: 'changeBg', data: background});
+    const body = {...this.board, className: background.id};
+    this.boardSrv.saveBoardUpdate(this.board.boardId, body).subscribe(res => {
+      console.log(res);
+    }, err => {
+      this.toastr.error(err.error.message);
+    });
   }
   editRecipient(): void {
     this.closeModal();
@@ -61,4 +83,26 @@ export class BoardSettingsComponent implements OnInit {
   closeModal(): void {
     document.getElementById('closeBoardSettingsbtn')?.click();
   }
+  updateBoardAccess(): void {
+    let isValid = true;
+    if (this.boardAccess === 'password_protected') {
+      this.showBoardPwd = true;
+      isValid = false;
+      if (!(this.boardPassword && this.boardPassword.length >= 4)) {
+        isValid = false;
+      } else {
+        isValid = true;
+      }
+    }
+    if (isValid) {
+      const isLocked = this.boardAccess === 'public' ? false : true;
+      const body = { ...this.board, isLocked, password: this.boardPassword};
+      this.boardSrv.saveBoardUpdate(this.board.boardId, body).subscribe(res => {
+        this.showBoardPwd = false;
+      }, err => {
+        this.toastr.error(err.error.message);
+      });
+    }
+  }
+  toggleShowPwd = (cond: boolean) => this.showBoardPwd = cond;
 }

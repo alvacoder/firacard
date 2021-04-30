@@ -67,7 +67,7 @@ export class UpgradeBoardComponent implements OnInit {
     this.getBoardTypes();
   }
 
-  get SelectedPlanDetail(): ({name: string, amount: number, desc: string, details: any} | undefined) {
+  get SelectedPlanDetail(): any {
     return this.plans.find(plan => plan.name === this.selectedPlan);
   }
   getPlanDetails(details: string): any[] {
