@@ -62,7 +62,7 @@ export class BoardService {
     return this.http.post(`${this.apiUrl}/boards/${boardId}/${endpoint}`, body);
   }
   getBackgrounds(): Observable<any> {
-    return this.http.get(`https://api.jsonbin.io/b/60859344f6655022c46b8508`);
+    return this.http.get(`https://api.jsonbin.io/b/60859344f6655022c46b8508/1`);
   }
   getStripeClientSecret(items: any): Observable<any>  {
     const url = 'https://us-central1-location-api-1555020524649.cloudfunctions.net/app/create-payment-intent';
