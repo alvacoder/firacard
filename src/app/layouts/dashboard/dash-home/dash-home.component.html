@@ -85,41 +85,61 @@
         </ng-template>  
     </div>
     <div class="row" *ngIf="activeTab==='recievedCards'">
-      <div class="col-md-6 mb-4" *ngFor="let card of boards">
-        <div class="card p-3">
-          <div class="row">
-            <div class="col-6">
-              <img class="card-img-top" width="100px" src="/assets/img/birthdayCard.png" alt="card-image-cap">
-            </div>
-            <div class="col-6 card-body">
-
-              <h4 class="card-title">Happy Birthday Esther</h4>
-              <div class="mb-5 form-container">
-                <p class="card-text"> 
-                  <span class="text-muted">From:</span>
-                  <span>Idris Adeniji and friends</span>
-                </p>
-                <p class="card-text"> 
-                  <span class="text-muted">Creator:</span>
-                  <span>Nonyo Esther</span>
-                </p>
-                <p class="card-text"> 
-                  <span class="text-muted">Created:</span>
-                  <span>17/02/2021</span>
-                </p>
-                <p class="card-text"> 
-                  <span class="text-muted">Updated:</span>
-                  <span>17/02/2021</span>
-                </p>
-
+      <ng-container *ngIf="recievedBoards.length; else noRecievedBoardResult">
+        <div class="col-md-6 mb-4 " *ngFor="let board of recievedBoards">
+          <div class="card p-3">
+            <div class="row">
+              <div class="col-6">
+                <img class="card-img-top" width="200px" [src]="getBoardImg(board) || '/assets/img/birthdayCard.png'" alt="card-image-cap">
               </div>
-              <div class="btnx green">
-                <a routerLink="/"><button>View Board</button></a>
-            </div>
+              <div class="col-6 card-body">
+                <!-- <div class="d-flex justify-content-end">
+                  <div>
+                    <img src="/assets/icons/three-dots.svg" width="20px" alt="icon">
+                  </div>
+                </div> -->
+                <h4 class="card-title">{{board.boardTitle}}</h4>
+                <p class="card-text"> 
+                  <span class="text-muted">Recipient:</span>
+                  <span>{{board.recipientEmail || 'nil'}}</span>
+                </p>
+                <div class="mb-5 form-container">
+                  <p class="card-text"> 
+                    <span class="text-muted">Creator:</span>
+                    <span>Nonso Esther</span>
+                  </p>
+                  <p class="card-text"> 
+                    <span class="text-muted">Created:</span>
+                    <span>{{board.createdAt | date:'shortDate'}}</span>
+                  </p>
+                  <p class="card-text"> 
+                    <span class="text-muted">Updated:</span>
+                    <span>{{board.updatedAt | date:'shortDate'}}</span>
+                  </p>
+                  <!-- <p class="card-text"> 
+                    <span class="text-muted">Type:</span>
+                    <span>Mini board</span>
+                  </p> -->
+                  <!-- <p class="card-text">  
+                    <span class="text-muted"></span>
+                    <span>
+                      <a [routerLink]="['/boards/upgrade', board.boardId]"  class="btn btn-sm btn-outline-success">Upgrade</a>
+                    </span>
+                  </p> -->
+                </div>
+                <div class="btnx green">
+                  <a [routerLink]="['/boards', board.boardId]" [fragment]="'view'"><button>View Board</button></a>
+              </div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      </ng-container>
+      <ng-template #noRecievedBoardResult>
+        <div class="col-12 my-5 text-center">
+          <p>Looks like you haven't created any board yet. Create a board now!</p>
+        </div>
+      </ng-template>  
   </div>
   <div class="row" *ngIf="activeTab==='reminders'">
     <ng-container *ngIf="reminders.length; else noReminderResult">

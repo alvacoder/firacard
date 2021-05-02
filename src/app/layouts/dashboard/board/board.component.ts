@@ -19,6 +19,8 @@ export class BoardComponent implements OnInit {
   laodingSendInvite = false;
   inputtedPwd = '';
   loadingVerify = false;
+  pageMode = 'edit';
+  showEditBtn = false;
 
   navMenus = [
     {name: 'Send/Schedule', icon: 'fa-paper-plane', slug: 'send_board'},
@@ -51,6 +53,7 @@ export class BoardComponent implements OnInit {
     private authSrv: AuthService,
     private toastr: ToastrService,
     private boardSrv: BoardService) {
+      route.fragment.subscribe(res => this.pageMode = (res || this.pageMode));
       this.boardId = route.snapshot.params.id;
     }
 
@@ -74,11 +77,13 @@ export class BoardComponent implements OnInit {
   changeBg(data: any): void {
     this.seletedTemplate = data;
   }
-
   navClick(slug: string): void {
     switch (slug) {
       case 'add_to_board':
         this.router.navigate(['boards/create-card', this.boardId]);
+        break;
+      case 'view_as_recepient':
+        this.viewAsRecipient('view');
         break;
       case 'settings':
         this.boardSettingComp?.toggleShowBgs(false);
@@ -158,6 +163,9 @@ export class BoardComponent implements OnInit {
     }, 3000);
     console.log(this.inputtedPwd);
   }
-
+  viewAsRecipient(condition: 'view' | 'edit'): void {
+    this.pageMode = condition;
+    this.showEditBtn = !this.showEditBtn;
+  }
 
 }
