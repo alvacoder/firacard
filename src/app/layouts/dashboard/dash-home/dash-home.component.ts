@@ -13,6 +13,7 @@ declare var $: any;
 })
 export class DashHomeComponent implements OnInit {
   boards!: any[];
+  recievedBoards!: any[];
   reminders!: any[];
   activeTab = 'curratedCards';
 
@@ -35,11 +36,18 @@ export class DashHomeComponent implements OnInit {
       this.activeTab = tab || this.activeTab;
     });
     this.getBoards();
+    this.getRecievedBoards();
     this.getReminders();
   }
   getBoards(): void {
     this.boardSrv.getUserBoards().subscribe(res => {
       this.boards = res.payload;
+    });
+  }
+  getRecievedBoards(): void {
+    this.boardSrv.getRecievedBoards().subscribe(res => {
+      console.log(res);
+      this.recievedBoards = res.payload;
     });
   }
   getReminders(): void {
@@ -65,6 +73,6 @@ export class DashHomeComponent implements OnInit {
     }).add(() => this.loading = false);
   }
   get pageLoading(): any {
-    return this.boards && this.reminders;
+    return this.boards && this.reminders && this.recievedBoards;
   }
 }

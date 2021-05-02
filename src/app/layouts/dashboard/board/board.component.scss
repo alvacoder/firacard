@@ -67,3 +67,24 @@
         width: 33%;
     }
 }
+.share-icon-container {
+    width: 220px;
+    padding: 5px 10px;
+    background: #fff;
+    box-shadow: 0 2px 6px 0 rgb(0 0 0 / 40%);
+    border-radius: 24px;
+    color: #3a4651;
+    font-size: 20px;
+    font-weight: 700;
+    span {
+        margin-right: 10px;
+        cursor: pointer;
+        .fab {
+            font-size: 22px;
+            &:hover {
+                color: yellowgreen !important;
+            }
+        
+        }
+    }
+}
