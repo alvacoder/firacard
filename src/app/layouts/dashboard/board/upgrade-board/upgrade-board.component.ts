@@ -1,3 +1,4 @@
+import { environment } from 'src/environments/environment';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { BoardService } from './../../services/board.service';
@@ -12,7 +13,7 @@ export class UpgradeBoardComponent implements OnInit {
   plans = [
     {
       name: 'free', amount: 0, desc: `
-    A Free Firacard is <b>FREE</b> and allows up to 10 contributions. It works great if you have a small number of contributors,
+    A Free Firacard is <b>FREE</b> and allows up to 15 contributions. It works great if you have a small number of contributors,
     want to create a 1-to-1 board between you and the recipient,
     or would like to trial the system. You can <b>start with a Free board and upgrade later</b>.,
     `, details: `Up to 10 board posts| Add text, pics, GIFs, videos | Desktop & mobile friendly | Accessible forever|
@@ -20,19 +21,20 @@ export class UpgradeBoardComponent implements OnInit {
   },
   {
     name: 'premium', amount: 12, desc: `
-    A Premium Firacard allows 100 contributions on a single board for a <b>one-time charge of $12.</b> It's perfect for larger groups on birthdays, work anniversaries,
+    A Premium Firacard allows 100 contributions on a single board for a <b>one-time charge of $3.99.</b> It's perfect for larger groups on birthdays, work anniversaries,
     and other special occasions! You can start with a Premium board and upgrade later.,
   `, details: `Up to 100 board posts | Add text, pics, GIFs, videos | Desktop & mobile friendly | Accessible forever|
   No advertisements | Deliver online or print as poster`,
   },
   {
     name: 'enterprise', amount: 24, desc: `
-    A Enterprise Kudoboard allows unlimited contributions on a single board for a one-time charge of $24.
+    A Enterprise Kudoboard allows unlimited contributions on a single board for a one-time charge of $13.99.
     It's built for extra-large groups and those planning to display the board as a slideshow.,
   `, details: `Unlimited board posts | Add text, pics, GIFs | videos, Desktop & mobile friendly | Accessible forever |
   No advertisements | Deliver online or print as poster | Play as slideshow`,
   }
   ];
+  planList: any;
   faqs = [
     {title: 'What is FiraCard and how does it work?', desc: `Eget aliquet hendrerit purus metus velit sollicitudin.
     Consectetur arcu sed elementum quis fermentum fames a. Tincidunt non amet duis pellentesque vestibulum vitae.`},
@@ -63,21 +65,22 @@ export class UpgradeBoardComponent implements OnInit {
 
   ngOnInit(): void {
     this.stripeWin = (window as any).Stripe;
-    this.initStrpe();
     this.getBoardTypes();
   }
 
   get SelectedPlanDetail(): any {
-    return this.plans.find(plan => plan.name === this.selectedPlan);
+    if (!this.planList) {return {}; }
+    return this.planList.find((plan: any) => plan.boardTypeName === this.selectedPlan);
   }
-  getPlanDetails(details: string): any[] {
+  getPlanDetails(details: string): any {
+    if (!details) { return; }
     return details.split('|');
   }
   checkout(): void {
-    const purchase = {plan: this.selectedPlan, boardId: this.boardId};
+    const purchase = {boardTypeId: this.SelectedPlanDetail._id, boardId: this.boardId};
     this.loading = true;
     this.boarsSrv.getStripeClientSecret({...purchase}).subscribe(data => {
-      this.payWithCard((window as any).Stripe, this.card, data.clientSecret);
+      this.payWithCard((window as any).Stripe, this.card, data.payload.clientSecret);
     }, err => {
       console.log(err);
       this.toastr.error('Stripe checkout error');
@@ -86,7 +89,7 @@ export class UpgradeBoardComponent implements OnInit {
   }
   initStrpe(): void {
     if (!this.stripeWin) {return; }
-    this.stripeWin = this.stripeWin('pk_test_vHIaSEra9WpCvquoyD72oiVa');
+    this.stripeWin = this.stripeWin(environment.stripePublicKey);
     const elements = this.stripeWin.elements();
     const style = {
       base: {
@@ -127,7 +130,10 @@ export class UpgradeBoardComponent implements OnInit {
   }
   getBoardTypes(): void {
     this.boarsSrv.getBoardTypes().subscribe(res => {
-      console.log(res);
+      this.planList = res.payload;
+      setTimeout(() => {
+        this.initStrpe();
+      }, 1000);
     });
   }
 

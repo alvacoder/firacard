@@ -11,6 +11,7 @@ export const environment = {
   facebook: {
     appId: '313244885878489'
   },
+  stripePublicKey: 'pk_test_51IcYm2BC0cB59uLZ5Qo5fc4JT8c70UBO0klCxZTjTsYEWJHGuZ0fb8U610QQ9bl6GGkFAouOD4sGHkrbM7VedsBU00jG4wq0jk',
   cloudinary: {apiKey: '247151848688876', cloudName: 'dx5bcp5ps', secret: ''}
 };
 
