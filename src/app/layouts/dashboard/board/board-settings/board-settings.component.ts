@@ -51,6 +51,7 @@ export class BoardSettingsComponent implements OnInit {
   getBackgrounds(): void {
     this.boardSrv.getBackgrounds().subscribe(res => {
       this.selectedBg = res.data.find((bg: any) =>  bg.id == this.board.className);
+      this.selectedBg = this.selectedBg ? this.selectedBg : res.data[0];
       this.backgrounList.all = res.data;
       this.backgrounList.pattern = res.data.filter((bg: any) => (bg.set === 'PATTERN' && bg.low_res_url.includes('http')));
       this.backgrounList.solid = res.data.filter((bg: any) => (bg.set === 'SOLID_COLOR'));
