@@ -140,7 +140,7 @@ export class BoardComponent implements OnInit {
   getBackgrounds(): void {
     this.boardSrv.getBackgrounds().subscribe(res => {
       const backgrounds: any = res.data;
-      const background = backgrounds.find((bg: any) => bg.id === this.board.className);
+      const background = backgrounds.find((bg: any) => bg.id == this.board.className);
       if (background) {
         this.seletedTemplate = background;
       }

@@ -66,7 +66,7 @@ export class BoardService {
   }
   getStripeClientSecret(items: any): Observable<any>  {
     const url = 'https://us-central1-location-api-1555020524649.cloudfunctions.net/app/create-payment-intent';
-    return this.http.post(url, items);
+    return this.http.post(`${this.apiUrl}/boards/upgrade`, items);
   }
   getBoardTypes(): Observable<any> {
     return this.http.get(`https://firacard-express.herokuapp.com/v1/boardtypes`);
