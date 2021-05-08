@@ -6,6 +6,7 @@ import { BoardService } from './../services/board.service';
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { ToastrService } from 'ngx-toastr';
+import $ from 'jquery';
 
 @Component({
   selector: 'app-create-card',
@@ -25,6 +26,7 @@ export class CreateCardComponent implements OnInit {
   loading = false;
   name = {firstName: '', lastName: ''};
   cardDetail = {_id: '', mediaType: '', mediaUrl: '', postContent: '', loading: false};
+  showEmojiPicker = false;
 
   constructor(
     route: ActivatedRoute,
@@ -42,6 +44,24 @@ export class CreateCardComponent implements OnInit {
     this.getBoard();
   }
 
+  hideEmojiPicker(): void {
+    $(window).click(() => {
+      this.showEmojiPicker = false;
+      });
+    $('#emoji-picker-container').click((event: any) => {
+        this.showEmojiPicker = true;
+        event.stopPropagation();
+    });
+    $('#emoji-picker-handler').click((event: any) => {
+      this.showEmojiPicker = true;
+      event.stopPropagation();
+    });
+  }
+  toggleEmojiPicker(cond: boolean): void {
+    console.log('clicked');
+    this.showEmojiPicker = cond;
+  }
+
   searchGiphy(): void {
     this.searchLoading = true;
     this.data.gifs = null;
@@ -56,6 +76,7 @@ export class CreateCardComponent implements OnInit {
         this.cardDetail = cards.find((card: any) => card._id === this.cardDetail._id);
         this.fillCard();
       }
+      this.hideEmojiPicker();
     });
   }
   fillCard(): void {
@@ -165,6 +186,10 @@ export class CreateCardComponent implements OnInit {
   }
   goBack(): void {
     this.router.navigate(['/boards', this.boardId]);
+  }
+  addEmoji(event: any): void {
+    const emoji = event.emoji.native;
+    this.message = `${this.message} ${emoji}`;
   }
 
 

@@ -136,7 +136,15 @@
                             </div>
 
                         </section>
-                        <textarea class="form-control" [(ngModel)]="message" name="messafe" placeholder="Complimentory message" cols="30" rows="10"></textarea>
+                        <div class="border">
+                            <textarea class="form-control border-0" [(ngModel)]="message" name="messafe" placeholder="Complimentory message" cols="30" rows="10"></textarea>
+                            <div id="emoji-picker-handler" class="p-2 text-right">
+                                <i (click)="toggleEmojiPicker(true)" class="fa fa-smile text-secondary cursor-pointer" style="font-size: 23px;"></i>
+                            </div>
+                        </div>
+                        <div class="{{showEmojiPicker? 'd-block': 'd-none'}}" id="emoji-picker-container">
+                            <emoji-mart  (emojiClick)="addEmoji($event)" [style]="{ position: 'absolute', bottom: '17%', left: '101%', index:99 }"></emoji-mart>
+                        </div>
                         <div class="text-danger" *ngIf="!isFormValid && submitted">
                             <p>The card needs to have a video, photo, or message.</p>
                         </div>

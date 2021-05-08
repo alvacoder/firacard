@@ -2,6 +2,7 @@ import { SharedModule } from './../../shared/shared.module';
 import { BoardService } from './services/board.service';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { PickerModule } from '@ctrl/ngx-emoji-mart';
 
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { DashHomeComponent } from './dash-home/dash-home.component';
@@ -27,7 +28,8 @@ import { UpgradeBoardComponent } from './board/upgrade-board/upgrade-board.compo
     DashboardRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    SharedModule
+    SharedModule,
+    PickerModule
   ],
   providers: [BoardService]
 })
