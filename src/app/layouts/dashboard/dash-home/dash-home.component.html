@@ -37,8 +37,13 @@
                 </div>
                 <div class="col-6 card-body">
                   <div class="d-flex justify-content-end">
-                    <div>
-                      <img src="/assets/icons/three-dots.svg" width="20px" alt="icon">
+                    <div class="dropdown" >
+                      <a class="dropdown-toggle text-light" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          <i class="fa fa-ellipsis-v text-dark"></i>
+                        </a>
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" [routerLink]="['/boards', board.boardId]" [fragment]="'download'">Download</a>
+                      </div>
                     </div>
                   </div>
                   <h4 class="card-title">{{board.boardTitle}}</h4>

@@ -6,7 +6,7 @@ import { BoardService } from './../services/board.service';
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { ToastrService } from 'ngx-toastr';
-import $ from 'jquery';
+declare const $: any;
 
 @Component({
   selector: 'app-create-card',
@@ -58,7 +58,6 @@ export class CreateCardComponent implements OnInit {
     });
   }
   toggleEmojiPicker(cond: boolean): void {
-    console.log('clicked');
     this.showEmojiPicker = cond;
   }
 
