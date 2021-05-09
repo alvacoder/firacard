@@ -21,7 +21,8 @@ import { UpgradeBoardComponent } from './board/upgrade-board/upgrade-board.compo
 @NgModule({
   declarations: [
     DashHomeComponent, DashFooterComponent, BoardComponent, DashLayoutComponent,
-    CreateCardComponent, BoardSettingsComponent, ProfileComponent, CreateBoardComponent, SendBoardComponent, UpgradeBoardComponent,
+    CreateCardComponent, BoardSettingsComponent, ProfileComponent, CreateBoardComponent,
+    SendBoardComponent, UpgradeBoardComponent,
   ],
   imports: [
     CommonModule,

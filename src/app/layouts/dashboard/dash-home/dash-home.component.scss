@@ -21,6 +21,7 @@ header {
         }
     }
 }
+.dropdown-toggle:after { content: none }
 .main-content {
     padding-top: 35px; 
     background: #F6FAFF;
