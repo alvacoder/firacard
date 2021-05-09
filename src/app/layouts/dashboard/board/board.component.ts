@@ -7,6 +7,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { saveAs } from 'file-saver';
 import * as htmlToImage from 'html-to-image';
+import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-board',
@@ -23,12 +24,12 @@ export class BoardComponent implements OnInit {
   loadingVerify = false;
   pageMode = 'edit';
   showEditBtn = false;
-
   navMenus = [
     {name: 'Send/Schedule', icon: 'fa-paper-plane', slug: 'send_board'},
     {name: 'View as recepient', icon: 'fa-eye', slug: 'view_as_recepient'},
     {name: 'Settings', icon: 'fa-cogs', slug: 'settings'},
     {name: 'Invite Contributors', icon: 'fa-user-plus', slug: 'invite_contributors'},
+    {name: 'Download', icon: 'fa-download', slug: 'download'},
     {name: 'Add to board', icon: 'fa-plus', slug: 'add_to_board'},
   ];
   board!: {
@@ -47,6 +48,7 @@ export class BoardComponent implements OnInit {
     font_color: '#A1C042',
     id: -1
   };
+  cardPositions!: any;
 
   constructor(
     route: ActivatedRoute,
@@ -57,8 +59,7 @@ export class BoardComponent implements OnInit {
     private boardSrv: BoardService) {
       route.fragment.subscribe(res => this.pageMode = (res || this.pageMode));
       this.boardId = route.snapshot.params.id;
-    }
-
+  }
   ngOnInit(): void {
     this.authSrv.userDetailSubject.subscribe(res => {
       this.userDetail = res;
@@ -97,6 +98,9 @@ export class BoardComponent implements OnInit {
       case 'send_board':
         document.getElementById('sendBoardId')?.click();
         break;
+      case 'download':
+        this.handleDownloadBoard();
+        break;
       default:
         break;
     }
@@ -105,7 +109,20 @@ export class BoardComponent implements OnInit {
     this.boardSrv.getBoard(this.boardId).subscribe((res: any) => {
       this.board = res.payload[0];
       this.getBackgrounds();
+      this.getCardPositions();
     });
+  }
+  getCardPositions(): void {
+    const cardPositions = [[], [], []];
+    const cards = this.board.cards;
+    let cardCount = 0;
+    cards.forEach((card: any) => {
+      const cardCountRem = (cardCount % 3);
+      cardCount++;
+      cardPositions[cardCountRem].push((card as never));
+    });
+    this.cardPositions = cardPositions;
+    console.log(cardPositions);
   }
   getYoutubeEmbedUrl(youtubeUrl: string): string {
     let url = youtubeUrl;
@@ -170,7 +187,7 @@ export class BoardComponent implements OnInit {
     this.showEditBtn = !this.showEditBtn;
   }
   handleDownloadBoard(): void {
-    const filter = (node: any) => node.id !== 'downloadBtn';
+    const filter = (node: any) => (!(node.id == 'nav-container' || node.id == 'card-handle' || node.id == 'editBtn'));
     const wrapper: any = document.getElementById('board-container');
     htmlToImage.toPng(wrapper, {filter}).then((dataUrl: any) => {
         saveAs(dataUrl, `${this.board.boardTitle}.png`);
@@ -178,5 +195,15 @@ export class BoardComponent implements OnInit {
         console.log(err);
     });
   }
-
+  drop(event: CdkDragDrop<string[]>): void {
+    if (event.previousContainer === event.container) {
+      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+    } else {
+      transferArrayItem(event.previousContainer.data,
+                        event.container.data,
+                        event.previousIndex,
+                        event.currentIndex);
+    }
+    console.log(this.cardPositions);
+  }
 }

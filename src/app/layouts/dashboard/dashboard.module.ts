@@ -3,6 +3,7 @@ import { BoardService } from './services/board.service';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PickerModule } from '@ctrl/ngx-emoji-mart';
+import {DragDropModule} from '@angular/cdk/drag-drop';
 
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { DashHomeComponent } from './dash-home/dash-home.component';
@@ -30,7 +31,8 @@ import { UpgradeBoardComponent } from './board/upgrade-board/upgrade-board.compo
     FormsModule,
     ReactiveFormsModule,
     SharedModule,
-    PickerModule
+    PickerModule,
+    DragDropModule
   ],
   providers: [BoardService]
 })
