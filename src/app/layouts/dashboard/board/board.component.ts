@@ -5,8 +5,8 @@ import { BoardService } from './../services/board.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-// const domtoimage = require('dom-to-image');
-import DownloadBoard from './download-board';
+import { saveAs } from 'file-saver';
+import * as htmlToImage from 'html-to-image';
 
 @Component({
   selector: 'app-board',
@@ -23,7 +23,6 @@ export class BoardComponent implements OnInit {
   loadingVerify = false;
   pageMode = 'edit';
   showEditBtn = false;
-  downloadBoard;
 
   navMenus = [
     {name: 'Send/Schedule', icon: 'fa-paper-plane', slug: 'send_board'},
@@ -58,7 +57,6 @@ export class BoardComponent implements OnInit {
     private boardSrv: BoardService) {
       route.fragment.subscribe(res => this.pageMode = (res || this.pageMode));
       this.boardId = route.snapshot.params.id;
-      this.downloadBoard = new DownloadBoard();
     }
 
   ngOnInit(): void {
@@ -107,7 +105,6 @@ export class BoardComponent implements OnInit {
     this.boardSrv.getBoard(this.boardId).subscribe((res: any) => {
       this.board = res.payload[0];
       this.getBackgrounds();
-      // this.setbackgrounImg();
     });
   }
   getYoutubeEmbedUrl(youtubeUrl: string): string {
@@ -172,32 +169,14 @@ export class BoardComponent implements OnInit {
     this.pageMode = condition;
     this.showEditBtn = !this.showEditBtn;
   }
-  setbackgrounImg(): void {
-    const canvas: any = document.getElementById('board-container');
-    if(!canvas) { return; }
-    console.log({canvas});
-    const ctx = canvas.getContext('2d');
-    canvas.width = 934;
-    canvas.height = 622;
-    const background = new Image();
-    background.src = 'https://s3.amazonaws.com/kudoboard-assets/templates/619/backgrounds/lowres/Es30NFBh.jpg';
-    background.onload = () => {
-        ctx.drawImage(background, 0, 0);
-    };
-  }
   handleDownloadBoard(): void {
-    // const node = document.getElementById('board-container');
-    // domtoimage.toJpeg(node, { quality: 0.95 })
-    //     .then((dataUrl: any) => {
-    //       const link = document.createElement('a');
-    //       link.download = `${this.board.boardTitle}.jpeg`;
-    //       link.href = dataUrl;
-    //       link.click();
-    //     })
-    //     .catch((error: any) => {
-    //         console.error('oops, something went wrong!', error);
-    //     });
-    this.downloadBoard.download(this.board, this.seletedTemplate);
+    const filter = (node: any) => node.id !== 'downloadBtn';
+    const wrapper: any = document.getElementById('board-container');
+    htmlToImage.toPng(wrapper, {filter}).then((dataUrl: any) => {
+        saveAs(dataUrl, `${this.board.boardTitle}.png`);
+    }).catch(err => {
+        console.log(err);
+    });
   }
 
 }
