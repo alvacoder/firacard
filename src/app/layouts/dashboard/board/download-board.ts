@@ -15,7 +15,7 @@ class DownloadBoard {
         // });
         htmlToImage.toPng(wrapper)
             .then((dataUrl: any) => {
-                saveAs(dataUrl, 'my-node.png');
+                saveAs(dataUrl, `${board.boardTitle}.png`);
         });
         console.log('download board');
     }
