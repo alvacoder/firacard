@@ -41,7 +41,7 @@
                             <h2 class="text-center">
                                 <span>{{board.boardTitle}}</span>
                                 <ng-container *ngIf="pageMode=='edit'">
-                                    <span *ngIf="userDetail._id === board?.creatorId?._id"
+                                    <span id="editBtn" *ngIf="userDetail._id === board?.creatorId?._id"
                                     class="ml-2 cursor-pointer" data-toggle="modal" data-target="#createBoardModal" >
                                     <i style="font-size: 20px;" class="fa fa-edit"></i>
                                 </span>
@@ -56,42 +56,44 @@
                                     <span class="mr-0"><i class="fab fa-pinterest text-secondary"></i></span>
                                 </div>
                             </div>
-                            <nav *ngIf="pageMode==='download'" id="downloadBtn" class="mt-2 d-flex justify-content-center nav-menu cursor-pointer">
-                                <h6 (click)="handleDownloadBoard()">
-                                    <span class="d-inline-block p-3 shadow-sm rounded-circle icon-circle"
-                                        [style.background]="seletedTemplate.header_color">
-                                        <i class="fa fa-download"></i>
-                                    </span>
-                                    <span class="ml-2">Download board</span>
-                                </h6>
-                            </nav>
-                            <nav *ngIf="showEditBtn" (click)="viewAsRecipient('edit')" class="mt-2 d-flex justify-content-center nav-menu cursor-pointer">
-                                <h6 >
-                                    <span class="d-inline-block p-3 shadow-sm rounded-circle icon-circle"
-                                        [style.background]="seletedTemplate.header_color">
-                                        <i class="fa fa-edit"></i>
-                                    </span>
-                                    <span class="ml-2">View as editor</span>
-                                </h6>
-                            </nav>
-                            <nav *ngIf="pageMode==='edit'" class="mt-3 d-flex justify-content-center nav-menu">
-                                <div *ngFor="let menu of navMenus" class="nav-item" (click)="navClick(menu.slug)" >
-                                    <h6  *ngIf="userDetail._id === board?.creatorId?._id && menu.slug != 'add_to_board'" >
-                                        <span class="d-inline-block p-3 shadow-sm rounded-circle icon-circle" 
-                                            [style.background]="seletedTemplate.header_color">
-                                            <i class="fa {{menu.icon}}"></i>
-                                        </span>
-                                        <span class="ml-2">{{menu.name}}</span>
-                                    </h6> 
-                                    <h6  *ngIf="menu.slug == 'add_to_board'" >
+                            <div id="nav-container">
+                                <nav *ngIf="pageMode==='download'" id="downloadBtn" class="mt-2 d-flex justify-content-center nav-menu cursor-pointer">
+                                    <h6 (click)="handleDownloadBoard()">
                                         <span class="d-inline-block p-3 shadow-sm rounded-circle icon-circle"
                                             [style.background]="seletedTemplate.header_color">
-                                            <i class="fa {{menu.icon}}"></i>
+                                            <i class="fa fa-download"></i>
                                         </span>
-                                        <span class="ml-2">{{menu.name}}</span>
-                                    </h6> 
-                                </div>
-                            </nav> 
+                                        <span class="ml-2">Download board</span>
+                                    </h6>
+                                </nav>
+                                <nav *ngIf="showEditBtn" (click)="viewAsRecipient('edit')" class="mt-2 d-flex justify-content-center nav-menu cursor-pointer">
+                                    <h6 >
+                                        <span class="d-inline-block p-3 shadow-sm rounded-circle icon-circle"
+                                            [style.background]="seletedTemplate.header_color">
+                                            <i class="fa fa-edit"></i>
+                                        </span>
+                                        <span class="ml-2">View as editor</span>
+                                    </h6>
+                                </nav>
+                                <nav *ngIf="pageMode==='edit'" class="mt-3 d-flex justify-content-center nav-menu">
+                                    <div *ngFor="let menu of navMenus" class="nav-item" (click)="navClick(menu.slug)" >
+                                        <h6  *ngIf="userDetail._id === board?.creatorId?._id && menu.slug != 'add_to_board'" >
+                                            <span class="d-inline-block p-3 shadow-sm rounded-circle icon-circle" 
+                                                [style.background]="seletedTemplate.header_color">
+                                                <i class="fa {{menu.icon}}"></i>
+                                            </span>
+                                            <span class="ml-2">{{menu.name}}</span>
+                                        </h6> 
+                                        <h6  *ngIf="menu.slug == 'add_to_board'" >
+                                            <span class="d-inline-block p-3 shadow-sm rounded-circle icon-circle"
+                                                [style.background]="seletedTemplate.header_color">
+                                                <i class="fa {{menu.icon}}"></i>
+                                            </span>
+                                            <span class="ml-2">{{menu.name}}</span>
+                                        </h6> 
+                                    </div>
+                                </nav> 
+                            </div>
                         </div>
                     </div>
                 </header>
@@ -101,10 +103,22 @@
                     [style.background-color]="seletedTemplate.background_color || 'rgb(159, 188, 150)'"
             >
                 <section class="container">
-                    <div class="row-content">
-                        <div class="column-md-3 my-4" *ngFor="let card of board.cards; let i = index">
-                            <div class="card w-100 rounded-lg">
-                                <div class="card-body">
+                    <div class="row"   
+                    >
+                        <div  class="col-md-4 my-4"  
+                        *ngFor="let row of cardPositions; let i = index"
+                        cdkDropList
+                        [cdkDropListData]="row"
+                        [id]="i+''"
+                        [cdkDropListConnectedTo]="['0', '1', '2']"
+                        (cdkDropListDropped)="drop($event)"
+                        >
+                            <div class="card  rounded-lg mb-3" *ngFor="let card of row; let i = index" cdkDrag>
+                                <div class="card-body pt-1">
+                                    <div class="text-right mb-3"> 
+                                        <span id="card-handle" class="cursor-pointer" *ngIf="pageMode=='edit'" cdkDragHandle>
+                                            <i class="fa fa-arrows-alt"></i></span>
+                                    </div>
                                     <ng-container *ngIf="card.mediaType === 'image' || card.mediaType === 'gif'">
                                         <img crossorigin="anonymous" *ngIf="card.mediaUrl" class="card-img-top" height="80%" [src]="card.mediaUrl" alt="img">
                                     </ng-container>
@@ -112,14 +126,14 @@
                                         <ng-container *ngIf="card.mediaUrl; else noVideoMediaUrl">
                                             <ng-container *ngIf="card.mediaUrl.includes('youtube'); else uploadedVideo">
                                                 <iframe crossorigin="anonymous" height="250" width="100%"
-                                                  [src]="domSanitizer.bypassSecurityTrustResourceUrl(getYoutubeEmbedUrl(card.mediaUrl))">
-                                               </iframe>
+                                                [src]="domSanitizer.bypassSecurityTrustResourceUrl(getYoutubeEmbedUrl(card.mediaUrl))">
+                                            </iframe>
                                             </ng-container>
                                             <ng-template #uploadedVideo>
                                                 <video crossorigin="anonymous" width="100%" height="250" controls>
                                                     <source id="videoIDSelector" [src]="card.mediaUrl" type="video/mp4">
-                                                  Your browser does not support the video tag.
-                                                  </video>
+                                                Your browser does not support the video tag.
+                                                </video>
                                             </ng-template>
                                         </ng-container>
                                         <ng-template #noVideoMediaUrl>
@@ -130,20 +144,22 @@
                                 </div>
                                 <div class="card-footer d-flex justify-content-lg-between">
                                     <div >
-                                        <div class="dropdown" *ngIf="card.creatorId?._id == userDetail._id">
-                                            <a class="dropdown-toggle text-light" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                <i class="fa fa-ellipsis-h text-dark"></i>
-                                              </a>
-                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                              <a class="dropdown-item cursor-pointer" (click)="editCard(card._id)">Edit</a>
-                                              <!-- <a class="dropdown-item" href="#">Delete</a> -->
+                                        <ng-container *ngIf="pageMode=='edit'">
+                                            <div class="dropdown" *ngIf="card.creatorId?._id == userDetail._id">
+                                                <a class="dropdown-toggle text-light" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    <i class="fa fa-ellipsis-h text-dark"></i>
+                                                </a>
+                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                <a class="dropdown-item cursor-pointer" (click)="editCard(card._id)">Edit</a>
+                                                <!-- <a class="dropdown-item" href="#">Delete</a> -->
+                                                </div>
                                             </div>
-                                          </div>
+                                        </ng-container>
                                     </div>
                                     <div><p><span class="text-muted">From</span> {{(card.creatorName || (card.creatorId?.firstName) || 'nil')}}</p></div>
                                 </div>
-                              </div>
                             </div>
+                        </div>
                     </div>
                 </section>
             </section>

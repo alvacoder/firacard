@@ -25,7 +25,7 @@ export class CreateCardComponent implements OnInit {
   submitted = false;
   loading = false;
   name = {firstName: '', lastName: ''};
-  cardDetail = {_id: '', mediaType: '', mediaUrl: '', postContent: '', loading: false};
+  cardDetail = {_id: '', mediaType: '', mediaUrl: '', postContent: '', creatorName: '' , loading: false};
   showEmojiPicker = false;
 
   constructor(
@@ -45,17 +45,19 @@ export class CreateCardComponent implements OnInit {
   }
 
   hideEmojiPicker(): void {
-    $(window).click(() => {
-      this.showEmojiPicker = false;
+    setTimeout(() => {
+      $(window).click(() => {
+        this.showEmojiPicker = false;
+        });
+      $('#emoji-picker-container').click((event: any) => {
+          this.showEmojiPicker = true;
+          event.stopPropagation();
       });
-    $('#emoji-picker-container').click((event: any) => {
+      $('#emoji-picker-handler').click((event: any) => {
         this.showEmojiPicker = true;
         event.stopPropagation();
-    });
-    $('#emoji-picker-handler').click((event: any) => {
-      this.showEmojiPicker = true;
-      event.stopPropagation();
-    });
+      });
+    }, 1);
   }
   toggleEmojiPicker(cond: boolean): void {
     this.showEmojiPicker = cond;
@@ -83,6 +85,7 @@ export class CreateCardComponent implements OnInit {
       this.message = this.cardDetail.postContent;
       this.selectedMedia = this.cardDetail.mediaUrl;
       this.activateNav = this.cardDetail.mediaType;
+      this.name.firstName = this.cardDetail.creatorName;
       this.cardDetail.loading = true;
     }
   }
