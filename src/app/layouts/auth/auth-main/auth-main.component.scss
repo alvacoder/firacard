@@ -1,0 +1,43 @@
+.button-link-icon {
+    border-right: none;
+    box-sizing: border-box;
+    display: flex;
+    cursor: pointer;
+    img {
+        width: 30px;
+        margin-top: 7px;
+    }
+    .btnd {
+        text-align: center;
+        padding: 10px 0px;
+        color: white;
+    }
+}
+.google {
+    &.button-link-icon {
+        border: 1px solid #DB4437;
+        border-right: none;
+        .btnd {
+            background: #DB4437;
+        }
+    }
+} 
+.fb {
+    &.button-link-icon {
+        border: 1px solid #2C4B75;
+        border-right: none;
+        .btnd {
+            background: #2C4B75;
+        }
+    }
+}
+.email {
+    &.button-link-icon {
+        border: 1px solid #333333;
+        .btnd {
+            background: #fff;
+            color: #333333;
+            border-left: 1px solid #333333;
+        }
+    }
+}
