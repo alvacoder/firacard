@@ -1,39 +1,41 @@
     <!-- Start Nav -->
-    <div class="navContainer">
-        <div class="logo">
-            <a routerLink="/"><img src="./assets/img/logo.png" alt="logo"></a>
-        </div>
-        <div class="links hideLinks">
-            <div>
-                <a routerLink="/">About Us</a>
+    <div class="fixed-top bg-white shadow-sm">
+        <div class="navContainer">
+            <div class="logo">
+                <a routerLink="/"><img src="./assets/img/logo.png" alt="logo"></a>
             </div>
-            <div>
-                <a routerLink="/" [fragment]="'howitworks'">How it works</a>
-            </div>
-            <div>
-                <a routerLink="/" [fragment]="'features'">Features</a>
-            </div>
-            <div>
-                <a  routerLink="/" [fragment]="'pricing'">Pricing</a>
-            </div>
-        </div>
-        <!-- <div class="toggle">
-            <i class="fa fa-bars"></i>
-        </div>
-        <div class="close closeBtn"><i class="fa fa-times"></i></div> -->
-        <div class="navBtn">
-            <ng-container *ngIf="authSrv.isUserLoggedIn(); else notLogin">
-                <div class="btnx green">
-                    <a routerLink="/dashboard"><button>Dashboard</button></a>
+            <div class="links hideLinks">
+                <div>
+                    <a routerLink="/">About Us</a>
                 </div>
-            </ng-container>
-            <ng-template #notLogin>
-                <span><a routerLink="/signin">Sign in</a></span>
-                <div class="btnx green">
-                    <a routerLink="/register"><button>Create a Group Board</button></a>
+                <div>
+                    <a routerLink="/" [fragment]="'howitworks'">How it works</a>
                 </div>
-            </ng-template>
-
+                <div>
+                    <a routerLink="/" [fragment]="'features'">Features</a>
+                </div>
+                <div>
+                    <a  routerLink="/" [fragment]="'pricing'">Pricing</a>
+                </div>
+            </div>
+            <!-- <div class="toggle">
+                <i class="fa fa-bars"></i>
+            </div>
+            <div class="close closeBtn"><i class="fa fa-times"></i></div> -->
+            <div class="navBtn">
+                <ng-container *ngIf="authSrv.isUserLoggedIn(); else notLogin">
+                    <div class="btnx green">
+                        <a routerLink="/dashboard"><button>Dashboard</button></a>
+                    </div>
+                </ng-container>
+                <ng-template #notLogin>
+                    <span><a routerLink="/signin">Sign in</a></span>
+                    <div class="btnx green">
+                        <a routerLink="/register"><button>Create a Group Board</button></a>
+                    </div>
+                </ng-template>
+    
+            </div>
         </div>
     </div>
     <!-- End Nav -->

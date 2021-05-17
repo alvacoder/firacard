@@ -1,4 +1,4 @@
-<div class="signContainer">
+<!-- <div class="signContainer">
     <div class="loginImage">
         <img src="./assets/img/login.png" alt="SignUp image">
     </div>
@@ -13,6 +13,37 @@
             <div class="loginRedirectTitle">
                 <p>Already have an account?</p>
                 <a routerLink="/register">REGISTER HERE</a>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+<div class="d-flex  justify-content-center align-items-center">
+    <div class="container">
+        <div class="row pt-5">
+            <div class="col-md-12 text-center mb-5">
+                <h3>Create a FiraCard Account</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Malesuada eget.</p>
+            </div>
+            <div class="col-md-4 offset-md-4">
+                <app-oauth [page]="'signin'"></app-oauth>
+                <a routerLink="/login">
+                    <div class="button-link-icon email w-100 mb-3">
+                        <div class="w-20 text-center">
+                            <img src="/assets/icons/email-icon.svg" alt="icon">
+                        </div>
+                        <div class="w-80 btnd">
+                            <p class="m-0">Sign up with Email</p>
+                        </div>
+                    </div>
+                </a>
+                <div class="px-3 mt-4">
+                    <hr>
+                </div>    
+                <div class="text-center">
+                    <p>Don't have an account?</p>
+                    <a class="text-danger" routerLink="/register">Register Here</a>
+                </div>
             </div>
         </div>
     </div>
