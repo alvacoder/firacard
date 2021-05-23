@@ -8,7 +8,7 @@
 .subscribeContainer,
 .typesOfCards,
 .homeContainerInner {
-  max-width: 1100px;
+  max-width: 1170px;
   margin: auto;
 }
 
@@ -486,7 +486,7 @@
 .testimonial {
   text-align: center;
   padding: 50px 10px;
-  max-width: 1100px;
+  max-width: 1170px;
   margin: auto;
   position: relative;
 }
@@ -566,7 +566,7 @@
 /* explanation styling */
 
 .explanationContainer {
-  max-width: 1100px;
+  max-width: 1170px;
   margin: auto;
   align-items: center;
   padding: 50px 0;
@@ -601,11 +601,13 @@
   line-height: 31px;
   font-size: 20px;
   color: #d04d2a;
+  font-weight: bold;
 }
 
 .explainTextInner p {
   color: #4f4f4f;
   line-height: 29px;
+  margin-bottom: 0;
 }
 
 @media screen and (max-width: 980px) {
