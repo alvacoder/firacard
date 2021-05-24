@@ -6,7 +6,7 @@ export const environment = {
   production: false,
   apiUrl: 'https://firacard-express.herokuapp.com/v1',
   google: {
-    clientId: '88594060065-qnjot70qi25793smlmotomvid5me30h9.apps.googleusercontent.com',
+    clientId: '159427761549-i9vdv5aroknheu0j0j0dheu4kmi7g2lb.apps.googleusercontent.com',
   },
   facebook: {
     appId: '963529757518264'

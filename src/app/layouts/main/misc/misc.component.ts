@@ -6,11 +6,21 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./misc.component.scss']
 })
 export class MiscComponent implements OnInit {
-  dummyText = `Tellus purus eget adipiscing dui dui. Libero tristique rhoncus convallis tristique gravida aliquet nec. Nibh eget donec egestas aliquam metus pharetra nec, amet, mattis. Sagittis nam porta nulla id sagittis. Netus interdum risus lacinia fringilla duis tortor odio. Morbi ut sagittis egestas morbi egestas. Eget condimentum eget elementum, dui augue a. Imperdiet gravida sit dictum pulvinar.
-   Sed mi ornare ullamcorper mattis arcu in nunc. Egestas condimentum justo, luctus elementum sit curabitur viverra. Praesent imperdiet eget vitae condimentum. Quis sagittis congue adipiscing sit. Lectus tellus amet montes, in neque est commodo id gravida. Metus amet et nunc lectus neque.
-  Amet integer turpis in consectetur. Imperdiet et adipiscing vel commodo faucibus. Ut tempus pellentesque platea ut rhoncus enim, laoreet sed. Aliquam sagittis, turpis id praesent mauris eleifend mi, malesuada. Convallis faucibus nulla fames risus, vel amet posuere morbi diam. Et urna quis turpis nunc elementum. Eu sit vestibulum id sed tellus. Maecenas luctus Tempor 
-  sagittis aliquam ornare in eget nunc tortor laoreet. Purus sit et fames vulputate volutpat. Viverra quis tortor nulla auctor in mi.
-   Habitant maecenas integer urna ligula quis mattis sollicitudin. Sagittis egestas diam felis vitae non porttitor. Morbi habitant 
+  dummyText = `This document can be printed for reference by using the print command in the settings of any browser.
+  Owner and Data Controller
+  Attic Hall Ltd
+  Denton Crescent
+  Braintree, Essex, CM77 8ZZ
+  Owner contact email: support@Firacard.com
+  Types of Data collected
+  Among the types of Personal Data that Firacard collects, by itself or through third parties, there are: Cookies; Usage Data; email address; first name; last name; Universally unique identifier (UUID); unique device identifiers for advertising (Google Advertiser ID or IDFA, for example).
+  Complete details on each type of Personal Data collected are provided in the dedicated sections of this privacy policy or by specific explanation texts displayed prior to the Data collection.
+  Personal Data may be freely provided by the User, or, in case of Usage Data, collected automatically when using Firacard.
+  Unless specified otherwise, all Data requested by Firacard is mandatory and failure to provide this Data may make it impossible for Firacard to provide its services. In cases where Firacard specifically states that some Data is not mandatory, Users are free not to communicate this Data without consequences to the availability or the functioning of the Service.
+  Users who are uncertain about which Personal Data is mandatory are welcome to contact the Owner.
+  Any use of Cookies – or of other tracking tools – by Firacard or by the owners of third-party services used by Firacard serves the purpose of providing the Service required by the User, in addition to any other purposes described in the present document and in the Cookie Policy, if available.
+  Users are responsible for any third-party Personal Data obtained, published or shared through Firacard and confirm that they have the third party's consent to provide the Data to the Owner.
+  
  `
   constructor() { }
 
