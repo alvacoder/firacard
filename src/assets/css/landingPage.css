@@ -190,11 +190,12 @@
   display: flex;
   justify-content: center;
   padding: 30px 10px;
+  grid-template-columns: repeat(3, 1fr);
 }
 
 .reasonInner,
 .pricingCard {
-  width: 300px;
+  max-width: 400px;
   height: fit-content;
   background: #ffffff;
   box-shadow: 0px 35px 120px rgba(85, 42, 4, 0.08);
@@ -315,7 +316,7 @@
   padding: 0;
   color: #2c4b75;
   text-align: center;
-  height: 370px;
+  height: 550px;
   box-shadow: 0px 2px 8px rgba(242, 153, 74, 0.16);
 }
 
@@ -327,13 +328,14 @@
 }
 
 .pricingCard p {
-  padding: 0 5px 10px 5px;
-  font-size: 12px;
+  padding: 0 5px 10px 5px !important;
+  font-size: 14px;
 }
 
 .pricingTitle {
   padding: 20px 5px 10px 5px;
   font-size: 14px;
+  height: 75px;
   background-color: #dddbdb;
 }
 
@@ -345,7 +347,8 @@
 
 .pricingBtn {
   text-align: center;
-  margin-bottom: 15px;
+  /* margin-bottom: 15px; */
+  bottom: 10px;
 }
 
 .pricingCard small {
@@ -377,7 +380,7 @@
 }
 
 .specialContainerInner p {
-  line-height: 25px;
+  line-height: 180%;
 }
 
 .specialContainerInner .btnx {
@@ -409,7 +412,7 @@
 }
 
 .subscribeText p {
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 100;
   line-height: 20px;
   padding: 20px 0;
