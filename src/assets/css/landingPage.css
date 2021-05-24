@@ -8,12 +8,15 @@
 .subscribeContainer,
 .typesOfCards,
 .homeContainerInner {
-  max-width: 1100px;
+  max-width: 1170px;
   margin: auto;
 }
 
 .title h3 {
   color: #d04d2a;
+  font-size: 38px;
+  line-height: 130%;
+  padding-bottom: 0;
 }
 
 .homeContainer {
@@ -24,7 +27,7 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   height: fit-content;
-  padding: 50px 50px 100px 50px;
+  padding: 150px 50px 100px 50px;
   margin: auto;
   width: 100%;
 }
@@ -34,17 +37,17 @@
 }
 
 .homeText h1 {
-  padding: 0 100px 0 0;
+  padding: 0 70px 0 0;
   color: #d04d2a;
-  font-size: 35px;
-  line-height: 42px;
+  font-size: 40px;
+  line-height: 130%;
   font-weight: 500;
 }
 
 .homeText p {
   padding: 20px 50px 30px 0;
-  font-size: 14px;
-  line-height: 20px;
+  font-weight: 300;
+  line-height: 180%;
   color: #2c4b75;
 }
 
@@ -77,7 +80,7 @@
 
 .trusted {
   text-align: center;
-  padding: 70px;
+  padding: 70px 70px 10px 70px;
 }
 
 .trustedImage {
@@ -91,7 +94,7 @@
 
 .works {
   align-items: center;
-  padding: 10px 10px 100px 10px;
+  padding: 150px 10px 100px 10px;
 }
 
 .worksInner {
@@ -100,12 +103,15 @@
 }
 
 .worksInnerText {
-  width: 250px;
+  width: fit-content;
 }
 
 .worksInnerText h4 {
   color: #d04d2a;
-  padding: 10px 0;
+  padding: 20px 0;
+  font-size: 24px;
+  font-weight: bold;
+  text-align: left;
 }
 
 .worksInnerText span {
@@ -118,7 +124,10 @@
 
 .worksInnerText p {
   color: #4f4f4f;
-  font-size: 14px;
+  /* font-size: 14px; */
+  text-align: left;
+  width: 270px;
+  height: 60px;
 }
 
 .worksInnerText img {
@@ -137,7 +146,7 @@
 }
 
 .greetingCard p {
-  font-size: 12px;
+  font-size: 24px;
 }
 
 .cards {
@@ -175,16 +184,21 @@
   padding: 50px 20px;
 }
 
+.pricing {
+  padding-top: 100px !important;
+}
+
 .reasonCard,
 .pricingContainer {
   display: flex;
   justify-content: center;
   padding: 30px 10px;
+  grid-template-columns: repeat(3, 1fr);
 }
 
 .reasonInner,
 .pricingCard {
-  width: 300px;
+  max-width: 400px;
   height: fit-content;
   background: #ffffff;
   box-shadow: 0px 35px 120px rgba(85, 42, 4, 0.08);
@@ -305,7 +319,7 @@
   padding: 0;
   color: #2c4b75;
   text-align: center;
-  height: 370px;
+  height: 550px;
   box-shadow: 0px 2px 8px rgba(242, 153, 74, 0.16);
 }
 
@@ -317,13 +331,14 @@
 }
 
 .pricingCard p {
-  padding: 0 5px 10px 5px;
-  font-size: 12px;
+  padding: 0 5px 10px 15px !important;
+  font-size: 14px;
 }
 
 .pricingTitle {
   padding: 20px 5px 10px 5px;
   font-size: 14px;
+  height: 75px;
   background-color: #dddbdb;
 }
 
@@ -335,7 +350,8 @@
 
 .pricingBtn {
   text-align: center;
-  margin-bottom: 15px;
+  /* margin-bottom: 15px; */
+  bottom: 10px;
 }
 
 .pricingCard small {
@@ -367,7 +383,7 @@
 }
 
 .specialContainerInner p {
-  line-height: 25px;
+  line-height: 180%;
 }
 
 .specialContainerInner .btnx {
@@ -399,7 +415,7 @@
 }
 
 .subscribeText p {
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 100;
   line-height: 20px;
   padding: 20px 0;
@@ -476,7 +492,7 @@
 .testimonial {
   text-align: center;
   padding: 50px 10px;
-  max-width: 1100px;
+  max-width: 1170px;
   margin: auto;
   position: relative;
 }
@@ -488,8 +504,8 @@
 }
 
 .testimonial p {
-  font-size: 12px;
-  line-height: 20px;
+  font-size: 24px;
+  line-height: 180%;
   max-width: 800px;
   margin: auto;
   text-align: left;
@@ -520,6 +536,7 @@
 
 .gliderInner p {
   margin-top: 20px;
+  font-size: 16px;
 }
 
 .testimonialIdentity {
@@ -555,10 +572,10 @@
 /* explanation styling */
 
 .explanationContainer {
-  max-width: 1100px;
+  max-width: 1170px;
   margin: auto;
   align-items: center;
-  padding: 50px 0;
+  padding: 150px 0 50px 0;
 }
 
 .explanation {
@@ -590,11 +607,13 @@
   line-height: 31px;
   font-size: 20px;
   color: #d04d2a;
+  font-weight: bold;
 }
 
 .explainTextInner p {
   color: #4f4f4f;
   line-height: 29px;
+  margin-bottom: 0;
 }
 
 @media screen and (max-width: 980px) {
