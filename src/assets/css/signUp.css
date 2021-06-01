@@ -8,6 +8,11 @@
   height: 88vh;
 }
 
+.divider {
+  margin-left: 48% !important;
+  margin-bottom: 0;
+}
+
 .signUp {
   margin: auto;
   box-shadow: 0px 35px 60px rgba(85, 42, 4, 0.08);
