@@ -398,6 +398,10 @@
   margin: 50px auto;
 }
 
+.subscribeContainer button {
+  padding: 15px !important;
+}
+
 .subscribe {
   display: flex;
   align-items: center;
