@@ -579,7 +579,7 @@
   max-width: 1170px;
   margin: auto;
   align-items: center;
-  padding: 150px 0 50px 0;
+  padding: 120px 0 50px 0;
 }
 
 .explanation {
@@ -608,7 +608,7 @@
 }
 
 .explainTextInner h5 {
-  line-height: 31px;
+  line-height: 25px;
   font-size: 20px;
   color: #d04d2a;
   font-weight: bold;
@@ -616,7 +616,7 @@
 
 .explainTextInner p {
   color: #4f4f4f;
-  line-height: 29px;
+  line-height: 25px;
   margin-bottom: 0;
 }
 
