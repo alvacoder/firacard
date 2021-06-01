@@ -1,12 +1,12 @@
     <app-header></app-header>
-    <div class="homeContainer">
+    <div class="homeContainer pt-5" id="about">
         <div class="homeContainerInner">
             <div class="homeText">
                 <h1>A special gesture for a special someone</h1>
                 <p>Celebrate a special someone with an online greeting card today, include videos, images and touching messages.
                 </p>
         
-                <span class="green btnx"><a href="#"><button>Create a Group Board</button></a></span>
+                <span class="green btnx"><a routerLink="/register"><button>Create a Group Board</button></a></span>
                 <div class="btnx smallLink"><a href="./index#howitworks">How to?</a></div>
             </div>
             <div class="imageContainer">
@@ -24,7 +24,7 @@
     </div>
     <div class="trusted">
         <div class="title">
-            <h3>Trusted by the best of the best</h3>
+            <h3>Join our community of trusted users</h3>
         </div>
         <div class="trustedImage">
             <span>
@@ -35,12 +35,6 @@
             </span>
             <span>
                 <img src="./assets/img/paypal.png" alt="kuda">
-            </span>
-            <span>
-                <img src="./assets/img/Zenith.png" alt="interswitch">
-            </span>
-            <span>
-                <img src="./assets/img/BTlogo.png" alt="dangote">
             </span>
             <span>
                 <img src="./assets/img/flutterwave.png" alt="flutterwave">
@@ -57,30 +51,33 @@
     <div class="works" id="howitworks">
         <div class="title">
             <h3>How FiraCard works</h3>
+            <p>Send a group card in 3 easy steps (easy, peasy, lemon squeezy)</p> 
         </div>
         <div class="worksInner">
             <div class="worksInnerText">
-                <h4><span>1</span> Create a board</h4>
-                <p>Vel pretium dictum semper elementum hac vestibulum. Sit at vestibulum elit cursus adipiscing viverra elit.</p>
-                <img src="./assets/img/createBoard.png" alt="create Board">
+                <h4><span class="inner-1">1</span> Create a board</h4>
+                <p>Click on a blank board and personalise it. Choose your preferred background and add details about the celebrant</p>
+                <img src="./assets/img/create-board.svg" alt="create Board">
             </div>
             <div class="worksInnerText">
                 <h4><span>2</span> Invite contributors(or not)</h4>
-                <p>Vel pretium dictum semper elementum hac vestibulum. Sit at vestibulum elit cursus adipiscing viverra elit.</p>
-                <img src="./assets/img/inviteCollab.png" alt="invite collaborators">
+                <p>Share your board with contributors so they can add their wishes too. They can add messages, photos, GIFs & videos</p>
+                <img src="./assets/img/invite-contr.svg" alt="invite collaborators">
             </div>
             <div class="worksInnerText">
-                <h4><span>3</span> Send your wishes</h4>
-                <p>Vel pretium dictum semper elementum hac vestibulum. Sit at vestibulum elit cursus adipiscing viverra elit.</p>
-                <img src="./assets/img/sendWishes.png" alt="send wishes">
+                <h4><span>3</span> Send to the special person</h4>
+                <p>Click send to deliver all your wishes in one group card</p>
+                <img src="./assets/img/send-wishes.svg" alt="send wishes">
             </div>
         </div>
+        <br>
+        <div class="btnx green explanationBtn"><a routerLink="/register"><button>Get started now</button></a></div>
     </div>
 
     <div class="greetingCard">
         <div class="title">
-            <h3>Greeting cards for every occassion</h3>
-            <p>Let your loved ones know you have them in mind with these beautiful templates</p>
+            <h3>A group card for every special occasion</h3>
+            <p>Lots of Firacard templates to inspire you; let your feelings show</p>
         </div>
 
         <div class="cards">
@@ -135,13 +132,13 @@
         </div>
         
         <div class="btnx green greetingBtn">
-            <a href="#"><button>Create a Group Board</button></a>
+            <a routerLink="/register"><button>Create a Group Board</button></a>
         </div>
     </div>
     <div class="explanationContainer" id="features">
         <div class="title">
-            <h3>Exclusive Features</h3>
-            <p>The extra features for your team, only on FiraCard.</p>
+            <h3>What makes Firacard so cool</h3>
+            <p>We have some cool features that will make you and your friends happy</p>
         </div>
         <div class="explanation">
             <div class="explainImage">
@@ -150,40 +147,39 @@
             </div>
             <div class="explainText">
                 <div class="explainTextInner">
-                    <h5>Add numberous countributor</h5>
-                    <p>Vel pretium dictum semper elementum hac vestibulum. Sit at vestibulum elit cursus
-                        adipiscing viverra elit pretium dictum semper elementum hac vestibulum. </p>
+                    <h5>As many boards as you want, free & YOURS</h5>
+                    <p>You have more than one special person, we do too and so we have made sure that you can create as many boards as you like for free. You can add images, messages and videos to all of your boards.</p>
                 </div>
                 <div class="explainTextInner">
-                    <h5>Free for first 10 boards</h5>
-                    <p>Vel pretium dictum semper elementum hac vestibulum. Sit at vestibulum elit cursus
-                        adipiscing viverra elit pretium dictum semper elementum hac vestibulum. </p>
+                    <h5>15 Contributors go FREE</h5>
+                    <p>Lots of things are more fun when we do them together; so you can invite 15 people for free to help you make your group
+                    card memorable. With Firacard,everyone can join in.</p>
                 </div>
                 <div class="explainTextInner">
-                    <h5>Easy user interface</h5>
-                    <p>Vel pretium dictum semper elementum hac vestibulum. Sit at vestibulum elit cursus
-                        adipiscing viverra elit pretium dictum semper elementum hac vestibulum. </p>
+                    <h5>Customisable & Yours FOREVER</h5>
+                    <p>You can personalise your board with a choice of backgrounds, colours, and fonts to tailor it for your special person or simply to show your creativity. What’s more, you can download and keep your firacard of pictures, videos and messages forever. A card and a keep-sake all in one. Versatile!</p>
                 </div>
                 <div class="explainTextInner">
-                    <h5>Trusted by the very best </h5>
-                    <p>Vel pretium dictum semper elementum hac vestibulum. Sit at vestibulum elit cursus
-                        adipiscing viverra elit pretium dictum semper elementum hac vestibulum. </p>
+                    <h5>We are easy to use</h5>
+                    <p>Our step-by-step guide means anyone can create a group card or contribute to an existing one. You can give something
+                    amazing to someone special easily and without stress.</p>
                 </div>
             </div>
         </div>
 
-        <div class="btnx green explanationBtn"><a href="#"><button>Create a Group Board</button></a></div>
+        <div class="btnx green explanationBtn"><a routerLink="/register"><button>Create a Group Board</button></a></div>
     </div>
     <div class="testimonial">
         <div class="title">
-            <h3>What People Are Saying</h3>
-            <p>A look into what people are saying about our services</p>
+            <h3>What our users are saying</h3>
+            <p>A look into what our users think of Firacard</p>
         </div>
         <div class="glider">
             <div class="gliderInner">
                 <div class="testimonialWriter">
-                    <h5>Startup Founder</h5>
-                    <small>Ontario, Canada.</small>
+                    <h5>Entrepreneur,                    
+</h5>
+                    <small>Oxford, UK.</small>
                     <div class="testimonialStar">
                         <span><i class="fas fa-star"></i></span>
                         <span><i class="fas fa-star"></i></span>
@@ -194,27 +190,22 @@
                 </div>
                 <div>
                     <div><i class="fas fa-quote-left"></i></div>
-                    <p>Pretium dictum semper elementum hac vestibulum tabii nedara ges estila cumme Pretium dictum semper elementum
-                        hac
-                        vestibulum tabii nedara ges estila cumme. Pretium dictum semper elementum hac vestibulum tabii nedara ges
-                        estila
-                        cumme
-                        Pretium dictum semper elementum hac vestibulum tabii nedara ges estila cumme. . Pretium dictum semper
-                        elementum
-                        hac</p>
-                    <div><i class="fas fa-quote-right"></i></div>
+                    <p>I decided to use Firacard for my girlfriend’s birthday. It was a really nice way of getting all her friends and family
+                    to send in some photos and messages and collate them all in one place. She was so surprised and she absolutely loved it!
+                    Will definitely be recommending.</p>
+                    <div><i class="fas fa-quote-right"></i></div><br><br><br><br>
                 </div>
             
                 <div class="testimonialIdentity">
                     <img src="./assets/img/testimonialImage1.png" alt="testimonial identity">
-                    <p>James Doe</p>
+                    <p>James </p>
                     <!-- <small>Califonia, USA.</small> -->
                 </div>
             </div>
             <div class="gliderInner">
                 <div class="testimonialWriter">
-                    <h5>Startup Founder</h5>
-                    <small>Ontario, Canada.</small>
+                    <h5>Head of HR,</h5>
+                    <small>Dublin, Ireland.</small>
                     <div class="testimonialStar">
                         <span><i class="fas fa-star"></i></span>
                         <span><i class="fas fa-star"></i></span>
@@ -225,27 +216,26 @@
                 </div>
                 <div>
                     <div><i class="fas fa-quote-left"></i></div>
-                    <p>Pretium dictum semper elementum hac vestibulum tabii nedara ges estila cumme Pretium dictum semper elementum
-                        hac
-                        vestibulum tabii nedara ges estila cumme. Pretium dictum semper elementum hac vestibulum tabii nedara ges
-                        estila
-                        cumme
-                        Pretium dictum semper elementum hac vestibulum tabii nedara ges estila cumme. . Pretium dictum semper
-                        elementum
-                        hac</p>
+                    <p>I work in an insurance firm and we use Firacard to celebrate team achievements and to send commendations to team members
+                    who have gone over and beyond for the team or business. We also use Firacard to celebrate individual achievements like
+                    promotions, transfers and to say goodbye to colleagues who are leaving. Firacard is convenient, easy to use and just
+                    great.”
+                    
+                    
+</p>
                     <div><i class="fas fa-quote-right"></i></div>
                 </div>
             
                 <div class="testimonialIdentity">
                     <img src="./assets/img/testimonialImage2.png" alt="testimonial identity">
-                    <p>John Doe</p>
+                    <p>Amara</p>
                     <!-- <small>Califonia, USA.</small> -->
                 </div>
             </div>
             <div class="gliderInner">
                 <div class="testimonialWriter">
-                    <h5>Startup Founder</h5>
-                    <small>Ontario, Canada.</small>
+                    <h5>Product lead,</h5>
+                    <small>Ontario, Canada</small>
                     <div class="testimonialStar">
                         <span><i class="fas fa-star"></i></span>
                         <span><i class="fas fa-star"></i></span>
@@ -256,24 +246,25 @@
                 </div>
                 <div>
                     <div><i class="fas fa-quote-left"></i></div>
-                    <p>Pretium dictum semper elementum hac vestibulum tabii nedara ges estila cumme Pretium dictum semper elementum hac
-                    vestibulum tabii nedara ges estila cumme. Pretium dictum semper elementum hac vestibulum tabii nedara ges estila
-                    cumme
-                    Pretium dictum semper elementum hac vestibulum tabii nedara ges estila cumme. . Pretium dictum semper elementum
-                    hac</p>
+                    <p>I work for a communications agency and we use Firacard to send other employees birthday messages from the team or to
+                    congratulate them on big events like having children, getting engaged or anything that we can celebrate with them. It’s
+                    been a nice way of making people feel valued and still part of the bigger team, especially with working from home over
+                    the past year!’’
+                    
+</p>
                     <div><i class="fas fa-quote-right"></i></div>
                 </div>
             
                 <div class="testimonialIdentity">
                     <img src="./assets/img/testimonialImage3.png" alt="testimonial identity">
-                    <p>Jane Doe</p>
+                    <p>Tanvir</p>
                     <!-- <small>Califonia, USA.</small> -->
                 </div>
             </div>
             <div class="gliderInner">
                 <div class="testimonialWriter">
-                    <h5>Startup Founder</h5>
-                    <small>Ontario, Canada.</small>
+                    <h5>Designer,</h5>
+                    <small>New York, USA.</small>
                     <div class="testimonialStar">
                         <span><i class="fas fa-star"></i></span>
                         <span><i class="fas fa-star"></i></span>
@@ -284,20 +275,49 @@
                 </div>
                 <div>
                     <div><i class="fas fa-quote-left"></i></div>
-                    <p>Pretium dictum semper elementum hac vestibulum tabii nedara ges estila cumme Pretium dictum semper elementum
-                        hac
-                        vestibulum tabii nedara ges estila cumme. Pretium dictum semper elementum hac vestibulum tabii nedara ges
-                        estila
-                        cumme
-                        Pretium dictum semper elementum hac vestibulum tabii nedara ges estila cumme. . Pretium dictum semper
-                        elementum
-                        hac</p>
+                    <p>’My mum, who is quite a bit older I may add, organised and sent me a lovely card from my family and friends back home.
+                    It was really such a great surprise, thank you so much Firacard!’’
+                    
+                    
+</p>
                     <div><i class="fas fa-quote-right"></i></div>
                 </div>
             
                 <div class="testimonialIdentity">
                     <img src="./assets/img/testimonialImage.png" alt="testimonial identity">
-                    <p>Idris Chukwuma</p>
+                    <p>Hannah</p>
+                    <!-- <small>Califonia, USA.</small> -->
+                </div>
+            </div>
+            <div class="gliderInner">
+                <div class="testimonialWriter">
+                    <h5>Finance Manager,</h5>
+                    <small>London, UK.</small>
+                    <div class="testimonialStar">
+                        <span><i class="fas fa-star"></i></span>
+                        <span><i class="fas fa-star"></i></span>
+                        <span><i class="fas fa-star"></i></span>
+                        <span><i class="fas fa-star"></i></span>
+                        <span><i class="fas fa-star-half-alt"></i></span>
+                    </div>
+                </div>
+                <div>
+                    <div><i class="fas fa-quote-left"></i></div>
+                    <p>I’ve been using Firacard for a good while now and quickly upgraded to their Premium plan to get access to some more nice
+                    features. I use it for all my friends’ birthdays and then for Christmas and any other occasion so I save quite a lot on
+                    not buying cards and stamps! Also means it’s quite eco-friendly too.”
+                    
+                    
+
+            
+            
+                    </p>
+                    <div><i class="fas fa-quote-right"></i></div>
+                </div>
+            
+                <div class="testimonialIdentity">
+                    <img src="./assets/img/testimonialImage.png" alt="testimonial identity">
+                    <p>Lee</p>
                     <!-- <small>Califonia, USA.</small> -->
                 </div>
             </div>
@@ -310,19 +330,12 @@
 
     <div class="specialContainer">
         <div class="specialContainerInner title">
-            <h3>Cards for special events?</h3>
+            <h3>Team love starts here</h3>
     
-            <p>Pretium dictum semper elementum hac vestibulum tabii nedara ges estila cumme Pretium dictum semper elementum
-                hac
-                vestibulum tabii nedara ges estila cumme. Pretium dictum semper elementum hac vestibulum tabii nedara ges
-                estila cumme
-                Pretium dictum semper elementum hac vestibulum tabii nedara ges estila cumme.Pretium dictum semper elementum
-                hac
-                vestibulum tabii nedara ges estila cumme Pretium dictum semper elementum hac vestibulum tabii nedara ges
-                estila cumme.</p>
+            <p>Create a sense of belonging and build more meaningful relationships within your teams by using our group cards to celebrate both big achievements and small wins within your teams</p>
     
             <div class="btnx green text-center">
-                <a href="#"><button>Create a Group Board</button></a>
+                <a routerLink="/register"><button>Create a Group Board</button></a>
             </div>
         </div>
     </div>
@@ -330,56 +343,72 @@
     <div class="pricing" id="pricing">
         <div class="title">
             <h3>Pricing Plan</h3>
-            <p>Pretium dictum semper elementum hac vestibulum tabii nedara ges estila cumme Pretium dictum semper elementum hac
-            vestibulum tabii nedara ges estila cumme.</p>
+            <p>Our group cards are cost-effective, convenient and easy to use. Celebrate with loved ones from wherever you are</p>
         </div>
         <div class="pricingContainer">
         <div class="pricingCard">
-            <div class="pricingTitle"><p>Mini Board</p></div>
+            <div class="pricingTitle"><p>The Free board</p></div>
             <div class="pricingLine"></div>
-            <h3>Free</h3>
-            <p>10 cards per board</p>
-
+            <h3>$0</h3>
+            <p>Up to 15 contributors.</p>
+            <p>Add messages and photos to your board.</p>
+            <p>Multiple background themes.</p>
+            <p>Download your board and receive it in your inbox.</p>
+            <p>View your board online anytime.</p>
+            <p>View your board online anytime.</p>
+            <br>
             <div class="btnx green pricingBtn">
-                <a href="#"><button>Choose this plan</button></a>
+                <a routerLink="/register"><button>Choose this plan</button></a>
             </div>
         </div>
         <div class="pricingCard">
-            <div class="pricingTitle"><p>Premium Plan</p></div>
+            <div class="pricingTitle pricingTitle-2"><p>The Premium Board <br>[most selected]</p></div>
             <div class="pricingLine"></div>
-            <h3> $ 7.50</h3>
-            <p>30 cards per board</p>
-            <p>paid annually</p>
-            
+            <h3>$5.99</h3>
+            <p>Up to 100 contributors</p>
+            <p>Add messages, photos plus videos, audio files and gifs </p>
+            <p>Allows for download of your board and online delivery</p>
+            <p>View your board online anytime</p>
+            <p>Download your board as an online poster</p>
+            <p>You can also download your board as a slide show</p>
+            <p>Multiple themes available for customisation</p>
+            <br>           
             <div class="btnx green pricingBtn">
-                <a href="#"><button>Choose this plan</button></a>
+                <a routerLink="/register"><button>Choose this plan</button></a>
             </div>
-            <small>*most preffered*</small>
+            <!-- <small>*most selected*</small>
 
             <div class="pricingSpecification">
                 <p><i class="fas fa-circle"></i> Company Logo</p>
                 <p><i class="fas fa-circle"></i> Additional Users</p>
                 <p><i class="fas fa-circle"></i> Multiple Card Recipient</p>
                 <p><i class="fas fa-circle"></i> Bulk Card Creation</p>
-            </div>
+            </div> -->
         </div>
         <div class="pricingCard">
-            <div class="pricingTitle"><p>Enterprise Plan</p></div>
+            <div class="pricingTitle"><p>The Infinity Board</p></div>
             <div class="pricingLine"></div>
-            <h3>$ 25.0</h3>
-            <p>55 cards per board</p>
-            <p>paid annually</p>
-        
+            <h3>$15.99</h3>
+            <p>An infinite number of contributors</p>
+            <p>Add messages, photos plus videos, audio files and gifs </p>
+            <p>Allows for download of your board and online delivery</p>
+            <p>View your board online any time</p>
+            <p>Download your board as an online poster</p>
+            <p>You can also download your board as a slide show</p>
+            <p>Multiple themes available for customisation</p>
+            <p>Add your company logo</p>
+            <p>Add music to the Slideshow</p>
+            <br>      
             <div class="btnx green pricingBtn">
-                <a href="#"><button>Choose this plan</button></a>
+                <a routerLink="/register"><button>Choose this plan</button></a>
             </div>
         
-            <div class="pricingSpecification">
+            <!-- <div class="pricingSpecification">
                 <p><i class="fas fa-circle"></i> Company Logo</p>
                 <p><i class="fas fa-circle"></i> Additional Users</p>
                 <p><i class="fas fa-circle"></i> Multiple Card Recipient</p>
                 <p><i class="fas fa-circle"></i> Bulk Card Creation</p>
-            </div>
+            </div> -->
         </div>
     </div>
     </div>
@@ -392,117 +421,13 @@
                 <img src="./assets/img/reason1.png" alt="subscribe">
             </div>
             <div class="subscribeText">
-                <h3>Subscribe to our newsletter</h3>
-                <p>Ut ut dictum egestas ut. Suspendisse at egestas nullam volutpat et vestibulum integer feugiat. Vel vel sed
-                    nisi, ut
-                    augue. Odio penatibus volutpfeugiat felis.</p>
+                <h3>Sign up to receive reminders for your special occasions.</h3>
+                <p>Never miss an important occasion again. When you sign up we will send you messages that will benefit you or put a smile on your face.</p>
                 <form action="">
                     <input type="text" placeholder="Email Address">
-                    <span class="btnx"><a href="#"><button>Create a Group Board</button></a></span>
+                    <span class="btnx"><a routerLink="/register"><button>Sign up now</button></a></span>
                 </form>
             </div>
         </div>
     </div>
-
-    <div class="typeOfCardContainer">
-        <div class="typesOfCards">
-            <div class="typesOfCardsInner">
-                <h3>Birthday Cards</h3>
-                <div><a href="#">Birthday Cards</a></div>
-                <div><a href="#">Birthday Cards for Boss</a></div>
-                <div><a href="#">Birthday Cards for Colleagues</a></div>
-                <div><a href="#">Birthday Cards for Friends</a></div>
-                <div><a href="#">Birthday Cards for Lovers</a></div>
-                <div><a href="#">Birthday Cards for Brothers</a></div>
-                <div><a href="#">Birthday Cards for Sisters</a></div>
-                <div><a href="#">Birthday Cards for Dads</a></div>
-                <div><a href="#">Birthday Cards for Mums</a></div>
-                <div><a href="#">Birthday Cards for Cousins</a></div>
-                <div><a href="#">Birthday Cards for Spouses</a></div>
-                <div><a href="#">Birthday Cards for Him</a></div>
-                <div><a href="#">Birthday Cards for Her</a></div>
-            </div>
-            <div  class="typesOfCardsInner">
-                <h3>Birthday Cards</h3>
-                <div><a href="#">Birthday Cards</a></div>
-                <div><a href="#">Birthday Cards for Boss</a></div>
-                <div><a href="#">Birthday Cards for Colleagues</a></div>
-                <div><a href="#">Birthday Cards for Friends</a></div>
-                <div><a href="#">Birthday Cards for Lovers</a></div>
-                <div><a href="#">Birthday Cards for Brothers</a></div>
-                <div><a href="#">Birthday Cards for Sisters</a></div>
-                <div><a href="#">Birthday Cards for Dads</a></div>
-                <div><a href="#">Birthday Cards for Mums</a></div>
-                <div><a href="#">Birthday Cards for Cousins</a></div>
-                <div><a href="#">Birthday Cards for Spouses</a></div>
-                <div><a href="#">Birthday Cards for Him</a></div>
-                <div><a href="#">Birthday Cards for Her</a></div>
-            </div>
-            <div  class="typesOfCardsInner">
-                <h3>Special Occassion Cards</h3>
-                <div><a href="#">Anniversary Cards</a></div>
-                <div><a href="#">Get Well Soon Cards</a></div>
-                <div><a href="#">Greeting Cards</a></div>
-                <div><a href="#">I LOVE YOU Cards</a></div>
-                <div><a href="#">Launching Cards</a></div>
-                <div><a href="#">Congratulations Cards</a></div>
-                <div><a href="#">Endagement Cards</a></div>
-                <div><a href="#">Goodluck Cards</a></div>
-                <div><a href="#">Graduation Cards</a></div>
-                <div><a href="#">Farewell Cards</a></div>
-                <div><a href="#">Christmas Cards</a></div>
-                <div><a href="#">Birthday Cards for Him</a></div>
-                <div><a href="#">Birthday Cards for Her</a></div>
-            </div>
-            <div  class="typesOfCardsInner">
-                <h3>Collage</h3>
-                <div><a href="#">Graduation Collage</a></div>
-                <div><a href="#">Anniversary Collage</a></div>
-                <div><a href="#">Baby Collage</a></div>
-                <div><a href="#">Farewell Collage</a></div>
-                <div><a href="#">Father’s Day Collage</a></div>
-                <div><a href="#">Mother’s Day Collage</a></div>
-                <div><a href="#">Graduation Collage</a></div>
-                <div><a href="#">Love Collage</a></div>
-                <div><a href="#">Thank you Collages</a></div>
-                <div><a href="#">Goodluck Collage</a></div>
-                <div><a href="#">Christmas Cards</a></div>
-                <div><a href="#">Birthday Cards for Him</a></div>
-                <div><a href="#">Birthday Cards for Her</a></div>
-            </div>
-            <div  class="typesOfCardsInner">
-                <h3>Slideshow</h3>
-                <div><a href="#">Graduation Slideshow</a></div>
-                <div><a href="#">Anniversary Slideshow</a></div>
-                <div><a href="#">Baby Slideshow</a></div>
-                <div><a href="#">Farewell Slideshow</a></div>
-                <div><a href="#">Father’s Day Slideshow</a></div>
-                <div><a href="#">Mother’s Day Slideshow</a></div>
-                <div><a href="#">Graduation Slideshow</a></div>
-                <div><a href="#">Love Slideshow</a></div>
-                <div><a href="#">Thank you Slideshow</a></div>
-                <div><a href="#">Goodluck Slideshow</a></div>
-                <div><a href="#">Christmas Slideshow</a></div>
-                <div><a href="#">Birthday Cards for Him</a></div>
-                <div><a href="#">Birthday Cards for Her</a></div>
-            </div>
-        </div>
-        <div class="typeOfCardLine"></div>
-    </div>
-
-    <div class="footerContainer">
-        <div class="socialFooter">
-            <span>
-                <a href="#"><i class="fab fa-linkedin-in"></i></a>
-            </span>
-            <span>
-                <a href="#"><i class="fab fa-facebook-f"></i></a>
-            </span>
-            <span>
-                <a href="#"><i class="fab fa-twitter"></i></a>
-            </span>
-        </div>
-        <div class="copyRight">
-            <p>&copy; 2021 FiraCard. All rights reserved</p>
-        </div>
-    </div>
+<app-footer></app-footer>

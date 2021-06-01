@@ -1,17 +1,105 @@
 /* You can add global styles to this file, and also import other style files */
 @import './assets/css/style.css';
 @import './assets/css/signUp.css';
+@import '../node_modules/@fortawesome/fontawesome-free/css/all.min.css';
+@import '~ngx-toastr/toastr';
+@import '~@ctrl/ngx-emoji-mart/picker';
+
 .text-blue {
     color: #2C4B75;
 }
 .text-pry{
     color: #A1C042;
 }
+.bg-pry {
+    background: #A1C042;
+}
+.bg-red {
+    background: #D04D2A;
+}
+.w-20{
+    width: 20%;
+}
+.w-80{
+    width: 80%;
+}
+.h-80v {
+    min-height: 80vh;
+}
+.h-100v {
+    min-height: 100vh;
+}
+.flex-direction-row {
+    flex-direction: row;
+}
 .btn-pry {
     background: #A1C042;
     box-shadow: 0px 2px 8px rgba(76, 175, 80, 0.16);
     border-radius: 4px;
     color: white;
+}
+.btn-pry-outline {
+    border: 1px solid #A1C042;
+    border-radius: 4px;
+    color: #A1C042;
+    &:hover{
+        color: #A1C042;
+    }
+}
+.badge-lt-blue {
+    background: #F1F7FF;
+    border-radius: 4.66383px;
+}
+.cursor-pointer {
+    cursor: pointer;
+}
+.custom-switch.pry .custom-control-input:checked~.custom-control-label::before {
+    color: #fff;
+    border-color: #A1C042;
+    background-color: #A1C042;
+}
+.button-link-icon {
+    border-right: none;
+    box-sizing: border-box;
+    display: flex;
+    cursor: pointer;
+    img {
+        width: 30px;
+        margin-top: 7px;
+    }
+    .btnd {
+        text-align: center;
+        padding: 10px 0px;
+        color: white;
+    }
+}
+.google {
+    &.button-link-icon {
+        border: 1px solid #DB4437;
+        border-right: none;
+        .btnd {
+            background: #DB4437;
+        }
+    }
+} 
+.fb {
+    &.button-link-icon {
+        border: 1px solid #2C4B75;
+        border-right: none;
+        .btnd {
+            background: #2C4B75;
+        }
+    }
+}
+.email {
+    &.button-link-icon {
+        border: 1px solid #333333;
+        .btnd {
+            background: #fff;
+            color: #333333;
+            border-left: 1px solid #333333;
+        }
+    }
 }
 .pricingCard {
     p {
@@ -40,3 +128,14 @@
         }
     }
 }
+.btn, .form-control {
+    box-shadow: none !important;
+}
+.modal-dialog-centered.right{
+    display: flex;
+    align-items: flex-end;
+    float: right;
+    width: 500px;
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

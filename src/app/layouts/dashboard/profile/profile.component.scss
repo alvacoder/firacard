@@ -1,0 +1,27 @@
+header {
+    padding: 30px 0px;
+    padding-bottom: 0px;
+    .navbar-nav{
+        flex-direction: row;
+        margin-top: 10px;
+        .nav-item {
+            margin-right: 20px;
+            font-style: normal;
+            font-weight: 500;
+            font-size: 20px;
+            line-height: 24px;
+            .nav-link {
+                color: #C4C4C4 !important;
+            }
+            &.active .nav-link {
+                color: #2C4B75 !important;
+                border-bottom: 2px solid #2C4B75;
+            }
+
+        }
+    }
+}
+.custom-control-input:checked~.custom-control-label::before {
+    border-color: #A1C042;
+    background-color: #A1C042;
+}

@@ -1,0 +1,71 @@
+<ng-container *ngIf="page==='signin'">
+    <div (click)="googleLogin()" class="button-link-icon google w-100 mb-3">
+        <div class="w-20 text-center">
+            <img src="/assets/icons/google-icon.svg" alt="icon">
+        </div>
+        <div class="w-80 btnd"> 
+            <p class="m-0">{{loading.google ? 'Google signin...' : 'Sign in with Google'}}</p>
+        </div>
+    </div>
+    <div (click)="facebookLogin()" class="button-link-icon fb w-100 mb-3">
+        <div class="w-20 text-center">
+            <img src="/assets/icons/facebook-icon.svg" alt="icon">
+        </div>
+        <div class="w-80 btnd"> 
+            <p class="m-0">{{loading.facebook ? 'Facebook signin...' : 'Sign in with Facebook'}}</p>
+        </div>
+    </div>
+    <!-- <div class="socialInner">
+        <a (click)="googleLogin()" class="social cursor-pointer">
+            <img src="./assets/img/google.png" alt="google">
+            <p>{{loading.google ? 'google signin...' : 'sign in with google'}}</p>
+        </a>
+    </div>
+    <div class="socialInner">
+        <a (click)="facebookLogin()" class="social cursor-pointer">
+            <span><i class="fab fa-facebook"></i></span>
+            <p>{{loading.facebook ? 'facebook signin...' : 'sign in with facebook'}}</p>
+        </a>
+    </div>
+    <div class="socialInner emailContainer">
+        <a routerLink="/login" class="social email">
+            <img src="./assets/img/mail.png" alt="email">
+            <p>sign in with email</p>
+        </a>
+    </div>
+     -->
+</ng-container>
+<ng-container *ngIf="page!=='signin'">
+    <div class="d-flex justify-content-between">
+        <div (click)="googleLogin()" class="button-link-icon google w-100 mb-3 mr-4">
+            <div class="w-20 text-center">
+                <img src="/assets/icons/google-icon.svg" alt="icon">
+            </div>
+            <div class="w-80 btnd"> 
+                <p class="m-0">{{loading.google ? 'Google signin...' : 'Sign in with Google'}}</p>
+            </div>
+        </div>
+        <div (click)="facebookLogin()" class="button-link-icon fb w-100 mb-3">
+            <div class="w-20 text-center">
+                <img src="/assets/icons/facebook-icon.svg" alt="icon">
+            </div>
+            <div class="w-80 btnd"> 
+                <p class="m-0">{{loading.facebook ? 'Facebook signin...' : 'Sign in with Facebook'}}</p>
+            </div>
+        </div>
+    </div>
+    <!-- <div class="socialContainer">
+        <div class="socialInner">
+            <a (click)="googleLogin()" class="social cursor-pointer">
+                <img src="./assets/img/google.png" alt="google">
+                <p>{{loading.google ? 'google signin...' : 'sign in with google'}}</p>
+            </a>
+        </div>
+        <div class="socialInner">
+            <a (click)="facebookLogin()" class="social cursor-pointer">
+                <span><i class="fab fa-facebook"></i></span>
+                <p>{{loading.facebook ? 'facebook signin...' : 'sign in with facebook'}}</p>
+            </a>
+        </div>
+    </div> -->
+</ng-container>

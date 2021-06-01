@@ -9,7 +9,8 @@ export class AuthMainComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
+
+
 
 }

@@ -1,0 +1,181 @@
+<!-- Button trigger modal -->
+<button type="button" id="settingsModalId" class="btn btn-primary d-none" data-toggle="modal" data-target="#exampleModalCenter">
+  Launch demo modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered right" role="document">
+    <div class="modal-content">
+      <div class="modal-header border-0">
+        <button id="closeBoardSettingsbtn" type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true"><img width="30px" src="/assets/icons/modal-close.svg" alt="icon"></span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="container-fluid" *ngIf="!showBackgrounds">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="border-bottom">
+                        <header class=" d-flex justify-content-between">
+                            <h4 class="text-blue">Free Plan</h4>
+                            <div>
+                                <a [routerLink]="['/boards/upgrade', board.boardId]" (click)="closeModal()" class="btn btn-pry-outline">Upgrade board</a>
+                            </div>
+                        </header>
+                        <p class="py-2 "><small>This board is on a free plan and it is limited to 10 cards. Upgrade for more  features</small></p>
+                    </div>
+                    <div class="border-bottom my-3 ">
+                        <header class=" d-flex justify-content-between">
+                            <h4 class="text-blue">Recipient</h4>
+                            <div>
+                                <button (click)="editRecipient()" class="btn btn-pry-outline">Edit</button>
+                            </div>
+                        </header>
+                        <p class="py-2">
+                            <small>Click on a name to edit and/or add receiving email address</small> <br>
+                            <span class="text-pry">
+                                <p>{{board.recipientEmail || 'nil'}}</p>
+                            </span>
+                        </p>
+                     
+                        <div class="d-flex justify-content-between mb-3">
+                            <h6>DELIVERY STATUS</h6>
+                            <div>
+                                <span class="badge badge-lt-blue p-2 text-pry">{{board.isDelivered ? 'Delivered': 'Not Delivered'}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div>
+                        <h4 class="my-3 text-blue">Administration</h4>
+                        <div>
+                            <div>
+                                <div class="form-group">
+                                    <label>Access to board</label>
+                                    <select (change)="updateBoardAccess()" class="form-control" [(ngModel)]="boardAccess" name="boardAccess">
+                                        <option value="public">Public</option>
+                                        <option value="password_protected">Password Protected</option>
+                                    </select>
+                                    <div class="w-75 mt-2" *ngIf="boardAccess==='password_protected'">
+                                        <ng-container *ngIf="showBoardPwd;">
+                                            <div class="input-group mb-3">
+                                                <input [(ngModel)]="boardPassword" name="password" type="text" class="form-control" 
+                                                   #boardAccessPwd="ngModel" placeholder="enter password" required>
+                                                <div class="input-group-append">
+                                                  <span (click)="updateBoardAccess()" class="input-group-text cursor-pointer" id="basic-addon2"> 
+                                                      <i class="fa fa-check"></i> 
+                                                    </span>
+                                                </div>
+                                                <div class="input-group-append">
+                                                    <span class="input-group-text cursor-pointer" (click)="toggleShowPwd(false)" id="basic-addon2"><i class="fa fa-times"></i></span>
+                                                  </div>
+                                              </div>
+                                              <div class="text-danger" *ngIf="boardAccess==='password_protected' && (boardAccessPwd.touched)">
+                                                  <span *ngIf="boardAccessPwd.invalid || (boardAccessPwd.value && boardAccessPwd.value.length<4)">
+                                                      <span>The password cannot be less than 4 characters</span>
+                                                  </span>
+                                             
+                                              </div>
+                                        </ng-container>
+                                        <div *ngIf="!showBoardPwd">
+                                            <a  class="text-info cursor-pointer" (click)="toggleShowPwd(true)" >{{boardPassword}}</a>
+                                        </div>
+                                     
+                                    </div>
+                                    <div class="my-3 d-flex justify-content-between">
+                                        <h6>Include contributors name?</h6>
+                                        <div class="">
+                                            <div class="custom-control custom-switch pry">
+                                                <input type="checkbox" class="custom-control-input" id="customSwitch1">
+                                                <label class="custom-control-label" for="customSwitch1"></label>
+                                              </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-between" *ngIf="selectedBg">
+                                <div class="cols">
+                                    <h6 class="mb-3">Select background</h6>
+                                </div>
+                                <div class="cols mb-3 cursor-pointer" (click)="toggleShowBgs(true)">
+                                    <div class="card shadow" style="width: 150px;">
+                                        <header [style.background]="selectedBg.header_color" class="p-3">
+                                        </header>
+                                        <section  
+                                            [style.background]="
+                                            selectedBg.low_res_url ? 'url('+selectedBg.low_res_url+')': 
+                                            selectedBg.background_color" 
+                                            class="bg-content">
+                                        </section>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid background-container"  *ngIf="showBackgrounds">
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item">
+                  <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Patterns</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Solids</a>
+                </li>
+                <!-- <li class="nav-item">
+                  <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Holidays</a>
+                </li> -->
+              </ul>
+              <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active my-3" id="home" role="tabpanel" aria-labelledby="home-tab">
+                    <div class="row">
+                        <ng-container *ngIf="backgrounList.pattern; else loaingpatternBgs">
+                            <div *ngFor="let patternBgs of backgrounList.pattern" class="col-md-6 mb-2">
+                                <div class="card shadow cursor-pointer" (click)="changeBg(patternBgs)">
+                                    <header [style.background]="patternBgs.header_color" class="p-3" >
+                                    </header>
+                                    <section  [style.background]="'url('+patternBgs.low_res_url+')'" class="bg-content">
+                                    </section>
+                                </div>
+                            </div>
+                        </ng-container>
+                        <ng-template #loaingpatternBgs>
+                            <div class="text-center">
+                                <i class="fa fa-spinner fa-spin fa-2x"></i>
+                            </div>
+                        </ng-template>
+                    </div>
+                </div>
+                <div class="tab-pane fade my-3" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                    <div class="row">
+                        <ng-container *ngIf="backgrounList.solid; else loadingPatternBgs">
+                            <div *ngFor="let solidBgs of backgrounList.solid" class="col-md-6 mb-2">
+                                <div class="card shadow cursor-pointer" (click)="changeBg(solidBgs)">
+                                    <header [style.background]="solidBgs.header_color" class="p-3" >
+                                    </header>
+                                    <section  [style.background]="solidBgs.background_color" class="bg-content">
+                                    </section>
+                                </div>
+                            </div>
+                        </ng-container>
+                        <ng-template #loadingPatternBgs>
+                            <div class="text-center">
+                                <i class="fa fa-spinner fa-spin fa-2x"></i>
+                            </div>
+                        </ng-template>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
+              </div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+</div>

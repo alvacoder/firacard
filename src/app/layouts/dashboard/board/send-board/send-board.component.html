@@ -1,0 +1,68 @@
+<!-- Button trigger modal -->
+<button type="button" id="sendBoardId" class="btn btn-primary d-none" data-toggle="modal" data-target="#sendBoardModal">
+    Send Board Btn
+</button>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="sendBoardModal" tabindex="-1" role="dialog" aria-labelledby="sendBoardModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered right" role="document">
+      <div class="modal-content">
+        <div class="modal-header border-0">
+            <button class="btn text-pry " data-dismiss="modal">
+                <i class="fa fa-arrow-left"></i> back
+            </button>
+        </div>
+        <div class="modal-body pt-0">
+          <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <h4 class="text-blue">Board Delivery Settings</h4>
+                </div>
+                <div class="col-md-12 my-3">
+                    <h5 class="text-blue">Recipient</h5>
+                    <div class="form-group">
+                        <label>Recipient Email</label>
+                        <input name="recipientEmail" ngModel [(ngModel)]="recipientEmail" type="email" #repEmail="ngModel"
+                            class="form-control" placeholder="enter recipient email" required/>
+                        <div *ngIf="repEmail.invalid" class="text-danger">
+                            <span>*recipient email is required</span>
+                        </div>
+                    </div>
+                    <div *ngIf="showDeliveryDate">
+                        <div class="form-group">
+                            <label>Schedule date</label>
+                            <input [(ngModel)]="deliveryDate" name="delDateVal" type="date" class="form-control" #delDateVal="ngModel">
+                            <div class="text-danger" *ngIf="!deliveryDate">
+                                <span>*schedule date is required</span>
+                            </div>
+                        </div>
+                        <div>
+                            <button (click)="deliverBoardNow()" [disabled]="!(deliveryDate && repEmail.valid) || loading.deliver" class="btn btn-pry mr-2">
+                                Schedule date <i *ngIf="loading.deliver" class="fa fa-spinner fa-spin"></i>
+                            </button>
+                            <button (click)="toggleShowDelDate(false)" class="btn btn-pry-outline">Cancel</button>
+                        </div>
+                    </div>
+                    <div *ngIf="!showDeliveryDate"> 
+                        <button (click)="deliverBoardNow()" [disabled]="repEmail.invalid || loading.deliver" class="btn btn-pry mr-3">
+                            Deliver board now <i *ngIf="loading.deliver" class="fa fa-spinner fa-spin"></i>
+                        </button>
+                        <button (click)="toggleShowDelDate(true)" class="btn btn-pry-outline">Schedule delivery for later</button>
+                    </div>
+                    <div class="my-4">
+                        <a (click)="copyDirectLink()" class="text-pry cursor-pointer">Or click here to copy the direct link for sharing</a>
+                    </div>
+                    <div class="mt-5">
+                        <button (click)="saveChanges()" [disabled]="repEmail.invalid || loading.save" class="btn btn-pry mr-3">
+                            Save Changes <i *ngIf="loading.save" class="fa fa-spinner fa-spin"></i>
+                        </button>
+                        <button id="closeSendBoardModalBtn" data-dismiss="modal" class="btn btn-pry-outline">Cancel without saving</button>
+                    </div>
+                </div>
+            </div>
+          </div>
+        </div>
+  
+      </div>
+    </div>
+  </div>

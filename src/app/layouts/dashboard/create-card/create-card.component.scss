@@ -1,6 +1,6 @@
 .create-card-container{
-    padding: 40px 50px;
-    background: #F6FAFF;
+    // padding: 40px 50px;
+    // background: #F6FAFF;
     min-height: 87vh;
     .nav-menu {
         margin-bottom: 5px;
@@ -56,4 +56,7 @@
             }
         }
     }
+}
+img{
+    object-fit: cover;
 }

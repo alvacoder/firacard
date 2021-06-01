@@ -1,22 +1,9 @@
-<div class="signContainer">
+<!-- <div class="signContainer">
     <div class="loginImage">
         <img src="./assets/img/login.png" alt="SignUp image">
     </div>
     <div class="signUpForm">
-        <div class="socialContainer">
-            <div class="socialInner">
-                <a href="https://google.com" class="social">
-                    <img src="./assets/img/google.png" alt="google">
-                    <p>sign in with google</p>
-                </a>
-            </div>
-            <div class="socialInner">
-                <a href="https://facebook.com" class="social">
-                    <span><i class="fab fa-facebook"></i></span>
-                    <p>sign in with facebook</p>
-                </a>
-            </div>
-        </div>
+        <app-oauth></app-oauth>
         <div class="or">
             <div class="line"></div>
             <p>or</p>
@@ -27,31 +14,32 @@
                 <h3>Create Account</h3>
                 <p>Create a free FiraCard account</p>
             </div>
-            <form action="">
-                <!-- <div class="formInner">
-                    <label for="name">Full Name</label>
-                    <div class="input">
-                        <span class="userIcon"><i class='fas fa-user'></i></span>
-                        <input type="text" placeholder="John Doe">
-                    </div>
-                </div> -->
+            <form [formGroup]="form" (ngSubmit)="createUser()">
                 <div class="formInner">
                     <label for="email">Email Address</label>
                     <div class="input">
                         <span class="userIcon"><i class='fas fa-envelope'></i></span>
-                        <input type="email" placeholder="myemail@gmail.com">
+                        <input formControlName="email" type="email" placeholder="myemail@gmail.com">
+                    </div>
+                    <div class="text-danger" *ngIf="(submitted || f('email').touched) && f('email').invalid">
+                        <span *ngIf="f('email').errors?.required">*email is required</span>
+                        <span *ngIf="!(f('email').errors?.required)">*email is invalid</span>
                     </div>
                 </div>
                 <div class="formInner">
                     <label for="password">Password</label>
                     <div class="input">
                         <span class="userIcon"><i class="fas fa-shield-alt"></i></span>
-                        <input type="password" placeholder="*****************">
-                        <span class="userIcon eye"><i class="fas fa-eye"></i></span>
+                        <input formControlName="password" [type]="!isShowPwd ? 'password' : 'text'" placeholder="*****************">
+                        <span (click)="showPwd()" class="userIcon eye cursor-pointer"><i class="fas fa-eye"></i></span>
+                        <div class="text-danger" *ngIf="(submitted || f('password').touched) && f('password').invalid">
+                            <span *ngIf="f('password').errors?.required">*password is required</span>
+                            <span *ngIf="!(f('password').errors?.required)">*password must be up to 8 characters</span>
+                        </div>
                     </div>
                 </div>
-                <div class="formInner submitBtn">
-                    <input type="submit" value="Create Account">
+                <div class="formInner submitBtn"> 
+                    <input [disabled]="loading" type="submit" [value]="!loading ? 'Create Account' : 'Loading...'">
                 </div>
             </form>
         </div>
@@ -61,6 +49,65 @@
                 <a routerLink="/login">SIGN IN HERE</a>
             </div>
             
+        </div>
+    </div>
+</div> -->
+<div class="h-80v align-items-center justify-content-center d-flex">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-center mb-4">
+                <h3>Create Account</h3>
+                <p>Free to use, Upload images and videos, Join millions of other users.</p>
+            </div>
+            <div class="col-md-6 offset-md-3">
+                <app-oauth></app-oauth>
+            </div>
+            <br><br><br>
+            <p class="col-md-6 offset-md-3 divider">OR</p>
+            <div class="col-md-6 offset-md-3">
+                <form [formGroup]="form" (ngSubmit)="createUser()">
+                    <div class="formInner">
+                        <label for="email">Email Address</label>
+                        <div class="input">
+                            <span class="userIcon"><i class='fas fa-envelope'></i></span>
+                            <input formControlName="email" type="email" placeholder="myemail@gmail.com">
+                            <div class="text-danger" *ngIf="(submitted || f('email').touched) && f('email').invalid">
+                                <span *ngIf="f('email').errors?.required">*email is required</span>
+                                <span *ngIf="!(f('email').errors?.required)">*email is invalid</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="formInner">
+                        <label for="password">Password</label>
+                        <!-- <span class="forgotPwd"><a href="#">Forgot password?</a></span> -->
+                        <div class="input">
+                            <span class="userIcon"><i class="fas fa-shield-alt"></i></span>
+                            <input formControlName="password" [type]="!isShowPwd ? 'password' : 'text'" placeholder="*****************">
+                            <span (click)="showPwd()" class="userIcon eye cursor-pointer"><i class="fas fa-eye"></i></span>
+    
+                            <div class="text-danger" *ngIf="(submitted || f('password').touched) && f('password').invalid">
+                                <span *ngIf="f('password').errors?.required">*password is required</span>
+                                <span *ngIf="!(f('password').errors?.required)">*password must be up to 8 characters</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <button [disabled]="loading" class="btn bg-red btn-block text-white py-3">
+                            {{loading ? 'Loading...' : 'Sign in'}}
+                        </button>
+                    </div>
+                    <!-- <div class="formInner submitBtn">
+                        <input [disabled]="loading" class="bg-red" type="submit" [value]="loading ? 'Loading...' : 'Sign in'">
+                    </div> -->
+                </form>
+                <div class="px-3 mt-4">
+                    <hr> 
+                </div>    
+                <div class="text-center">
+                    <p>Already have an account?</p>
+                    <a class="text-danger" routerLink="/login">Login Here</a>
+                </div>
+            </div>
         </div>
     </div>
 </div>

@@ -1,27 +1,90 @@
 .nav-menu {
     margin-bottom: 10px;
     .nav-item {
-        margin-right: 20px;
+        margin-right: 7px;
         cursor: pointer;
         h6 {
             font-size: 16px;
             line-height: 180%;
-            color: #A1C042;
         }
         .icon-circle {
-            margin-right: 10px;
+            margin-right: 3px;
             background: #FFFFFF;
+            width: 50px;
+            height: 50px;
             box-shadow: 0px 20.9725px 71.9057px rgba(85, 42, 4, 0.08);
+            img{
+                margin-bottom: 9px;
+                width: 17px;
+            }
         }
     }
 } 
+.nav-tabs {
+    border: none;
+    .nav-link {
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 180%;
+        color: #4F4F4F;
+        height: 40px;
+        border: none;
+        padding-left: 0px;
+        padding-right: 0px;
+        margin-right: 10px;
+        &.active {
+            color: #1976D2;
+            border-bottom: 2px solid #1976D2;
+
+        }
+    }
+}
+.btn-copy {
+    background: #F6FAF1;
+    color: yellowgreen;
+    font-size: 15px;
+    text-align: center;
+}
 .main-container {
-    background-image: url('/assets/img/board-banner.png');
     min-height: 65vh;
-    background-repeat: no-repeat;
-    background-size: cover;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
     // background-position: center;
-    .container-fluid {
-        padding: 5em 4em 3em;
+    // .container-fluid {
+    //     padding: 5em 4em 3em;
+    // }
+}
+
+.dropdown-toggle:after { content: none }
+.row-content {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    width: 100%;
+    .column-md-3 {
+        flex: 1 auto;
+        padding: 10px;
+        width: 33%;
+    }
+}
+.share-icon-container {
+    width: 220px;
+    padding: 5px 10px;
+    background: #fff;
+    box-shadow: 0 2px 6px 0 rgb(0 0 0 / 40%);
+    border-radius: 24px;
+    color: #3a4651;
+    font-size: 20px;
+    font-weight: 700;
+    span {
+        margin-right: 10px;
+        cursor: pointer;
+        .fab {
+            font-size: 22px;
+            &:hover {
+                color: yellowgreen !important;
+            }
+        
+        }
     }
 }
